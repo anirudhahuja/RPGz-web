@@ -1,0 +1,40 @@
+1. Figure out the layout and design of the website - Figma
+2. Create the front-end of the website - Bootstrap
+3. Create the back-end of the website - Node.js / Express
+4. Create the database - NoSQL
+
+
+Website - What do we want to have? 
+- Login / Register
+- Dashboard - Character Profile, Stats, Skills, Inventory, etc.
+- Quest Log - List of quests, with the ability to select a quest and start it
+- Achievments - Bonus Stats 
+
+
+
+Back-End - What do we need? 
+- User Authentication - Passport.js
+- Database - MongoDB
+- API - RESTful API 
+    API - Player Data:
+    - GET /players: Retrieve a list of all players.
+    - GET /players/{id}: Retrieve a specific player's details.
+    - POST /players: Create a new player profile.
+    - PUT /players/{id}: Update a player's profile (e.g., level, stats).
+    - DELETE /players/{id}: Remove a player's profile.
+
+    API - Quest Data:
+    - GET /quests: Retrieve a list of all quests.
+    - GET /quests/{id}: Retrieve a specific quest's details.
+    - POST /quests: Create a new quest.
+    - PUT /quests/{id}: Update a quest's details (e.g., status, rewards).
+    - DELETE /quests/{id}: Remove a quest.
+
+    API - Login: 
+    - POST /login: Authenticate a user and return a token.
+    - POST /register: Register a new user.
+
+    API - Authentication:
+    - POST /logout: Invalidate a user's token.
+    - GET /verify: Verify a user's token.
+
