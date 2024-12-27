@@ -1,80 +1,10 @@
+// Importing stylesheets
+@use './style/town.scss';
+@use './style/menu/player-info.scss';
+@use './style/menu/quest-log.scss';
+@use './style/menu/profile.scss';
+
 // Turn off scrollbar in whole app
 html, body {
     overflow: hidden;
 }
-
-#town {
-    // Make Container cover the entire screen
-    height: 100vh;
-    width: 100vw;
-}
-
-.parchment-panel {
-    background-image: url('./assets/parchment.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    // border: 2px solid #d4a373; /* Optional, for a vintage border */
-    border-radius: 10px; /* Rounded corners for the panel */
-    padding: 20px; /* Inner padding */
-    color: #333; /* Dark text color */
-    background-color: transparent !important;
-    border: none !important;
-  }
-
-.character-menu {
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 25%;
-    min-height: 60%;
-
-}
-
-.character-info {
-}
-
-.profile-container {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000; /* Keeps it on top */
-    background-color: rgba(240, 240, 240, 0.95); /* Light, slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
-    padding: 10px 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    display: flex;
-    align-items: center; /* Aligns avatar and text */
-    gap: 10px; /* Space between avatar and text */
-  }
-  
-  .profile-avatar {
-    width: 40px; /* Circle size */
-    height: 40px;
-    background-color: #9b9bff; /* Placeholder color */
-    border-radius: 50%; /* Circular shape */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem; /* Font size for PFP placeholder text */
-    color: white;
-    font-weight: bold;
-  }
-  
-  .profile-details {
-    display: flex;
-    flex-direction: column; /* Stacks name and level vertically */
-    justify-content: center;
-  }
-  
-  .profile-name {
-    font-size: 1rem; /* Font size for the name */
-    font-weight: 500; /* Slightly bold */
-    color: #333; /* Dark text color */
-  }
-  
-  .profile-level {
-    font-size: 0.85rem; /* Smaller font size for the level */
-    font-weight: 400; /* Regular weight */
-    color: #666; /* Lighter gray for distinction */
-  }

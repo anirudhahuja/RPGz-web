@@ -38,3 +38,6 @@ Back-End - What do we need?
     - POST /logout: Invalidate a user's token.
     - GET /verify: Verify a user's token.
 
+Character Sprit: 
+    When the user interacts with the character, opens the menu where the user can look
+    at their stats, quests etc.

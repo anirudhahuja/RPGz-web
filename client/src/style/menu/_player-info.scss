@@ -1,0 +1,56 @@
+@keyframes playerInfoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes playerInfoSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.player-info {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 30%;
+    min-height: 60%;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.player-info.open {
+    animation-name: playerInfoSlideIn;
+}
+
+.player-info.close {
+    animation-name: playerInfoSlideOut;
+}
+
+.player-info-body {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.close-button {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    font-size: 1.5rem;
+}
