@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button, CloseButton } from 'react-bootstrap'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import statsBackground from '../assets/stats_background.png';
+import axios from 'axios';
 
 interface MenuProps {
     isOpen: boolean;
@@ -12,16 +13,22 @@ interface MenuProps {
 
 const PlayerInfoMenu = ({ isOpen, onClose }: MenuProps) => {
     const [menuVisible, setMenuVisible] = useState(isOpen);
-
+    const [playerData, setPlayerData] = useState(null);
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
+    
     useEffect(() => {
         if (isOpen) {
             setMenuVisible(true);
+            // Fetch player data when the menu opens
+            axios.get(`${API_BASE_URL}/api/user-info`)
+                .then(response => setPlayerData(response.data))
+                .catch(error => console.error('Error fetching player data:', error));
         } else {
-            setTimeout(() => setMenuVisible(false), 300); // Match the animation duration
+            setTimeout(() => setMenuVisible(false), 300);
         }
     }, [isOpen]);
 
-    if (!menuVisible) return null; // Render nothing if the menu is not visible
+    if (!menuVisible || !playerData) return null;
 
     return (
         <Container className="parchment-panel">
@@ -38,16 +45,16 @@ const PlayerInfoMenu = ({ isOpen, onClose }: MenuProps) => {
                 }}
             > 
                 <Card.Body className="player-info-body">
-                    <h5> Name: Placeholder (Lv 1) </h5>
-                    <h5> Class: Novice </h5>
-                    <h5> XP: (0/100)</h5>
-                    <h5> Health: 100 </h5>
-                    <h5> Stamina: 50 </h5>
-                    <h5> Strength: 10 &nbsp;&nbsp;(100 to next level) </h5>
-                    <h5> Agility: 10 &nbsp;&nbsp;(100 to next level) </h5>
-                    <h5> Intelligence: 10 &nbsp;&nbsp;(100 to next level) </h5>
-                    <h5> Wisdom: 10 &nbsp;&nbsp;(100 to next level) </h5>
-                    <h5> Willpower: 1 &nbsp;&nbsp;(1000 to next level) </h5>
+                    <h5> Name: {playerData['name']} (Lv {playerData['level']}) </h5>
+                    <h5> Class: {playerData['class']} </h5>
+                    <h5> XP: {playerData['xp']}</h5>
+                    <h5> Health: {playerData['health']} </h5>
+                    <h5> Stamina: {playerData['stamina']} </h5>
+                    <h5> Strength: {playerData['strength']} &nbsp;&nbsp;(100 to next level) </h5>
+                    <h5> Agility: {playerData['agility']} &nbsp;&nbsp;(100 to next level) </h5>
+                    <h5> Intelligence: {playerData['intelligence']} &nbsp;&nbsp;(100 to next level) </h5>
+                    <h5> Wisdom: {playerData['wisdom']} &nbsp;&nbsp;(100 to next level) </h5>
+                    <h5> Willpower: {playerData['willpower']} &nbsp;&nbsp;(1000 to next level) </h5>
                 </Card.Body>
                 <CloseButton className="close-button p-2" onClick={onClose} />
             </Card>
