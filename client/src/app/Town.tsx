@@ -6,12 +6,16 @@ import logo from "../assets/logo.png"
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import PlayerInfoMenu from './player-info';
 import QuestLogMenu from './quest-log';
-
+import AcceptedQuestPanel from './accepted-quests';
+import { Quest } from './quest-log';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 export function Town() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [playerInfoOpen, setPlayerInfoOpen] = useState(false);
     const [questLogOpen, setQuestLogOpen] = useState(false);
+    const [acceptedQuests, setAcceptedQuests] = useState<Quest[]>([]);
 
     const toggleMenu = () => {
         if (menuOpen) {
@@ -23,6 +27,19 @@ export function Town() {
         } else {
             setMenuOpen(true);
         }
+    };
+
+    const acceptQuest = (quest: Quest) => {
+        setAcceptedQuests([...acceptedQuests, quest]);
+    };
+
+    const submitQuests = () => {
+        axios.post(`${API_BASE_URL}/api/submit-quests`, acceptedQuests)
+            .then(response => {
+                console.log('Quests submitted successfully:', response.data);
+                setAcceptedQuests([]);
+            })
+            .catch(error => console.error('Error submitting quests:', error));
     };
 
     return (
@@ -49,6 +66,7 @@ export function Town() {
                                     className="player-menu-button w-100"
                                     onClick={() => {
                                         setPlayerInfoOpen(true);
+                                        setQuestLogOpen(false);
                                         setMenuOpen(false);
                                     }}>
                                     Player Info
@@ -59,6 +77,7 @@ export function Town() {
                                     className="player-menu-button w-100"
                                     onClick={() => {
                                         setQuestLogOpen(true);
+                                        setPlayerInfoOpen(false);
                                         setMenuOpen(false);
                                     }}>
                                     Quest Log
@@ -75,7 +94,8 @@ export function Town() {
                 )}
 
                 <PlayerInfoMenu isOpen={playerInfoOpen} onClose={() => setPlayerInfoOpen(false)} />
-                <QuestLogMenu isOpen={questLogOpen} onClose={() => setQuestLogOpen(false)} />
+                <QuestLogMenu isOpen={questLogOpen} onClose={() => setQuestLogOpen(false)} acceptQuest={acceptQuest} acceptedCount={acceptedQuests.length} maxQuests={5} />
+                <AcceptedQuestPanel acceptedQuests={acceptedQuests} onSubmit={submitQuests} />
             </Container>
         </Parallax>
     );

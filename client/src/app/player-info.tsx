@@ -5,6 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import statsBackground from '../assets/stats_background.png';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 interface MenuProps {
     isOpen: boolean;
@@ -14,7 +15,6 @@ interface MenuProps {
 const PlayerInfoMenu = ({ isOpen, onClose }: MenuProps) => {
     const [menuVisible, setMenuVisible] = useState(isOpen);
     const [playerData, setPlayerData] = useState(null);
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
     
     useEffect(() => {
         if (isOpen) {

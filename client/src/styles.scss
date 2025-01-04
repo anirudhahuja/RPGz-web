@@ -3,8 +3,34 @@
 @use './style/menu/player-info.scss';
 @use './style/menu/quest-log.scss';
 @use './style/menu/profile.scss';
+@use './style/menu/accepted-quests.scss';
+
+@font-face {
+    font-family: 'Yngreena';
+    src: url('./assets/fonts/yngreena.ttf') format('truetype');
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+@font-face {
+    font-family: 'Yngreena-Bold';
+    src: url('./assets/fonts/yngreena-bold.ttf') format('truetype');
+    font-weight: normal; 
+    font-style: normal; 
+}
 
 // Turn off scrollbar in whole app
 html, body {
     overflow: hidden;
+}
+
+h2 {
+    font-family: 'Yngreena-Bold';
+    color: white;
+    font-size: 1.7rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+    font-family: 'Yngreena';
 }

@@ -1,0 +1,33 @@
+.accepted-quests-panel {
+    position: absolute;
+    right: 1%;
+    top: 52%;
+    width: 20%;
+    height: 85%;
+    transform: translateY(-50%);
+    background-color: rgba(8, 4, 4, 0.3);
+    border-color: #d3b578;
+}
+
+.accepted-quests-header {
+    margin: 0;
+    text-align: center;
+}
+
+.accepted-quests-divider {
+    border-color: white;
+    border-width: 1px;
+    opacity: 1;
+}
+
+.accepted-quests-body {
+    color: white;
+}
+
+.accepted-quests-submit-button {
+    margin-top: 5px;
+
+    margin-bottom: 10px;
+    float: right;
+}
+
