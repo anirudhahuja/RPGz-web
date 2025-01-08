@@ -1,13 +1,17 @@
+import React from 'react';
 import Town from './Town';
-import { Route, Routes, Link } from 'react-router-dom';
 import Profile from './profile';
+import { Provider } from 'react-redux';
+import store from './store';
 
 export function App() {
   return (
-    <div>
-      <Town />
-      <Profile />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Town />
+        <Profile />
+      </div>
+    </Provider>
   );
 }
 

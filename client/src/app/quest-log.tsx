@@ -27,7 +27,7 @@ interface QuestCategory {
     agility: Quest[];
     intelligence: Quest[];
     wisdom: Quest[];
-    willpower: Quest[];
+    endurance: Quest[];
 }
 
 // Main component for displaying the quest log menu
@@ -129,16 +129,16 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
                             ))}
                         </Card.Body>
                     </Tab>
-                    <Tab eventKey="willpower" title="POW">
+                    {/* <Tab eventKey="endurance" title="END">
                         <Card.Body className="quest-log-body">
-                            {quests.willpower.map((quest: Quest, index) => (
+                            {quests.endurance.map((quest: Quest, index) => (
                                 <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
                                 <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
                                 {renderQuestButton(quest)}
                                 </h5>
                             ))}
                         </Card.Body>
-                    </Tab>
+                    </Tab> */}
                 </Tabs>
                 <CloseButton className="close-button p-2" onClick={onClose} />
             </Card>

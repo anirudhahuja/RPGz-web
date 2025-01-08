@@ -44,7 +44,6 @@
     }
 }
 
-
 .player-menu {
     // Flexbox
     display: flex;
@@ -84,4 +83,43 @@
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
+}
+
+.level-up-message {
+    position: absolute;
+    top: 70%;
+    left: 55%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000; /* Black outline */
+    animation: floatUp 5s ease-out forwards, rainbowText 5s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50px);
+    }
+}
+
+@keyframes rainbowText {
+    0% { color: red; }
+    16% { color: orange; }
+    33% { color: yellow; }
+    50% { color: green; }
+    66% { color: blue; }
+    83% { color: indigo; }
+    100% { color: violet; }
 }

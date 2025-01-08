@@ -4,7 +4,7 @@ import { Quest } from './quest-log';
 
 interface AcceptedQuestPanelProps {
     acceptedQuests: Quest[];
-    onSubmit: () => void;
+    onSubmit: (quest: Quest) => void;
 }
 
 const AcceptedQuestPanel: React.FC<AcceptedQuestPanelProps> = ({ acceptedQuests, onSubmit }) => {
@@ -22,7 +22,7 @@ const AcceptedQuestPanel: React.FC<AcceptedQuestPanelProps> = ({ acceptedQuests,
                         <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
                         <Button
                             variant="success"
-                            onClick={onSubmit}
+                            onClick={() => onSubmit(quest)}
                             className="accepted-quests-submit-button"
                         >
                             Submit Quest

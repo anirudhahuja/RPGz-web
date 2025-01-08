@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.6.0",
     "bootstrap": "^5.3.3",
     "core-js": "^3.39.0",
@@ -62,7 +63,9 @@
     "react-bootstrap": "^2.10.6",
     "react-dom": "18.3.1",
     "react-parallax": "^3.5.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^6.28.0",
-    "react-use-draggable-scroll": "^0.4.7"
+    "react-use-draggable-scroll": "^0.4.7",
+    "redux": "^5.0.1"
   }
 }

@@ -12,7 +12,7 @@
     gap: 10px; /* Space between avatar and text */
 }
 
-.profile-avatar {
+.profile-picture {
     width: 40px; /* Circle size */
     height: 40px;
     background-color: #9b9bff; /* Placeholder color */
@@ -41,4 +41,13 @@
     font-size: 0.85rem; /* Smaller font size for the level */
     font-weight: 400; /* Regular weight */
     color: #666; /* Lighter gray for distinction */
+}
+
+.profile-level {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.level-up {
+  transform: scale(1.2);
+  color: gold;
 }

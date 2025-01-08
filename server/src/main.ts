@@ -6,27 +6,97 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send({ message: 'Hello API' });
+    res.send({ message: 'Hello API' });
 });
 
-// User Info
+// Define a single user object
+const user = {
+  name: 'John Doe',
+  class: 'Novice',
+  health: 100,
+  stamina: 50,
+  level: {
+    user: 1,
+    strength: 1,
+    agility: 1,
+    intelligence: 1,
+    wisdom: 1,
+    endurance: 1,
+  },
+  xp: {
+    user: 5,
+    strength: 0,
+    agility: 0,
+    intelligence: 0,
+    wisdom: 0,
+    endurance: 0,
+  },
+  levelRequirements: {
+    user: [0, 8, 12, 16, 22],
+    strength: [0, 60, 100, 140, 200],
+    agility: [0, 60, 100, 140, 200],
+    intelligence: [0, 60, 100, 140, 200],
+    wisdom: [0, 60, 100, 140, 200],
+    endurance: [0, 30, 100, 140, 200],
+  }
+};
+
+// Endpoint to get user info
 app.get('/api/user-info', (req, res) => {
-  const userData = {
-    name: 'John Doe',
-    level: 1,
-    class: 'Novice',
-    xp: '0/100',
-    health: 100,
-    stamina: 50,
-    strength: 10,
-    agility: 10,
-    intelligence: 10,
-    wisdom: 10,
-    willpower: 1,
-  };
-  res.json(userData);
+  res.json(user);
+});
+
+app.post('/api/submit-quest', (req, res) => {
+  const { questId } = req.body;
+
+  // Find the quest by ID
+  const quest = Object.values(questsData).flat().find(q => q.id === questId);
+  if (!quest) {
+    return res.status(404).json({ message: 'Quest not found' });
+  }
+
+  // Update the user's stats
+  const statToUpdate = quest.primaryStatGain.toLowerCase();
+  if (user.xp[statToUpdate] !== undefined) {
+    user.xp[statToUpdate] += quest.xp;
+    user.xp["endurance"] += 10;
+
+    // Check if the user has reached the next level for the stat
+    const currentStatLevel = user.level[statToUpdate];
+    const requiredStatXp = user.levelRequirements[statToUpdate][currentStatLevel];
+
+    if (user.xp[statToUpdate] >= requiredStatXp) {
+      user.level[statToUpdate] += 1;
+      user.xp[statToUpdate] = 0;
+      user.xp["user"] += 1;
+    }
+
+    // Check if the user has reached the next level for endurance
+    const currentEnduranceLevel = user.level["endurance"];
+    const requiredEnduranceXp = user.levelRequirements["endurance"][currentEnduranceLevel];
+
+    if (user.xp["endurance"] >= requiredEnduranceXp) {
+      user.level["endurance"] += 1;
+      user.xp["endurance"] = 0;
+      user.xp["user"] += 1;
+    }
+
+    // Check if the user has reached the next level for the User
+    const userLevel = user.level["user"];
+    const requiredUserXp = user.levelRequirements["user"][userLevel];
+
+    if (user.xp["user"] >= requiredUserXp) {
+      user.level["user"] += 1;
+    }
+
+  } else {
+    return res.status(400).json({ message: 'Invalid stat to update' });
+  }
+
+  res.json({ message: 'Quest submitted and experience updated successfully', user });
 });
 
 // Quests Data
@@ -78,19 +148,19 @@ const questsData = {
     { id: 408, name: "Dietary Experimentation", description: "Try a structured eating approach for a short period to see how your body reacts.", primaryStatGain: "Wisdom", xp: 20 },
     { id: 409, name: "Grocery Strategy", description: "Plan a grocery list focusing on healthy staples, then shop according to plan.", primaryStatGain: "Wisdom", xp: 20 },
     { id: 410, name: "Meal Prep Mastery", description: "Cook meals in advance to ensure consistent nutrition.", primaryStatGain: "Wisdom", xp: 20 },
-  ],
-  willpower: [
-    { id: 501, name: "Fire-Forged Finishers", description: "Add a tough finisher at the end of your workout.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 502, name: "Cold Shower Trial", description: "End your shower with cold water for 30-60s.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 503, name: "High-Rep Challenge", description: "Pick a bodyweight exercise and aim for a high rep count in one set.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 504, name: "Tabata Torture", description: "Intense 4-min interval protocol (20s on, 10s off x 8).", primaryStatGain: "Willpower", xp: 20 },
-    { id: 505, name: "Long Plank Hold", description: "Hold a single extended plank to test mental grit.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 506, name: "No-Snack Self-Control Day", description: "Avoid snacks/junk for a full day to practice dietary discipline.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 507, name: "Marathon Mindset", description: "Add 15-20 extra minutes (or an extra exercise) to your normal workout.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 508, name: "Early Morning Rise & Grind", description: "Wake up 30 min earlier for a morning workout or walk.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 509, name: "Cheat-Day Control", description: "Allow one indulgence (favorite treat), but stick to one portion.", primaryStatGain: "Willpower", xp: 20 },
-    { id: 510, name: "Last-Set Grind", description: "On the final set of any exercise, add 2 more reps beyond your planned target.", primaryStatGain: "Willpower", xp: 20 },
-  ],
+  ]
+//   endurance: [
+//     { id: 501, name: "Fire-Forged Finishers", description: "Add a tough finisher at the end of your workout.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 502, name: "Cold Shower Trial", description: "End your shower with cold water for 30-60s.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 503, name: "High-Rep Challenge", description: "Pick a bodyweight exercise and aim for a high rep count in one set.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 504, name: "Tabata Torture", description: "Intense 4-min interval protocol (20s on, 10s off x 8).", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 505, name: "Long Plank Hold", description: "Hold a single extended plank to test mental grit.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 506, name: "No-Snack Self-Control Day", description: "Avoid snacks/junk for a full day to practice dietary discipline.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 507, name: "Marathon Mindset", description: "Add 15-20 extra minutes (or an extra exercise) to your normal workout.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 508, name: "Early Morning Rise & Grind", description: "Wake up 30 min earlier for a morning workout or walk.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 509, name: "Cheat-Day Control", description: "Allow one indulgence (favorite treat), but stick to one portion.", primaryStatGain: "Willpower", xp: 20 },
+//     { id: 510, name: "Last-Set Grind", description: "On the final set of any exercise, add 2 more reps beyond your planned target.", primaryStatGain: "Willpower", xp: 20 },
+//   ],
 };
 
 // Quests Endpoint
