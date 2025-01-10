@@ -1,3 +1,5 @@
+@use '../variables/breakpoints' as bp;
+
 @keyframes questInfoSlideIn {
     from {
         opacity: 0;
@@ -22,10 +24,10 @@
 
 .quest-info {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 30%;
-    min-height: 60%;
+    top: 0%;
+    left: 0%;
+    width: 40%;
+    min-height: 100%;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }
@@ -39,34 +41,37 @@
 }
 
 .quest-log-tabs {
+    position: absolute;
+    margin-top: 10px;
+    top: 20%;
+    left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
-    position: absolute;
     font-family: 'Yngreena-Bold';
-    font-size: 1.3rem;
-    top: 10%;
-    left: 10%;
+    font-size: 0.6rem;
 }
 
 .quest-log-tabs .nav-link {
     color: #000 !important;
     background-color: transparent !important;
+    padding: 0.2rem 0.5rem;
 }
 
 .quest-log-body {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     align-items: left;
-    position: absolute;
-    left: 10%;
     max-width: 80%;
-    max-height: 60%;
-    top: 50%;
-    transform: translateY(-50%);
+    max-height: 45%;
     overflow-y: auto;
     height: 100%;
+    margin-top: 10px;
 }
 
 .quest-log-button {
@@ -74,6 +79,9 @@
     float: right;
     background-color: #695a3d;
     border-color: #695a3d;
+    font-size: 0.5rem;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
 }
 
 .quest-log-button:hover {
@@ -101,14 +109,50 @@
     border-color: green !important;
 }
 
-
-
-
-
-
-.close-button {
+.quest-log-close-button {
     position: absolute;
-    right: 10%;
-    top: 10%;
-    font-size: 1.5rem;
+    top: 22%;
+    right: 12%;
+    font-size: 0.7rem;
+}
+
+
+@include bp.respond('breakpoint-lg') {
+    .quest-info {
+        top: 20%;
+        left: 10%;
+        width: 30%;
+        min-height: 60%;
+    }
+
+    .quest-log-tabs {
+        font-size: 1.3rem;
+        width: 80%;
+        top: 8%;
+        left: 10%;
+    }
+
+    .quest-log-tabs .nav-link {
+        color: #000 !important;
+        background-color: transparent !important;
+        padding: 0.5rem 1rem !important;
+    }
+
+    .quest-log-body {
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+        max-height: 60%;
+    }
+
+    .quest-log-button {
+        font-size: 1.2rem;
+        width: 40%;
+    }
+
+    .quest-log-close-button {
+        right: 10%;
+        top: 10%;
+        font-size: 1rem;
+    }
 }

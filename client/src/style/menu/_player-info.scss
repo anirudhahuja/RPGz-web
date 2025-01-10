@@ -1,3 +1,5 @@
+@use '../variables/breakpoints' as bp;
+
 @keyframes playerInfoSlideIn {
     from {
         opacity: 0;
@@ -22,10 +24,10 @@
 
 .player-info {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 30%;
-    min-height: 60%;
+    top: 0%;
+    left: 0%;
+    width: 40%;
+    min-height: 100%;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }
@@ -48,9 +50,24 @@
     transform: translateY(-50%);
 }
 
-.close-button {
+.player-info-close-button {
     position: absolute;
-    right: 10%;
-    top: 10%;
-    font-size: 1.5rem;
+    top: 22%;
+    right: 12%;
+    font-size: 0.7rem;
+}
+
+@include bp.respond('breakpoint-lg') {
+    .player-info {
+        top: 20%;
+        left: 10%;
+        width: 30%;
+        min-height: 60%;
+    }
+
+    .player-info-close-button {
+        right: 10%;
+        top: 10%;
+        font-size: 1rem;
+    }
 }

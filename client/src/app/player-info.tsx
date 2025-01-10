@@ -15,15 +15,28 @@ interface MenuProps {
 }
 
 const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
-    if (!isOpen || !playerData) return null;
+    const [closing, setClosing] = useState(false);
+
+    useEffect(() => {
+        if (!isOpen) {
+            setClosing(false);
+        }
+    }, [isOpen]);
+
+    const handleClose = () => {
+        setClosing(true);
+        setTimeout(onClose, 300); // Match the animation duration
+    };
+
+    if (!isOpen && !closing) return null;
 
     return (
         <Container className="parchment-panel">
             <Card 
-                className={`player-info ${isOpen ? 'open' : 'close'}`}
+                className={`player-info ${isOpen && !closing ? 'open' : 'close'}`}
                 style={{ 
                     backgroundImage: `url(${statsBackground})`,
-                    backgroundSize: 'cover',
+                    backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundColor: 'transparent',
@@ -32,17 +45,17 @@ const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
                 }}
             > 
                 <Card.Body className="player-info-body">
-                    <h5> Name: {playerData.name} (Lv {playerData.level.user}) </h5>
-                    <h5> Class: {playerData.class} </h5>
-                    <h5> Health: {playerData.health} </h5>
-                    <h5> Stamina: {playerData.stamina} </h5>
-                    <h5> Strength: {playerData.level.strength} &nbsp;&nbsp;({playerData.levelRequirements.strength[playerData.level.strength] - playerData.xp.strength} to next level) </h5>
-                    <h5> Agility: {playerData.level.agility} &nbsp;&nbsp;({playerData.levelRequirements.agility[playerData.level.agility] - playerData.xp.agility} to next level) </h5>
-                    <h5> Intelligence: {playerData.level.intelligence} &nbsp;&nbsp;({playerData.levelRequirements.intelligence[playerData.level.intelligence] - playerData.xp.intelligence} to next level) </h5>
-                    <h5> Wisdom: {playerData.level.wisdom} &nbsp;&nbsp;({playerData.levelRequirements.wisdom[playerData.level.wisdom] - playerData.xp.wisdom} to next level) </h5>
-                    <h5> Endurance: {playerData.level.endurance} &nbsp;&nbsp;({playerData.levelRequirements.endurance[playerData.level.endurance] - playerData.xp.endurance} to next level) </h5>
+                    <h5> Name: {playerData?.name ?? 'Unknown'} (Lv {playerData?.level?.user ?? 0}) </h5>
+                    <h5> Class: {playerData?.class ?? 'Unknown'} </h5>
+                    <h5> Health: {playerData?.health ?? 0} </h5>
+                    <h5> Stamina: {playerData?.stamina ?? 0} </h5>
+                    <h5> Strength: {playerData?.level?.strength ?? 0} &nbsp;&nbsp;({(playerData?.levelRequirements?.strength?.[playerData?.level?.strength] ?? 0) - (playerData?.xp?.strength ?? 0)} to next level) </h5>
+                    <h5> Agility: {playerData?.level?.agility ?? 0} &nbsp;&nbsp;({(playerData?.levelRequirements?.agility?.[playerData?.level?.agility] ?? 0) - (playerData?.xp?.agility ?? 0)} to next level) </h5>
+                    <h5> Intelligence: {playerData?.level?.intelligence ?? 0} &nbsp;&nbsp;({(playerData?.levelRequirements?.intelligence?.[playerData?.level?.intelligence] ?? 0) - (playerData?.xp?.intelligence ?? 0)} to next level) </h5>
+                    <h5> Wisdom: {playerData?.level?.wisdom ?? 0} &nbsp;&nbsp;({(playerData?.levelRequirements?.wisdom?.[playerData?.level?.wisdom] ?? 0) - (playerData?.xp?.wisdom ?? 0)} to next level) </h5>
+                    <h5> Endurance: {playerData?.level?.endurance ?? 0} &nbsp;&nbsp;({(playerData?.levelRequirements?.endurance?.[playerData?.level?.endurance] ?? 0) - (playerData?.xp?.endurance ?? 0)} to next level) </h5>
                 </Card.Body>
-                <CloseButton className="close-button p-2" onClick={onClose} />
+                <CloseButton className="player-info-close-button" onClick={handleClose} />
             </Card>
         </Container>
     );

@@ -1,0 +1,45 @@
+// MEDIA QUERY MANAGER
+/*
+xs: 0               Default
+sm: 576px:          Small devices (landscape phones, 576px and up)
+md: 768px:          Medium devices (tablets, 768px and up)
+lg: 992px:          Large devices (desktops, 992px and up)
+xl: 1200px:         X-Large devices (large desktops, 1200px and up)
+xxl: 1400px:        XX-Large devices (larger desktops, 1400px and up)
+
+1em = 16px
+ORDER: Base + Typography > Generar Layout + Grid > Page Layout > Components
+*/
+
+@mixin respond($breakpoint) {
+  // Phone
+  @if $breakpoint == 'breakpoint-sm' {
+    @media (min-width: 36em) {
+      @content;
+    } //576px
+  }
+  // Tablet
+  @if $breakpoint == 'breakpoint-md' {
+    @media (min-width: 48em) {
+      @content;
+    } //768px
+  }
+  // Desktop
+  @if $breakpoint == 'breakpoint-lg' {
+    @media (min-width: 62em) {
+      @content;
+    } //992px
+  }
+  // Large Desktop
+  @if $breakpoint == 'breakpoint-xl' {
+    @media (min-width: 75em) {
+      @content;
+    } //1200px
+  }
+  // Larger Desktop
+  @if $breakpoint == 'breakpoint-xxl' {
+    @media (min-width: 87.5em) {
+      @content;
+    } //1400px +
+  }
+}

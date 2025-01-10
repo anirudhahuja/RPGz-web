@@ -1,9 +1,10 @@
 // Importing stylesheets
-@use './style/town.scss';
+@use './style/sections/town.scss';
 @use './style/menu/player-info.scss';
 @use './style/menu/quest-log.scss';
 @use './style/menu/profile.scss';
 @use './style/menu/accepted-quests.scss';
+@use './style/variables/breakpoints' as bp;
 
 @font-face {
     font-family: 'Yngreena';
@@ -27,10 +28,33 @@ html, body {
 h2 {
     font-family: 'Yngreena-Bold';
     color: white;
-    font-size: 1.7rem;
+    font-size: 1rem;
 }
 
 h5 {
-    font-size: 1.2rem;
+    font-size: 0.7rem;
     font-family: 'Yngreena';
+}
+
+@include bp.respond('breakpoint-lg') {
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h5 {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
 }

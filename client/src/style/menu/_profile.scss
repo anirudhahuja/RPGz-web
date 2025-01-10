@@ -1,3 +1,5 @@
+@use '../variables/breakpoints' as bp;
+
 .profile-container {
     position: fixed;
     top: 10px;
@@ -5,16 +7,17 @@
     z-index: 1000; /* Keeps it on top */
     background-color: rgba(240, 240, 240, 0.95); /* Light, slightly transparent background */
     border-radius: 10px; /* Rounded corners */
-    padding: 10px 15px;
+    padding: 5px 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     display: flex;
     align-items: center; /* Aligns avatar and text */
     gap: 10px; /* Space between avatar and text */
 }
 
+
 .profile-picture {
-    width: 40px; /* Circle size */
-    height: 40px;
+    width: 20px; /* Circle size */
+    height: 20px;
     background-color: #9b9bff; /* Placeholder color */
     border-radius: 50%; /* Circular shape */
     display: flex;
@@ -32,13 +35,13 @@
 }
 
 .profile-name {
-    font-size: 1rem; /* Font size for the name */
+    font-size: 0.7rem; /* Font size for the name */
     font-weight: 500; /* Slightly bold */
     color: #333; /* Dark text color */
 }
 
 .profile-level {
-    font-size: 0.85rem; /* Smaller font size for the level */
+    font-size: 0.7rem; /* Smaller font size for the level */
     font-weight: 400; /* Regular weight */
     color: #666; /* Lighter gray for distinction */
 }
@@ -50,4 +53,23 @@
 .level-up {
   transform: scale(1.2);
   color: gold;
+}
+
+@include bp.respond('breakpoint-lg') {
+    .profile-container {
+        padding: 10px 15px;
+    }
+
+    .profile-picture {
+        width: 40px; /* Circle size */
+        height: 40px;
+    }
+
+    .profile-name {
+        font-size: 1rem; /* Font size for the name */
+    }
+
+    .profile-level {
+        font-size: 1rem; /* Font size for the level */
+    }
 }

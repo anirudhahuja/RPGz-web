@@ -1,9 +1,11 @@
+@use '../variables/breakpoints' as bp;
+
 .accepted-quests-panel {
     position: absolute;
     right: 1%;
     top: 52%;
-    width: 20%;
-    height: 85%;
+    width: 30%;
+    height: 80%;
     transform: translateY(-50%);
     background-color: rgba(8, 4, 4, 0.3);
     border-color: #d3b578;
@@ -18,16 +20,42 @@
     border-color: white;
     border-width: 1px;
     opacity: 1;
+    margin-top: 5px;
 }
 
 .accepted-quests-body {
     color: white;
+    position: relative;
+    transform: translateY(-10%);
+    overflow-y: auto;
+
 }
 
 .accepted-quests-submit-button {
     margin-top: 5px;
-
     margin-bottom: 10px;
-    float: right;
+    font-size: 0.5rem;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
 }
 
+@include bp.respond('breakpoint-lg') {
+    .accepted-quests-panel {
+        width: 20%;
+        height: 85%;
+    }
+
+    .accepted-quests-divider {
+        margin-top: 10px;
+    }
+
+    .accepted-quests-body {
+        transform: translateY(-2%);
+        overflow-y: hidden;
+    }
+
+    .accepted-quests-submit-button {
+        font-size: 1.2rem;
+        width: 40%;
+    }
+}

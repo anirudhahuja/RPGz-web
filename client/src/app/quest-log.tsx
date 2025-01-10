@@ -80,7 +80,7 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
                 className={`quest-info ${isOpen ? 'open' : 'close'}`}
                 style={{ 
                     backgroundImage: `url(${questlogBackground})`,
-                    backgroundSize: 'cover',
+                    backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundColor: 'transparent',
@@ -93,7 +93,7 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
                         <Card.Body className="quest-log-body">
                             {quests.strength.map((quest: Quest, index) => (
                                 <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br /> 
+                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience
                                 {renderQuestButton(quest)}
                                 </h5>
                             ))}
@@ -129,18 +129,8 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
                             ))}
                         </Card.Body>
                     </Tab>
-                    {/* <Tab eventKey="endurance" title="END">
-                        <Card.Body className="quest-log-body">
-                            {quests.endurance.map((quest: Quest, index) => (
-                                <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
-                                {renderQuestButton(quest)}
-                                </h5>
-                            ))}
-                        </Card.Body>
-                    </Tab> */}
                 </Tabs>
-                <CloseButton className="close-button p-2" onClick={onClose} />
+                <CloseButton className="quest-log-close-button" onClick={onClose} />
             </Card>
         </Container>
     );

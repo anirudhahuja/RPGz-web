@@ -1,3 +1,5 @@
+@use '../variables/breakpoints' as bp;
+
 #town {
     // Make Container cover the entire screen
     height: 100vh;
@@ -9,15 +11,15 @@
     // top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    width: 10%;
+    width: 15%;
     height: auto;
 }
 
 .player {
     position: absolute;
-    top: 80%;
-    left: 50%;
-    scale: 1.6;
+    top: 60%;
+    left: 40%;
+    scale: 1;
     transform: scaleX(-1);
 }
 
@@ -56,10 +58,10 @@
     // Position
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20%;
-    height: 40%;
+    left: 25%;
+    transform: translate(-25%, -50%);
+    width: 30%;
+    height: 50%;
     // Style
     border: 3px solid skyblue;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
@@ -81,19 +83,24 @@
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px;
-    margin-top: 10px;
+    max-width: 60%;
+    position: relative;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    font-size: 0.6rem;
 }
 
 .level-up-message {
     position: absolute;
-    top: 70%;
+    top: 55%;
     left: 55%;
     transform: translateX(-50%);
     background-color: transparent;
     padding: 10px;
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     color: white;
     text-shadow: 
         -1px -1px 0 #000,  
@@ -122,4 +129,36 @@
     66% { color: blue; }
     83% { color: indigo; }
     100% { color: violet; }
+}
+
+@include bp.respond('breakpoint-lg') {
+    .logo {
+        width: 10%;
+    }
+
+    .player {
+        top: 80%;
+        left: 50%;
+        scale: 1.6;
+    }
+
+    .player-menu {
+        width: 20%;
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .player-menu-button {
+        padding: 10px;
+        margin-top: 10px;
+        max-width: 80%;
+        font-size: 1.2rem;
+    }
+
+    .level-up-message {
+        top: 70%;
+        font-size: 1.5rem;
+    }
 }
