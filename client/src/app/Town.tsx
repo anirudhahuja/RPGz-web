@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Parallax } from 'react-parallax';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+
 import backgroundImage from '../assets/village.gif';
-import playerGif from "../assets/player.gif"
-import logo from "../assets/logo.png"
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import playerGif from "../assets/player.gif";
+import logo from "../assets/logo.png";
+import player_menu_icon from "../assets/icons/player_menu_icon.svg";
+import quests_menu_icon from "../assets/icons/quests_menu_icon.svg";
+import skills_menu_icon from "../assets/icons/skills_menu_icon.svg";
+
+
 import PlayerInfoMenu from './player-info';
 import QuestLogMenu from './quest-log';
 import AcceptedQuestPanel from './accepted-quests';
 import { Quest } from './quest-log';
-import axios from 'axios';
 import { API_BASE_URL } from '../config';
-import { useDispatch } from 'react-redux';
 import { triggerLevelUp, setPlayerData, PlayerData } from './levelUpSlice';
 
 export function Town() {
-    const [menuOpen, setMenuOpen] = useState(false); // Main Menu  
     const [playerInfoOpen, setPlayerInfoOpen] = useState(false); // Player Info Menu
     const [questLogOpen, setQuestLogOpen] = useState(false); // Quest Log Menu
     const [playerData, setPlayerDataLocal] = useState<PlayerData | null>(null); // Local Player Data
@@ -39,18 +44,6 @@ export function Town() {
                 setLevelUpMessages(prevMessages => prevMessages.filter(msg => msg !== message));
             }, 2500); // Message disappears after 2.5 seconds
         }, index * 3000); // Delay each message by 3 seconds times its index
-    };
-
-    const toggleMenu = () => {
-        if (menuOpen) {
-            setMenuOpen(false);
-            setTimeout(() => {
-                setPlayerInfoOpen(false);
-                setQuestLogOpen(false);
-            }, 300);
-        } else {
-            setMenuOpen(true);
-        }
     };
 
     const acceptQuest = (quest: Quest) => {
@@ -108,7 +101,6 @@ export function Town() {
             <Container id="town">
                 <img src={logo} alt="Logo" className="logo" />
                 <Button
-                    onClick={toggleMenu}
                     style={{
                         background: "none",
                         border: "none",
@@ -124,41 +116,47 @@ export function Town() {
                         {message}
                     </div>
                 ))}
-
-                {menuOpen && (
-                    <Container className={`player-menu ${menuOpen ? 'town-open' : 'town-close'}`}>
-                        <Row>
-                            <Col className="col-12 mb-3">
-                                <Button
-                                    className="player-menu-button w-100"
-                                    onClick={() => {
-                                        setPlayerInfoOpen(true);
-                                        setQuestLogOpen(false);
-                                        setMenuOpen(false);
-                                    }}>
-                                    Player Info
-                                </Button>
-                            </Col>
-                            <Col className="col-12 mb-3">
-                                <Button
-                                    className="player-menu-button w-100"
-                                    onClick={() => {
-                                        setQuestLogOpen(true);
-                                        setPlayerInfoOpen(false);
-                                        setMenuOpen(false);
-                                    }}>
-                                    Quest Log
-                                </Button>
-                            </Col>
-                            <Col className="col-12 mb-3">
-                                <Button
-                                    className="player-menu-button w-100"
-                                    onClick={() => setMenuOpen(false)}
-                                >Skills</Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                )}
+                
+                <div className="menu-icons">
+                    <Button
+                        onClick={() => {
+                            setPlayerInfoOpen(!playerInfoOpen); // Toggle the Player Info Menu
+                            setQuestLogOpen(false);
+                        }}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "pointer"
+                        }}
+                    >
+                        <img src={player_menu_icon} alt="Player Menu Icon" className="player-menu-icon" />
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setQuestLogOpen(!questLogOpen); // Toggle the Quest Log Menu
+                            setPlayerInfoOpen(false);
+                        }}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "pointer"
+                        }}
+                    >
+                        <img src={quests_menu_icon} alt="Quest Log Menu Icon" className="quests-menu-icon" />
+                    </Button>
+                    <Button
+                        style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "pointer"
+                        }}
+                    >
+                        <img src={skills_menu_icon} alt="Skills Menu Icon" className="skills-menu-icon" />
+                    </Button>
+                </div>
 
                 <PlayerInfoMenu 
                     isOpen={playerInfoOpen} 

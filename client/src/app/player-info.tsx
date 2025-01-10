@@ -18,7 +18,7 @@ const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
     const [closing, setClosing] = useState(false);
 
     useEffect(() => {
-        if (!isOpen) {
+        if (isOpen) {
             setClosing(false);
         }
     }, [isOpen]);

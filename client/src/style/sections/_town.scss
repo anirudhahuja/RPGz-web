@@ -23,73 +23,55 @@
     transform: scaleX(-1);
 }
 
-// Animations for the Player Menu
-@keyframes townSlideIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-@keyframes townSlideOut {
-    from {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-    to {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-}
-
-.player-menu {
-    // Flexbox
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    // Animation
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
-    // Position
+.menu-icons {
     position: absolute;
     top: 50%;
-    left: 25%;
-    transform: translate(-25%, -50%);
-    width: 30%;
-    height: 50%;
-    // Style
-    border: 3px solid skyblue;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    background: #DECFB1;
-    padding: 10px;
+    left: 46%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.player-menu.town-open {
-    animation-name: townSlideIn;
+.player-menu-icon {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
 }
 
-.player-menu.town-close {
-    animation-name: townSlideOut;
+.player-menu-icon:hover {
+    background-color: gold;
+}
+    
+.quests-menu-icon {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    margin-bottom: 40px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+}   
+
+.quests-menu-icon:hover {
+    background-color: gold;
 }
 
-.player-menu-button {
-    background: #746459;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    max-width: 60%;
-    position: relative;
-    left: 50%;
-    top: 10px;
-    transform: translateX(-50%);
-    margin: 0 auto;
-    font-size: 0.6rem;
+.skills-menu-icon {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    
+}   
+
+.skills-menu-icon:hover {
+    background-color: gold;
 }
 
 .level-up-message {
@@ -142,23 +124,47 @@
         scale: 1.6;
     }
 
-    .player-menu {
-        width: 20%;
-        height: 40%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .player-menu-button {
-        padding: 10px;
-        margin-top: 10px;
-        max-width: 80%;
-        font-size: 1.2rem;
-    }
-
     .level-up-message {
         top: 70%;
         font-size: 1.5rem;
+    }
+
+    .menu-icons {
+        top: 65%;
+        left: 60%;
+        flex-direction: column;
+    }
+
+    .player-menu-icon {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+    }   
+
+    .player-menu-icon:hover {
+        transform: translateY(-5px);
+    }
+        
+    .quests-menu-icon {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+    }   
+
+    .quests-menu-icon:hover {
+        transform: translateY(-5px);
+    }
+    
+    .skills-menu-icon {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .skills-menu-icon:hover {
+        transform: translateY(-5px);
     }
 }
