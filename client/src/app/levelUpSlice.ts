@@ -39,12 +39,44 @@ export interface PlayerData {
 
 interface LevelUpState {
   levelUp: boolean;
-  playerData: PlayerData | null;
+  playerData: PlayerData; // Changed from `PlayerData | null` to always have a default structure
 }
+
+// Default values for `PlayerData`
+const initialPlayerData: PlayerData = {
+  name: 'Unknown',
+  level: {
+    user: 0,
+    strength: 0,
+    agility: 0,
+    intelligence: 0,
+    wisdom: 0,
+    endurance: 0,
+  },
+  class: 'Unknown',
+  health: 0,
+  stamina: 0,
+  xp: {
+    user: 0,
+    strength: 0,
+    agility: 0,
+    intelligence: 0,
+    wisdom: 0,
+    endurance: 0,
+  },
+  levelRequirements: {
+    user: [0, 10, 20, 30, 40],
+    strength: [0, 50, 100, 150, 200],
+    agility: [0, 50, 100, 150, 200],
+    intelligence: [0, 50, 100, 150, 200],
+    wisdom: [0, 50, 100, 150, 200],
+    endurance: [0, 50, 100, 150, 200],
+  },
+};
 
 const initialState: LevelUpState = {
   levelUp: false,
-  playerData: null,
+  playerData: initialPlayerData, // Default player data
 };
 
 const levelUpSlice = createSlice({
@@ -64,4 +96,4 @@ const levelUpSlice = createSlice({
 });
 
 export const { triggerLevelUp, resetLevelUp, setPlayerData } = levelUpSlice.actions;
-export default levelUpSlice.reducer; 
+export default levelUpSlice.reducer;

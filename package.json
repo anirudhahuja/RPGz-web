@@ -54,6 +54,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@cloudflare/d1": "^1.4.1",
+    "@cloudflare/workers-types": "^4.20250109.0",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.6.0",

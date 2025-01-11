@@ -47,12 +47,16 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
         if (isOpen) {
             setMenuVisible(true);
             axios.get(`${API_BASE_URL}/api/quests`)
-                .then(response => setQuests(response.data))
+                .then(response => {
+                    console.log('Fetched quests:', response.data); // Debug fetched data
+                    setQuests(response.data);
+                })
                 .catch(error => console.error('Error fetching quests:', error));
         } else {
             setTimeout(() => setMenuVisible(false), 300);
         }
     }, [isOpen]);
+    
 
     // Return null if the menu is not visible or quests are not loaded
     if (!menuVisible || !quests) return null;
@@ -91,40 +95,44 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
                 <Tabs defaultActiveKey="strength" id="uncontrolled-tab-example" className="quest-log-tabs">
                     <Tab eventKey="strength" title="STR">
                         <Card.Body className="quest-log-body">
-                            {quests.strength.map((quest: Quest, index) => (
-                                <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience
-                                {renderQuestButton(quest)}
+                            {(quests?.strength || []).map((quest: Quest, index) => (
+                                <h5 key={index}>
+                                    <b>{quest.name}</b> - {quest.description} <br />
+                                    <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience
+                                    {renderQuestButton(quest)}
                                 </h5>
                             ))}
                         </Card.Body>
                     </Tab>
                     <Tab eventKey="agility" title="AGI">
                         <Card.Body className="quest-log-body">
-                            {quests.agility.map((quest: Quest, index) => (
-                                <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
-                                {renderQuestButton(quest)}
+                            {(quests?.agility || []).map((quest: Quest, index) => (
+                                <h5 key={index}>
+                                    <b>{quest.name}</b> - {quest.description} <br />
+                                    <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
+                                    {renderQuestButton(quest)}
                                 </h5>
                             ))}
                         </Card.Body>
                     </Tab>
                     <Tab eventKey="intelligence" title="INT">
                         <Card.Body className="quest-log-body">
-                            {quests.intelligence.map((quest: Quest, index) => (
-                                <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
-                                {renderQuestButton(quest)}
+                            {(quests?.intelligence || []).map((quest: Quest, index) => (
+                                <h5 key={index}>
+                                    <b>{quest.name}</b> - {quest.description} <br />
+                                    <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
+                                    {renderQuestButton(quest)}
                                 </h5>
                             ))}
                         </Card.Body>
                     </Tab>
                     <Tab eventKey="wisdom" title="WIS">
                         <Card.Body className="quest-log-body">
-                            {quests.wisdom.map((quest: Quest, index) => (
-                                <h5 key={index}> <b>{quest.name}</b> - {quest.description} <br /> 
-                                <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
-                                {renderQuestButton(quest)}
+                            {(quests?.wisdom || []).map((quest: Quest, index) => (
+                                <h5 key={index}>
+                                    <b>{quest.name}</b> - {quest.description} <br />
+                                    <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
+                                    {renderQuestButton(quest)}
                                 </h5>
                             ))}
                         </Card.Body>

@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Parallax } from 'react-parallax';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import backgroundImage from '../assets/village.gif';
-import playerGif from "../assets/player.gif";
-import logo from "../assets/logo.png";
-import player_menu_icon from "../assets/icons/player_menu_icon.svg";
-import quests_menu_icon from "../assets/icons/quests_menu_icon.svg";
-import skills_menu_icon from "../assets/icons/skills_menu_icon.svg";
-
+import playerGif from '../assets/player.gif';
+import logo from '../assets/logo.png';
+import player_menu_icon from '../assets/icons/player_menu_icon.svg';
+import quests_menu_icon from '../assets/icons/quests_menu_icon.svg';
+import skills_menu_icon from '../assets/icons/skills_menu_icon.svg';
 
 import PlayerInfoMenu from './player-info';
 import QuestLogMenu from './quest-log';
@@ -24,18 +23,35 @@ export function Town() {
     const [questLogOpen, setQuestLogOpen] = useState(false); // Quest Log Menu
     const [playerData, setPlayerDataLocal] = useState<PlayerData | null>(null); // Local Player Data
     const [acceptedQuests, setAcceptedQuests] = useState<Quest[]>([]); // Accepted Quests
-    const [levelUpMessages, setLevelUpMessages] = useState<string[]>([]); // Change to an array
+    const [levelUpMessages, setLevelUpMessages] = useState<string[]>([]); // Level-Up Messages
     const dispatch = useDispatch();
 
+    // Fetch player data on component mount
     useEffect(() => {
-        axios.get(`${API_BASE_URL}/api/user-info`)
-            .then(response => {
-                setPlayerDataLocal(response.data);
-                dispatch(setPlayerData(response.data)); // Store full player data in Redux
-            })
-            .catch(error => console.error('Error fetching player data:', error));
-    }, []);
+        const fetchPlayerData = async () => {
+            try {
+                const response = await axios.get(`${API_BASE_URL}/api/user-info?name=John Doe`);
+                const data = response.data;
+        
+                // Parse JSON fields
+                const parsedData = {
+                    ...data,
+                    level: JSON.parse(data.level),
+                    xp: JSON.parse(data.xp),
+                    levelRequirements: JSON.parse(data.levelRequirements),
+                };
+        
+                console.log('Parsed player data:', parsedData);
+                setPlayerDataLocal(parsedData);
+                dispatch(setPlayerData(parsedData)); // Store full player data in Redux
+            } catch (error) {
+                console.error('Error fetching player data:', error);
+            }
+        };
+        
 
+        fetchPlayerData();
+    }, [dispatch]);
 
     const triggerLevelUpAnimation = (message: string, index: number) => {
         setTimeout(() => {
@@ -53,7 +69,7 @@ export function Town() {
     const submitQuest = (quest: Quest) => {
         if (!playerData) return; // Ensure player data is available
 
-        axios.post(`${API_BASE_URL}/api/submit-quest`, { questId: quest.id })
+        axios.post(`${API_BASE_URL}/api/submit-quest`, { questId: quest.id, name: playerData.name })
             .then(response => {
                 console.log('Quest submitted successfully:', response.data);
                 setAcceptedQuests(acceptedQuests.filter(q => q !== quest));
@@ -61,23 +77,25 @@ export function Town() {
                 const levelUpMessages = [];
                 let userLeveledUp = false;
 
-                if (response.data.user.level.strength > playerData.level.strength) {
-                    levelUpMessages.push("STRENGTH LEVEL " + playerData.level.strength + " -> " + response.data.user.level.strength);
+                // Level-up message logic
+                const updatedPlayerData = response.data.user;
+                if (updatedPlayerData.level.strength > playerData.level.strength) {
+                    levelUpMessages.push(`STRENGTH LEVEL ${playerData.level.strength} -> ${updatedPlayerData.level.strength}`);
                 }
-                if (response.data.user.level.agility > playerData.level.agility) {
-                    levelUpMessages.push("AGILITY LEVEL " + playerData.level.agility + " -> " + response.data.user.level.agility);
+                if (updatedPlayerData.level.agility > playerData.level.agility) {
+                    levelUpMessages.push(`AGILITY LEVEL ${playerData.level.agility} -> ${updatedPlayerData.level.agility}`);
                 }
-                if (response.data.user.level.intelligence > playerData.level.intelligence) {
-                    levelUpMessages.push("INTELLIGENCE LEVEL " + playerData.level.intelligence + " -> " + response.data.user.level.intelligence);
+                if (updatedPlayerData.level.intelligence > playerData.level.intelligence) {
+                    levelUpMessages.push(`INTELLIGENCE LEVEL ${playerData.level.intelligence} -> ${updatedPlayerData.level.intelligence}`);
                 }
-                if (response.data.user.level.wisdom > playerData.level.wisdom) {
-                    levelUpMessages.push("WISDOM LEVEL " + playerData.level.wisdom + " -> " + response.data.user.level.wisdom);
+                if (updatedPlayerData.level.wisdom > playerData.level.wisdom) {
+                    levelUpMessages.push(`WISDOM LEVEL ${playerData.level.wisdom} -> ${updatedPlayerData.level.wisdom}`);
                 }
-                if (response.data.user.level.endurance > playerData.level.endurance) {
-                    levelUpMessages.push("ENDURANCE LEVEL " + playerData.level.endurance + " -> " + response.data.user.level.endurance);
+                if (updatedPlayerData.level.endurance > playerData.level.endurance) {
+                    levelUpMessages.push(`ENDURANCE LEVEL ${playerData.level.endurance} -> ${updatedPlayerData.level.endurance}`);
                 }
-                if (response.data.user.level.user > playerData.level.user) {
-                    levelUpMessages.push("YOU LEVELED UP! LEVEL " + playerData.level.user + " -> " + response.data.user.level.user);
+                if (updatedPlayerData.level.user > playerData.level.user) {
+                    levelUpMessages.push(`YOU LEVELED UP! LEVEL ${playerData.level.user} -> ${updatedPlayerData.level.user}`);
                     userLeveledUp = true;
                 }
 
@@ -85,8 +103,8 @@ export function Town() {
                 levelUpMessages.forEach((message, index) => triggerLevelUpAnimation(message, index));
 
                 // Update player data with new data
-                setPlayerDataLocal(response.data.user);
-                dispatch(setPlayerData(response.data.user)); // Update Redux store
+                setPlayerDataLocal(updatedPlayerData);
+                dispatch(setPlayerData(updatedPlayerData)); // Update Redux store
 
                 // Dispatch level-up action
                 if (userLeveledUp) {
@@ -100,14 +118,7 @@ export function Town() {
         <Parallax bgImage={backgroundImage} strength={0}>
             <Container id="town">
                 <img src={logo} alt="Logo" className="logo" />
-                <Button
-                    style={{
-                        background: "none",
-                        border: "none",
-                        padding: 0,
-                        cursor: "pointer"
-                    }}
-                >
+                <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                     <img src={playerGif} alt="Character Idle Animation" className="player" />
                 </Button>
 
@@ -116,11 +127,11 @@ export function Town() {
                         {message}
                     </div>
                 ))}
-                
+
                 <div className="menu-icons">
                     <Button
                         onClick={() => {
-                            setPlayerInfoOpen(!playerInfoOpen); // Toggle the Player Info Menu
+                            setPlayerInfoOpen(!playerInfoOpen);
                             setQuestLogOpen(false);
                         }}
                         style={{
@@ -134,7 +145,7 @@ export function Town() {
                     </Button>
                     <Button
                         onClick={() => {
-                            setQuestLogOpen(!questLogOpen); // Toggle the Quest Log Menu
+                            setQuestLogOpen(!questLogOpen);
                             setPlayerInfoOpen(false);
                         }}
                         style={{
@@ -146,23 +157,22 @@ export function Town() {
                     >
                         <img src={quests_menu_icon} alt="Quest Log Menu Icon" className="quests-menu-icon" />
                     </Button>
-                    <Button
-                        style={{
-                            background: "none",
-                            border: "none",
-                            padding: 0,
-                            cursor: "pointer"
-                        }}
-                    >
+                    <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                         <img src={skills_menu_icon} alt="Skills Menu Icon" className="skills-menu-icon" />
                     </Button>
                 </div>
 
-                <PlayerInfoMenu 
-                    isOpen={playerInfoOpen} 
-                    onClose={() => setPlayerInfoOpen(false)} 
-                    playerData={playerData}
-                />
+                {/* Render Player Info Menu */}
+                {playerData ? (
+                    <PlayerInfoMenu 
+                        isOpen={playerInfoOpen} 
+                        onClose={() => setPlayerInfoOpen(false)} 
+                        playerData={playerData}
+                    />
+                ) : (
+                    <p>Loading player data...</p>
+                )}
+
                 <QuestLogMenu 
                     isOpen={questLogOpen} 
                     onClose={() => setQuestLogOpen(false)} 
