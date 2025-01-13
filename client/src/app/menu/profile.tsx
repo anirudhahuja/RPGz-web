@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './store';
-import { resetLevelUp } from './levelUpSlice';
-import profilePicture from '../assets/profile_picture.png';
+import { RootState } from '../redux/store';
+import { resetLevelUp } from '../redux/levelUpSlice';
+import profilePicture from '../../assets/profile_picture.png';
 
 const Profile = () => {
   const levelUp = useSelector((state: RootState) => state.levelUp.levelUp);

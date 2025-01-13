@@ -143,6 +143,23 @@ app.post('/api/submit-quest', async (req, res) => {
         if (user.xp[statToUpdate] >= requiredXp) {
             user.level[statToUpdate] += 1;
             user.xp[statToUpdate] = 0;
+            user.xp.user += 1;
+        }
+
+        // Level-up logic for endurance
+        const enduranceLevel = user.level.endurance;
+        const enduranceRequiredXp = user.levelRequirements.endurance[enduranceLevel];
+        if (user.xp.endurance >= enduranceRequiredXp) {
+            user.level.endurance += 1;
+            user.xp.endurance = 0;
+            user.xp.user += 1;
+        }
+
+        const currentUserLevel = user.level.user;
+        const userRequiredXp = user.levelRequirements.user[currentUserLevel];
+        if (user.xp.user >= userRequiredXp) {
+            user.level.user += 1;
+            user.xp.user = 0;
         }
 
         // Save updated user data

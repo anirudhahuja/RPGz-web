@@ -11,12 +11,13 @@ import player_menu_icon from '../assets/icons/player_menu_icon.svg';
 import quests_menu_icon from '../assets/icons/quests_menu_icon.svg';
 import skills_menu_icon from '../assets/icons/skills_menu_icon.svg';
 
-import PlayerInfoMenu from './player-info';
-import QuestLogMenu from './quest-log';
-import AcceptedQuestPanel from './accepted-quests';
-import { Quest } from './quest-log';
+import PlayerInfoMenu from './menu/player-info';
+import QuestLogMenu from './menu/quest-log';
+import AcceptedQuestPanel from './menu/accepted-quests';
+import ExperienceBar from './components/exp-bar';
+import { Quest } from './menu/quest-log';
 import { API_BASE_URL } from '../config';
-import { triggerLevelUp, setPlayerData, PlayerData } from './levelUpSlice';
+import { triggerLevelUp, setPlayerData, PlayerData } from './redux/levelUpSlice';
 
 export function Town() {
     const [playerInfoOpen, setPlayerInfoOpen] = useState(false); // Player Info Menu
@@ -32,15 +33,15 @@ export function Town() {
             try {
                 const response = await axios.get(`${API_BASE_URL}/api/user-info?name=John Doe`);
                 const data = response.data;
-        
-                // Parse JSON fields
+    
+                // Parse only if fields are strings
                 const parsedData = {
                     ...data,
-                    level: JSON.parse(data.level),
-                    xp: JSON.parse(data.xp),
-                    levelRequirements: JSON.parse(data.levelRequirements),
+                    level: typeof data.level === 'string' ? JSON.parse(data.level) : data.level,
+                    xp: typeof data.xp === 'string' ? JSON.parse(data.xp) : data.xp,
+                    levelRequirements: typeof data.levelRequirements === 'string' ? JSON.parse(data.levelRequirements) : data.levelRequirements,
                 };
-        
+    
                 console.log('Parsed player data:', parsedData);
                 setPlayerDataLocal(parsedData);
                 dispatch(setPlayerData(parsedData)); // Store full player data in Redux
@@ -48,10 +49,10 @@ export function Town() {
                 console.error('Error fetching player data:', error);
             }
         };
-        
-
+    
         fetchPlayerData();
     }, [dispatch]);
+    
 
     const triggerLevelUpAnimation = (message: string, index: number) => {
         setTimeout(() => {
@@ -128,6 +129,8 @@ export function Town() {
                     </div>
                 ))}
 
+                {playerData && <ExperienceBar playerData={playerData} />}
+
                 <div className="menu-icons">
                     <Button
                         onClick={() => {
@@ -162,8 +165,8 @@ export function Town() {
                     </Button>
                 </div>
 
-                {/* Render Player Info Menu */}
-                {playerData ? (
+                 {/* Render Player Info Menu */}
+                 {playerData ? (
                     <PlayerInfoMenu 
                         isOpen={playerInfoOpen} 
                         onClose={() => setPlayerInfoOpen(false)} 

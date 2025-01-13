@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, CloseButton, Tabs, Tab, Button } from 'react-bootstrap';
-import questlogBackground from '../assets/quest_log_background.png';
-import { API_BASE_URL } from '../config';
+import questlogBackground from '../../assets/quest_log_background.png';
+import { API_BASE_URL } from '../../config';
 import axios from 'axios';
-import { render } from 'react-dom';
 
 // Define the properties and structure for quests and quest categories
 interface QuestProps {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, CloseButton } from 'react-bootstrap';
-import statsBackground from '../assets/stats_background.png';
-import { PlayerData } from './levelUpSlice';
+import statsBackground from '../../assets/stats_background.png';
+import { PlayerData } from '../redux/levelUpSlice';
 
 interface MenuProps {
     isOpen: boolean;
@@ -26,17 +26,6 @@ const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
 
     if (!isOpen && !closing) return null;
 
-    // Calculate User XP based on levels of all stats
-    const userXP = (playerData?.level.strength ?? 0) +
-                   (playerData?.level.agility ?? 0) +
-                   (playerData?.level.intelligence ?? 0) +
-                   (playerData?.level.wisdom ?? 0) +
-                   (playerData?.level.endurance ?? 0);
-
-    // Determine user level based on levelRequirements.user
-    const userLevelRequirements = playerData?.levelRequirements.user ?? [];
-    const userLevel = Object.values(playerData?.level || {}).reduce((sum, statLevel) => sum + statLevel, 0) - 5; // Subtract 5 because each stat starts at level 1
-
     // XP to next level for each stat
     const strengthXPToNextLevel = (playerData?.levelRequirements?.strength?.[playerData?.level?.strength] ?? 0) - (playerData?.xp?.strength ?? 0);
     const agilityXPToNextLevel = (playerData?.levelRequirements?.agility?.[playerData?.level?.agility] ?? 0) - (playerData?.xp?.agility ?? 0);
@@ -59,7 +48,7 @@ const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
                 }}
             >
                 <Card.Body className="player-info-body">
-                    <h5>Name: {playerData?.name ?? 'Unknown'} (Lv {userLevel})</h5>
+                    <h5>Name: {playerData?.name ?? 'Unknown'} (Lv {playerData?.level?.user ?? 1})</h5>
                     <h5>Class: {playerData?.class ?? 'Unknown'}</h5>
                     <h5>Health: {playerData?.health ?? 0}</h5>
                     <h5>Stamina: {playerData?.stamina ?? 0}</h5>

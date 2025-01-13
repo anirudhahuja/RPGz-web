@@ -5,6 +5,7 @@
 @use './style/menu/profile.scss';
 @use './style/menu/accepted-quests.scss';
 @use './style/variables/breakpoints' as bp;
+@use './style/components/exp-bar.scss';
 
 @font-face {
     font-family: 'Yngreena';

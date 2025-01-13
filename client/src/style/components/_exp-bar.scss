@@ -1,0 +1,23 @@
+.exp-bar-container {
+    position: relative;
+    width: 20%;
+    height: 2.5%;
+    top: 94%;
+    left: 49%;
+    // transform: translate(-50%, -50%);
+}
+
+.exp-bar {
+    height: 100%;
+}
+
+.progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+    z-index: 1;
+}
