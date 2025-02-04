@@ -1,8 +1,7 @@
 1. Figure out the layout and design of the website - Figma
 2. Create the front-end of the website - Bootstrap
 3. Create the back-end of the website - Node.js / Express
-4. Create the database - NoSQL
-
+4. Create the database - SQL
 
 Website - What do we want to have? 
 - Login / Register
@@ -10,11 +9,9 @@ Website - What do we want to have?
 - Quest Log - List of quests, with the ability to select a quest and start it
 - Achievments - Bonus Stats 
 
-
-
 Back-End - What do we need? 
 - User Authentication - Passport.js
-- Database - MongoDB
+- Database - Cloudflare D1 Database
 - API - RESTful API 
     API - Player Data:
     - GET /players: Retrieve a list of all players.
@@ -42,7 +39,23 @@ Character Sprit: - done
     When the user interacts with the character, opens the menu where the user can look
     at their stats, quests etc.
 
-Quest Log: 
+Quest Log: - done
     When the user accepts a quest, do something. When the user 
     completes a quest, add experience to the user and for that specific stat.
     Add a Quest Window to the right side of the screen. 
+
+Nutrition Tracker:
+    Implement a nutrition tracker that allows the user to track their nutrition and see the effects of it on their stats.
+    Food Data Central API - https://fdc.nal.usda.gov/api-guide.html
+    - Get the food data from the API
+    - Store the food data in the database
+    - Display the food data in the nutrition tracker
+    - Custom Input if not in the API
+    
+Add Tooltips to the Icons/Stats menus
+
+2/3: Nutrition Tracker:
+    - Update the information at the top of the Nutrition Tracker page
+    - Expandable information for the submitted foods 
+    - Serving Size selection (default 1, allow user to increase)
+    - Make it look good 

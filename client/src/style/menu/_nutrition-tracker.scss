@@ -1,0 +1,188 @@
+@use '../variables/breakpoints' as bp;
+
+#nutrition-tracker {
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    
+    &.container {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+.nutrition-tracker-header {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+}
+
+.nutrition-tracker-date {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+}
+
+.calendar-icon {
+    filter: brightness(0) invert(1);
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+
+.home-button {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+// Visual for remaining daily nutrition
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.panel-unit {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 80%;
+    }
+}
+
+.unit-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.unit-header {
+    text-align: center;
+    color: #000000;
+    font-size: 1.2rem;
+}
+
+.unit-body {
+    text-align: left;
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.unit-bar {
+    width: 60%;
+    min-height: 10px;
+    margin: 0 auto 10px;
+}
+
+// The Forms Container
+.nutrition-tracker-forms-container {
+    display: flex;
+    flex-direction: row;
+}
+
+// The User Input Form
+.nutrition-tracker-form {
+    background-color: rgb(209, 169, 108);
+    background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    min-height: 600px;
+    color: #fff;
+    position: relative;
+    left: 15%;
+    margin-top: 20px;
+}
+
+.nutrition-tracker-form .form-label {
+    color: #fff; 
+    font-weight: bold;
+    font-family: 'Yngreena-Bold';
+    font-size: 1.2rem;
+}
+
+.nutrition-tracker-form .form-control {
+    background-color: rgba(255, 255, 255, 0.8); 
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.search-button {
+    background-color: #8B4513; 
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #A0522D;
+}
+
+// The Nutrition Results Card
+.nutrition-tracker-results-container {
+    background-color: rgb(209, 169, 108);
+    background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    color: #fff;
+    position: relative;
+    left: 20%;
+    margin-top: 20px;
+}
+
+.nutrition-tracker-results-content {
+    text-align: left;
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    max-height: 300px;
+    max-width: 300px;
+    font-size: 0.8rem;
+}
+
+.delete-button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    position: relative;
+    left: 90%;
+    color: red;
+}
+

@@ -3,6 +3,7 @@ import { Parallax } from 'react-parallax';
 import { Container, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import backgroundImage from '../assets/village.gif';
 import playerGif from '../assets/player.gif';
@@ -10,6 +11,7 @@ import logo from '../assets/logo.png';
 import player_menu_icon from '../assets/icons/player_menu_icon.svg';
 import quests_menu_icon from '../assets/icons/quests_menu_icon.svg';
 import skills_menu_icon from '../assets/icons/skills_menu_icon.svg';
+import nutrition_menu_icon from '../assets/icons/nutrition_menu_icon.svg';
 
 import PlayerInfoMenu from './menu/player-info';
 import QuestLogMenu from './menu/quest-log';
@@ -20,6 +22,7 @@ import { API_BASE_URL } from '../config';
 import { triggerLevelUp, setPlayerData, PlayerData } from './redux/levelUpSlice';
 
 export function Town() {
+    const navigate = useNavigate();
     const [playerInfoOpen, setPlayerInfoOpen] = useState(false); // Player Info Menu
     const [questLogOpen, setQuestLogOpen] = useState(false); // Quest Log Menu
     const [playerData, setPlayerDataLocal] = useState<PlayerData | null>(null); // Local Player Data
@@ -41,8 +44,6 @@ export function Town() {
                     xp: typeof data.xp === 'string' ? JSON.parse(data.xp) : data.xp,
                     levelRequirements: typeof data.levelRequirements === 'string' ? JSON.parse(data.levelRequirements) : data.levelRequirements,
                 };
-    
-                console.log('Parsed player data:', parsedData);
                 setPlayerDataLocal(parsedData);
                 dispatch(setPlayerData(parsedData)); // Store full player data in Redux
             } catch (error) {
@@ -144,7 +145,7 @@ export function Town() {
                             cursor: "pointer"
                         }}
                     >
-                        <img src={player_menu_icon} alt="Player Menu Icon" className="player-menu-icon" />
+                        <img src={player_menu_icon} alt="Player Menu Icon" className="menu-icon" />
                     </Button>
                     <Button
                         onClick={() => {
@@ -158,10 +159,21 @@ export function Town() {
                             cursor: "pointer"
                         }}
                     >
-                        <img src={quests_menu_icon} alt="Quest Log Menu Icon" className="quests-menu-icon" />
+                        <img src={quests_menu_icon} alt="Quest Log Menu Icon" className="menu-icon" />
                     </Button>
                     <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                        <img src={skills_menu_icon} alt="Skills Menu Icon" className="skills-menu-icon" />
+                        <img src={skills_menu_icon} alt="Skills Menu Icon" className="menu-icon" />
+                    </Button>
+                    <Button 
+                        onClick={() => navigate('/nutrition')}
+                        style={{ 
+                            background: "none", 
+                            border: "none",
+                            padding: 0,
+                            cursor: "pointer" 
+                        }}
+                    >
+                        <img src={nutrition_menu_icon} alt="Nutrition Menu Icon" className="menu-icon" />
                     </Button>
                 </div>
 

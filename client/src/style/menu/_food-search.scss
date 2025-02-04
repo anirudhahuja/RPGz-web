@@ -1,0 +1,134 @@
+@use '../variables/breakpoints' as bp;
+
+.food-results-container {
+    margin-top: 10px;
+    position: relative;
+    top: 50%;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #000;
+    background: transparent;
+    max-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-result-card {
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-body {
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        background: rgba(216, 231, 236, 0.5);
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+        color: #333;
+    }
+}
+
+.food-detail-container {
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #000;
+    background: transparent;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-detail-card {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    max-height: 350px;
+
+    .card-title {
+        font-size: 1.2rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #333;
+    }
+    .card-body {
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        background: rgba(216, 231, 236, 0.5);
+        min-height: 350px;
+        border-radius: 10px;
+    }
+}
+
+.edit-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background: rgba(216, 231, 236, 0.8);
+}
+
+.edit-input {
+    max-width: 60px;
+    max-height: 25px;
+}
+
+.submit-button {
+    background-color: #8B4513; 
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.submit-button:hover {
+    background-color: #A0522D;
+}
+
+
+
+
+
+
+

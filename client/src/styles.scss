@@ -1,11 +1,24 @@
 // Importing stylesheets
+
+// Sections
 @use './style/sections/town.scss';
+
+// Menus
 @use './style/menu/player-info.scss';
 @use './style/menu/quest-log.scss';
 @use './style/menu/profile.scss';
 @use './style/menu/accepted-quests.scss';
+@use './style/menu/food-search.scss';
+
+// Variables
 @use './style/variables/breakpoints' as bp;
+
+// Components
 @use './style/components/exp-bar.scss';
+
+@use './style/menu/nutrition-tracker.scss';
+
+
 
 @font-face {
     font-family: 'Yngreena';
@@ -24,6 +37,12 @@
 // Turn off scrollbar in whole app
 html, body {
     overflow: hidden;
+}
+
+h1 {
+    font-family: 'Yngreena-Bold';
+    color: white;
+    font-size: 2.5rem;
 }
 
 h2 {

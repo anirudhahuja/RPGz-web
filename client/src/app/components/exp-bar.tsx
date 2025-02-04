@@ -23,7 +23,7 @@ const ExperienceBar = ({ playerData }: ExperienceBarProps) => {
                 animated
             />
             <div className="progress-label">
-                {`${currentXP} / ${totalForNextLevel} Stat Points`}
+                {`${currentXP}/${totalForNextLevel} Stat Points`}
             </div>
         </div>
     );

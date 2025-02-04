@@ -56,6 +56,9 @@
   "dependencies": {
     "@cloudflare/d1": "^1.4.1",
     "@cloudflare/workers-types": "^4.20250109.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.6.0",
@@ -69,7 +72,7 @@
     "react-dom": "18.3.1",
     "react-parallax": "^3.5.1",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^6.28.0",
+    "react-router-dom": "^6.28.1",
     "react-use-draggable-scroll": "^0.4.7",
     "redux": "^5.0.1"
   }

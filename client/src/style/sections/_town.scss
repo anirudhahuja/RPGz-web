@@ -32,7 +32,7 @@
     align-items: center;
 }
 
-.player-menu-icon {
+.menu-icon {
     width: 30px;
     height: 30px;
     margin: 5px;
@@ -41,35 +41,7 @@
     border-radius: 50%;
 }
 
-.player-menu-icon:hover {
-    background-color: gold;
-}
-    
-.quests-menu-icon {
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    margin-bottom: 40px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 50%;
-}   
-
-.quests-menu-icon:hover {
-    background-color: gold;
-}
-
-.skills-menu-icon {
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 50%;
-    
-}   
-
-.skills-menu-icon:hover {
+.menu-icon:hover {
     background-color: gold;
 }
 
@@ -130,41 +102,20 @@
     }
 
     .menu-icons {
-        top: 65%;
+        top: 60%;
         left: 60%;
         flex-direction: column;
     }
 
-    .player-menu-icon {
+    .menu-icon {
         width: 40px;
         height: 40px;
         margin: 10px;
         transition: transform 0.3s ease-in-out;
     }   
 
-    .player-menu-icon:hover {
+    .menu-icon:hover {
         transform: translateY(-5px);
-    }
-        
-    .quests-menu-icon {
-        width: 40px;
-        height: 40px;
-        margin: 10px;
-        transition: transform 0.3s ease-in-out;
-    }   
-
-    .quests-menu-icon:hover {
-        transform: translateY(-5px);
-    }
-    
-    .skills-menu-icon {
-        width: 40px;
-        height: 40px;
-        margin: 10px;
-        transition: transform 0.3s ease-in-out;
     }
 
-    .skills-menu-icon:hover {
-        transform: translateY(-5px);
-    }
 }

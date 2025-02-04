@@ -172,6 +172,22 @@ app.post('/api/submit-quest', async (req, res) => {
     }
 });
 
+// app.post('/api/nutrition', async (req, res) => {
+//     const { foodItem, carbs, protein, fat, fiber, water } = req.body;
+
+//     if (!foodItem || carbs === undefined || protein === undefined || fat === undefined) {
+//         return res.status(400).json({ error: 'All fields are required' });
+//     }
+
+//     try {
+//         // Here you can add logic to save the data to your database
+//         console.log('Received nutrition data:', { foodItem, carbs, protein, fat, fiber, water });
+//         res.status(201).json({ message: 'Nutrition data saved successfully' });
+//     } catch (error) {
+//         console.error('Error saving nutrition data:', error);
+//         res.status(500).json({ error: 'Failed to save nutrition data' });
+//     }
+// });
 
 app.listen(port, host, () => {
 	console.log(`[ ready ] http://${host}:${port}`);
