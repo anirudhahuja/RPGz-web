@@ -2,6 +2,7 @@
 
 // Sections
 @use './style/sections/town.scss';
+@use './style/sections/nutrition-tracker.scss';
 
 // Menus
 @use './style/menu/player-info.scss';
@@ -9,16 +10,13 @@
 @use './style/menu/profile.scss';
 @use './style/menu/accepted-quests.scss';
 @use './style/menu/food-search.scss';
+@use './style/menu/login-form.scss';
 
 // Variables
 @use './style/variables/breakpoints' as bp;
 
 // Components
 @use './style/components/exp-bar.scss';
-
-@use './style/menu/nutrition-tracker.scss';
-
-
 
 @font-face {
     font-family: 'Yngreena';
@@ -42,7 +40,7 @@ html, body {
 h1 {
     font-family: 'Yngreena-Bold';
     color: white;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 h2 {
@@ -57,6 +55,11 @@ h5 {
 }
 
 @include bp.respond('breakpoint-lg') {
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
     h2 {
         font-size: 1.7rem;
     }

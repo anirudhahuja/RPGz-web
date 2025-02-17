@@ -4,46 +4,45 @@
     position: fixed;
     top: 10px;
     right: 10px;
-    z-index: 1000; /* Keeps it on top */
-    background-color: rgba(240, 240, 240, 0.95); /* Light, slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
+    z-index: 1000; 
+    background-color: rgba(240, 240, 240, 0.95);
+    border-radius: 10px;
     padding: 5px 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: center; /* Aligns avatar and text */
-    gap: 10px; /* Space between avatar and text */
+    align-items: center;
+    gap: 10px;
 }
 
-
 .profile-picture {
-    width: 20px; /* Circle size */
+    width: 20px;
     height: 20px;
-    background-color: #9b9bff; /* Placeholder color */
-    border-radius: 50%; /* Circular shape */
+    background-color: #9b9bff;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem; /* Font size for PFP placeholder text */
+    font-size: 0.9rem;
     color: white;
     font-weight: bold;
 }
 
 .profile-details {
     display: flex;
-    flex-direction: column; /* Stacks name and level vertically */
+    flex-direction: column;
     justify-content: center;
 }
 
 .profile-name {
-    font-size: 0.7rem; /* Font size for the name */
-    font-weight: 500; /* Slightly bold */
-    color: #333; /* Dark text color */
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #333;
 }
 
 .profile-level {
-    font-size: 0.7rem; /* Smaller font size for the level */
-    font-weight: 400; /* Regular weight */
-    color: #666; /* Lighter gray for distinction */
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #666;
 }
 
 .profile-level {
@@ -58,18 +57,21 @@
 @include bp.respond('breakpoint-lg') {
     .profile-container {
         padding: 10px 15px;
+        position: fixed;
+        top: 10px;
+        right: 20px;
     }
 
     .profile-picture {
-        width: 40px; /* Circle size */
+        width: 40px;
         height: 40px;
     }
 
     .profile-name {
-        font-size: 1rem; /* Font size for the name */
+        font-size: 1rem;
     }
 
     .profile-level {
-        font-size: 1rem; /* Font size for the level */
+        font-size: 1rem;
     }
 }

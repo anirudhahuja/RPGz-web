@@ -8,8 +8,6 @@ import axios from 'axios';
 interface QuestProps {
     isOpen: boolean;
     onClose: () => void;
-    acceptQuest: (quest: Quest) => void;
-    acceptedCount: number;
     maxQuests: number;
 }
 
@@ -19,7 +17,12 @@ export interface Quest {
     description: string;
     xp: number;
     primaryStatGain: string;
+    completed: number | boolean;
+    accepted: number | boolean;
 }
+
+// Add a type for valid categories
+type QuestCategoryType = 'strength' | 'agility' | 'intelligence' | 'wisdom' | 'endurance';
 
 interface QuestCategory {
     strength: Quest[];
@@ -30,27 +33,77 @@ interface QuestCategory {
 }
 
 // Main component for displaying the quest log menu
-const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }: QuestProps) => {
+const QuestLogMenu = ({ isOpen, onClose, maxQuests }: QuestProps) => {
     const [menuVisible, setMenuVisible] = useState(isOpen);
     const [quests, setQuests] = useState<QuestCategory | null>(null);
+    // Add this state to track accepted quests locally
     const [acceptedQuestIds, setAcceptedQuestIds] = useState<Set<number>>(new Set());
 
-    // Handle quest acceptance and update state
-    const handleAcceptQuest = (quest: Quest) => {
-        acceptQuest(quest);
-        setAcceptedQuestIds(prev => new Set(prev).add(quest.id));
+    // Add a helper function to validate category
+    const isValidCategory = (category: string): category is QuestCategoryType => {
+        return ['strength', 'agility', 'intelligence', 'wisdom', 'endurance'].includes(category);
     };
 
-    // Fetch quests from the API when the menu is opened
+    const fetchQuests = async () => {
+        const username = localStorage.getItem('username');
+        if (!username) {
+            console.error('No username found');
+            return;
+        }
+
+        try {
+            const response = await axios.get(`${API_BASE_URL}/api/quests?username=${username}`);
+            
+            // Initialize acceptedQuestIds with quests that are already accepted in the database
+            const newAcceptedIds = new Set<number>();
+            
+            // Type the response data properly
+            const questData = response.data as QuestCategory;
+            Object.values(questData).forEach((questArray: Quest[]) => {
+                questArray.forEach((quest: Quest) => {
+                    if (quest.accepted === 1) {
+                        newAcceptedIds.add(quest.id);
+                    }
+                });
+            });
+            
+            setAcceptedQuestIds(newAcceptedIds);
+            setQuests(response.data);
+        } catch (error) {
+            console.error('Error fetching quests:', error);
+        }
+    };
+
+    // Handle quest acceptance and update state
+    const handleAcceptQuest = async (quest: Quest) => {
+        try {
+            const username = localStorage.getItem('username');
+            if (!username) {
+                console.error('No username found');
+                return;
+            }
+
+            // Use the server endpoint instead of directly calling the worker
+            const response = await axios.post(`${API_BASE_URL}/api/accept-quest`, {
+                username,
+                questId: quest.id
+            });
+
+            if (response.status === 201) {
+                setAcceptedQuestIds(prev => new Set(prev).add(quest.id));
+                await fetchQuests();
+            }
+        } catch (error: any) {
+            console.error('Error accepting quest:', error.response?.data?.error || error.message);
+            alert(error.response?.data?.error || 'Failed to accept quest');
+        }
+    };
+
+    // Fetch quests when menu is opened
     useEffect(() => { 
         if (isOpen) {
             setMenuVisible(true);
-            axios.get(`${API_BASE_URL}/api/quests`)
-                .then(response => {
-                    console.log('Fetched quests:', response.data); // Debug fetched data
-                    setQuests(response.data);
-                })
-                .catch(error => console.error('Error fetching quests:', error));
+            fetchQuests();
         } else {
             setTimeout(() => setMenuVisible(false), 300);
         }
@@ -60,18 +113,56 @@ const QuestLogMenu = ({ isOpen, onClose, acceptQuest, acceptedCount, maxQuests }
     // Return null if the menu is not visible or quests are not loaded
     if (!menuVisible || !quests) return null;
 
+    // Add a helper function to check if a quest is accepted
+    const isQuestAccepted = (quest: Quest): boolean => {
+        return Boolean(quest.accepted);
+    };
+
+    // Add a helper function to check if a quest is completed
+    const isQuestCompleted = (quest: Quest): boolean => {
+        return quest.completed === 1;
+    };
+
     // Render a button for each quest with appropriate state and actions
     const renderQuestButton = (quest: Quest) => {
+        // Check for completed quest first
+        if (isQuestCompleted(quest)) {
+            return (
+                <Button 
+                    variant="secondary"
+                    className="quest-log-button quest-completed"
+                    disabled
+                >
+                    Completed
+                </Button>
+            );
+        }
+
+        // Then check for accepted quest
         const isAccepted = acceptedQuestIds.has(quest.id);
+        const acceptedCount = acceptedQuestIds.size;
         const isLimitReached = acceptedCount >= maxQuests;
+
+        if (isAccepted) {
+            return (
+                <Button 
+                    variant="success"
+                    className="quest-log-button quest-accepted"
+                    disabled
+                >
+                    Accepted
+                </Button>
+            );
+        }
+
         return (
             <Button 
-                variant={isAccepted ? "success" : "primary"}
-                className={`quest-log-button ${isAccepted ? 'quest-accepted' : ''}`}
+                variant="primary"
+                className="quest-log-button"
                 onClick={() => handleAcceptQuest(quest)}
-                disabled={acceptedCount >= maxQuests || isAccepted}
+                disabled={isLimitReached}
             >
-                {isAccepted ? "Quest Accepted" : isLimitReached ? "Limit Reached" : "Accept Quest"}
+                {isLimitReached ? "Limit Reached" : "Accept Quest"}
             </Button>
         );
     };

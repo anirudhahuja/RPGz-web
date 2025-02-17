@@ -28,7 +28,7 @@ export interface LevelRequirements {
 }
 
 export interface PlayerData {
-  name: string;
+  username: string;
   level: PlayerLevel;
   class: string;
   health: number;
@@ -44,18 +44,18 @@ interface LevelUpState {
 
 // Default values for `PlayerData`
 const initialPlayerData: PlayerData = {
-  name: 'Unknown',
+  username: 'Unknown',
   level: {
-    user: 0,
-    strength: 0,
-    agility: 0,
-    intelligence: 0,
-    wisdom: 0,
-    endurance: 0,
+    user: 1,
+    strength: 1,
+    agility: 1,
+    intelligence: 1,
+    wisdom: 1,
+    endurance: 1,
   },
-  class: 'Unknown',
-  health: 0,
-  stamina: 0,
+  class: 'Novice',
+  health: 100,
+  stamina: 50,
   xp: {
     user: 0,
     strength: 0,
@@ -64,14 +64,7 @@ const initialPlayerData: PlayerData = {
     wisdom: 0,
     endurance: 0,
   },
-  levelRequirements: {
-    user: [0, 10, 20, 30, 40],
-    strength: [0, 50, 100, 150, 200],
-    agility: [0, 50, 100, 150, 200],
-    intelligence: [0, 50, 100, 150, 200],
-    wisdom: [0, 50, 100, 150, 200],
-    endurance: [0, 50, 100, 150, 200],
-  },
+  levelRequirements: {} as PlayerData['levelRequirements'] // Will be populated from backend
 };
 
 const initialState: LevelUpState = {

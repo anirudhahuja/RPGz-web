@@ -1,15 +1,24 @@
 @use '../variables/breakpoints' as bp;
 
+// Mobile styles
+.food-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .food-results-container {
-    margin-top: 10px;
     position: relative;
-    top: 50%;
     border-radius: 15px;
-    padding: 20px;
+    padding: 5px;
     border: 1px solid #000;
     background: transparent;
-    max-width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    gap: 10px;
 }
 
 .food-result-card {
@@ -17,118 +26,294 @@
     border-radius: 10px;
     background: transparent;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    padding: 10px;
-
-    &:hover {
-        transform: translateY(-5px);
-    }
+    transition: transform 0.2s;
+    padding: 5px;
+    flex: 0 0 auto;
+    width: 180px;
 
     .card-body {
-        padding: 10px;
-        box-sizing: border-box;
+        padding: 8px;
         border: 1px solid #000;
         background: rgba(216, 231, 236, 0.5);
         border-radius: 10px;
+        white-space: normal;
     }
 
     .card-title {
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: #333;
     }
 
     .card-text {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: #333;
     }
 }
 
+// Mobile food detail styles
 .food-detail-container {
     margin-top: 10px;
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #000;
     background: transparent;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-height: 120px;
 }
 
 .food-detail-card {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 5px;
     border: none;
     border-radius: 10px;
     background: transparent;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    max-height: 350px;
+    max-height: 100px;
+    width: 80%;
 
-    .card-title {
-        font-size: 1.2rem;
-        color: #333;
-        text-align: center;
+    .nutrition-info-grid {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 0;
+        margin-left: 10px;
+        width: 55%;
+        line-height: 1;
+        padding-right: 10px;
+    }
+
+    .card-header-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+
+        .card-title {
+            padding: 0;
+            display: inline;
+            font-size: 0.8rem;
+            margin: 0 0 0 10px;
+        }
+
+        .serving-size-text {
+            margin: 0;
+            padding: 0;
+            display: inline;
+            transform: translateY(1px);
+            margin-left: 15px !important;
+        }
     }
 
     .card-text {
-        font-size: 1rem;
+        font-size: 0.7rem;
+        margin: 0;
+        text-align: left;
         color: #333;
+        line-height: 1;
+        white-space: nowrap;
     }
+
+    .nutrition-info-grid .card-text {
+        margin: 0;
+        line-height: 1;
+    }
+
+    .serving-size-text {
+        transform: translateY(1px);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-align: left;
+        margin: 0;
+        margin-left: 15px !important;
+        flex: 1;
+
+        .edit-input {
+            width: 40px;
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+    }
+
     .card-body {
-        padding: 10px;
-        box-sizing: border-box;
+        padding: 5px;
         border: 1px solid #000;
         background: rgba(216, 231, 236, 0.5);
-        min-height: 350px;
+        min-height: 100px;
         border-radius: 10px;
     }
 }
 
 .edit-button {
-    position: relative;
-    left: 50%;
+    position: absolute;
+    left: 70%; 
+    top: 45%;
     transform: translateX(-50%);
     background: transparent;
     border: 1px solid #000;
     border-radius: 5px;
-    padding: 5px 20px;
-    margin-bottom: 8px;
+    width: 60px;
+    padding: 6px 15px;
+    font-size: 0.8rem;
     cursor: pointer;
-}
-
-.edit-button:hover {
-    background: rgba(216, 231, 236, 0.8);
-}
-
-.edit-input {
-    max-width: 60px;
-    max-height: 25px;
 }
 
 .submit-button {
     background-color: #8B4513; 
     position: absolute;
-    bottom: 5%;
-    left: 50%;
+    top: 75%;
+    left: 85%;
     transform: translateX(-50%);
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    width: 80px;
+    padding: 6px 15px;
+    margin-left: 5px;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    margin: 0 auto;
+    color: #fff;
+    width: 80px;
 }
 
-.submit-button:hover {
-    background-color: #A0522D;
+// Desktop styles
+@include bp.respond('breakpoint-lg') {
+    .food-container {
+        flex-direction: row;
+    }
+
+    .food-results-container {
+        margin-top: 10px;
+        position: relative;
+        top: 50%;
+        border-radius: 15px;
+        padding: 20px;
+        border: 1px solid #000;
+        background: transparent;
+        max-width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 400px;
+        height: auto;
+        overflow-x: visible;
+        white-space: normal;
+        display: block;
+        gap: 0;
+    }
+
+    .food-result-card {
+        border: none;
+        border-radius: 10px;
+        background: transparent;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        padding: 10px;
+        flex: none;
+        width: auto;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+            background: rgba(216, 231, 236, 0.5);
+            border-radius: 10px;
+            white-space: normal;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 0.8rem;
+            color: #333;
+        }
+    }
+
+    .food-detail-container {
+        margin-top: 10px;
+        border-radius: 15px;
+        padding: 20px;
+        border: 1px solid #000;
+        background: transparent;
+        max-width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin-left: 20px;
+        max-height: 400px;
+    }
+
+    .food-detail-card {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 5px;
+        max-height: 350px;
+        width: 100%;
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        .nutrition-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 0;
+            width: 100%;
+        }
+
+        .card-header-container {
+            display: block;
+            text-align: center;
+            margin-bottom: 15px;
+
+            .card-title {
+                font-size: 1.2rem;
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 10px 0 10px 0;
+            }
+
+            .serving-size-text {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 0 !important;
+                transform: none;
+            }
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: normal;
+            margin-bottom: 5px;
+        }
+
+        .nutrition-info-grid .card-text {
+            margin: 0;
+            line-height: normal;
+        }
+
+        .card-body {
+            padding: 5px;
+            min-height: 350px;
+        }
+    }
+
+    .edit-button {
+        top: 80%;
+        padding: 5px 20px;
+        font-size: 1rem;
+        left: 50%;
+        width: 100px;
+    }
+
+    .submit-button {
+        padding: 5px 20px;
+        font-size: 1rem;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        width: 100px;
+        height: 40px;
+    }
 }
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@
 .exp-bar-container {
     position: relative;
     width: 25%;
-    height: 2.5%;
+    height: 4%;
     top: 88%;
     left: 46%;
     // transform: translate(-50%, -50%);
@@ -11,19 +11,21 @@
 
 .exp-bar {
     height: 100%;
+    position: relative;
 }
 
 .progress-label {
     position: absolute;
     top: 50%;
-    left: 75%;
-    width: 100%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: black;
     z-index: 1;
     font-family: 'Yngreena';
+    width: 100%;
+    text-align: center;
 }
 
 @include bp.respond('breakpoint-lg') {

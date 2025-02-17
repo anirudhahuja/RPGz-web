@@ -59,3 +59,13 @@ Add Tooltips to the Icons/Stats menus
     - Expandable information for the submitted foods 
     - Serving Size selection (default 1, allow user to increase)
     - Make it look good 
+
+Random Ideas:
+    - Gear Customization
+    - Time scenary changes
+    - Character Customization !!! IMPORTANT
+    
+2/14 Bugs with Registration:
+    - When going to the nutrition menu and back, the menu is not showing up.
+    - When refreshed, the user is logged out.
+    - Quest submit does not work right now. 

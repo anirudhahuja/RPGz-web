@@ -48,7 +48,7 @@ const PlayerInfoMenu = ({ isOpen, onClose, playerData }: MenuProps) => {
                 }}
             >
                 <Card.Body className="player-info-body">
-                    <h5>Name: {playerData?.name ?? 'Unknown'} (Lv {playerData?.level?.user ?? 1})</h5>
+                    <h5>Name: {playerData?.username ?? 'Unknown'} (Lv {playerData?.level?.user ?? 1})</h5>
                     <h5>Class: {playerData?.class ?? 'Unknown'}</h5>
                     <h5>Health: {playerData?.health ?? 0}</h5>
                     <h5>Stamina: {playerData?.stamina ?? 0}</h5>

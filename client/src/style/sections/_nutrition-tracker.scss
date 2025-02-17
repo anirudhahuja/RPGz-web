@@ -1,0 +1,336 @@
+@use '../variables/breakpoints' as bp;
+
+#nutrition-tracker {
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    
+    &.container {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+.nutrition-tracker-header {
+    text-align: left;
+    color: white;
+    margin: 10px 20px 0 20px;
+    display: inline-block;
+}
+
+.nutrition-tracker-date {
+    text-align: left;
+    color: white;
+    margin: 10px 0 0 10px;
+    display: inline-block;
+}
+
+.calendar-icon {
+    filter: brightness(0) invert(1);
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.home-button {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+// Visual for remaining daily nutrition
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(1fr);
+    gap: 10px;
+    width: 20%;
+    padding: 5px;
+}
+
+.panel-unit {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 80%;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.unit-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.unit-header {
+    text-align: center;
+    color: #000000;
+    font-size: 0.6rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.unit-body {
+    text-align: left;
+    color: #000000;
+    font-size: 0.5rem;
+    margin: 2px 0;
+    padding: 0;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.unit-bar {
+    width: 60%;
+    min-height: 5px;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+// The Forms Container
+.nutrition-tracker-forms-container {
+    display: flex;
+    flex-direction: row;
+}
+
+// The User Input Form
+.nutrition-tracker-form {
+    position: absolute;
+    left: 20%;
+    top: 5%;
+    background-color: rgb(209, 169, 108);
+    background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 75%;
+    max-width: 650px;
+    height: 320px;
+    overflow-y: auto;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.nutrition-tracker-form .form-label {
+    color: #fff; 
+    font-weight: bold;
+    font-family: 'Yngreena-Bold';
+    font-size: 1.2rem;
+}
+
+.nutrition-tracker-form .form-control {
+    background-color: rgba(255, 255, 255, 0.8); 
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+}
+
+.search-button {
+    background-color: #8B4513; 
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    height: 30px;
+}
+
+.search-button:hover {
+    background-color: #A0522D;
+}
+
+// The Nutrition Results Card
+.nutrition-tracker-results-container {
+    background-color: rgb(209, 169, 108);
+    background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    height: 320px;
+    overflow-y: auto;
+    color: #fff;
+    position: relative;
+    left: 20%;
+    margin-top: 20px;
+}
+
+.nutrition-tracker-results-content {
+    text-align: left;
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    // height: 50%;
+    width: 50%;
+    font-size: 0.8rem;
+}
+
+.accordion {
+    background-color: rgba(41, 182, 100, 0.5);
+
+    .accordion-item {
+        background-color: rgba(166, 231, 193, 0.5);
+    }
+}
+
+.nutrition-tracker-results-header {
+    font-size: 1.2rem;
+    color: #000000;
+    display: flex;  
+    justify-content: space-between;
+
+    .food-title {
+        margin-right: 10px;
+    }
+    
+    .delete-button {
+        border: none;
+        border-radius: 5px;
+        padding: 5px 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        left: 70%;
+        font-size: 1.2rem;
+        color: red;
+    }
+}
+
+.nutrition-tracker-results-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Space between items */
+}
+
+.nutrition-tracker-results-body p {
+    margin: 0; /* Remove default margin */
+}
+
+// Desktop styles
+@include bp.respond('breakpoint-lg') {
+    .nutrition-tracker-header {
+        display: block;
+        text-align: center;
+        margin: 10px auto 0;
+    }
+
+    .nutrition-tracker-date {
+        display: block;
+        text-align: center;
+        margin: 10px auto 0;
+    }
+
+    .unit-grid {
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+        width: 100%;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .panel-unit {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            height: 80%;
+        }
+    }
+
+    .unit-header {
+        text-align: center;
+        color: #000000;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    
+    .unit-body {
+        text-align: left;
+        color: #000000;
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .unit-bar {
+        width: 60%;
+        min-height: 10px;
+        height: 10px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nutrition-tracker-form {
+        position: relative;
+        left: 15%;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        height: 600px;
+        margin-top: 20px;
+    }
+
+    .nutrition-tracker-form .form-label {
+        color: #fff; 
+        font-weight: bold;
+        font-family: 'Yngreena-Bold';
+        font-size: 1.2rem;
+    }
+    
+    .nutrition-tracker-form .form-control {
+        background-color: rgba(255, 255, 255, 0.8); 
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        height: 38px;
+        padding: 6px 12px;
+    }
+
+    .search-button {
+        padding: 5px 20px;
+        font-size: 1rem;
+        height: 38px;
+    }
+
+    .nutrition-tracker-results-container {
+        height: 600px;
+    }
+}
