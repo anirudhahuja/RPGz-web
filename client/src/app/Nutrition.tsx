@@ -327,173 +327,179 @@ export function Nutrition() {
 
     return (
         <Parallax bgImage={backgroundImage} strength={0}>
-            <Container id="nutrition-tracker">
-                <h1 className="nutrition-tracker-header">Nutrition Tracker</h1>
-                <h5 className="nutrition-tracker-date"> 
-                    <img src={calendar_icon} alt="Calendar Icon" className="calendar-icon" /> 
-                    Date: {new Date().toLocaleDateString()} (Today)
-                </h5>
+            <div className="react-parallax">
+                <Container id="nutrition-tracker">
+                    <h1 className="nutrition-tracker-header">Nutrition Tracker</h1>
+                    <h5 className="nutrition-tracker-date"> 
+                        <img src={calendar_icon} alt="Calendar Icon" className="calendar-icon" /> 
+                        Date: {new Date().toLocaleDateString()} (Today)
+                    </h5>
 
-                {/* Nutrition Tracker Units */}
-                <div className="unit-grid">
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Calories</h5>
-                            <h5 className="unit-body">{caloriesRemaining} remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={caloriesBarProgress} />
-                        </Card.Body>
-                    </Card>
+                    {/* Nutrition Tracker Units */}
+                    <div className="unit-grid">
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Calories</h5>
+                                <h5 className="unit-body">{caloriesRemaining} remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={caloriesBarProgress} />
+                            </Card.Body>
+                        </Card>
 
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Protein</h5>
-                            <h5 className="unit-body">{proteinRemaining}g remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={proteinBarProgress} />
-                        </Card.Body>
-                    </Card>
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Protein</h5>
+                                <h5 className="unit-body">{proteinRemaining}g remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={proteinBarProgress} />
+                            </Card.Body>
+                        </Card>
 
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Carbs</h5>
-                            <h5 className="unit-body">{carbRemaining}g remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={carbBarProgress} />
-                        </Card.Body>
-                    </Card>
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Carbs</h5>
+                                <h5 className="unit-body">{carbRemaining}g remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={carbBarProgress} />
+                            </Card.Body>
+                        </Card>
 
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Fat</h5>
-                            <h5 className="unit-body">{fatRemaining}g remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={fatBarProgress} />
-                        </Card.Body>
-                    </Card>
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Fat</h5>
+                                <h5 className="unit-body">{fatRemaining}g remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={fatBarProgress} />
+                            </Card.Body>
+                        </Card>
 
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Fiber</h5>
-                            <h5 className="unit-body">{fiberRemaining}g remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={fiberBarProgress} />
-                        </Card.Body>
-                    </Card>
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Fiber</h5>
+                                <h5 className="unit-body">{fiberRemaining}g remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={fiberBarProgress} />
+                            </Card.Body>
+                        </Card>
 
-                    <Card 
-                        className="panel-unit"
-                        style={{ 
-                            backgroundImage: `url(${panel})`,
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: 'transparent',
-                            border: 'none',
-                        }}>
-                        <Card.Body>
-                            <h5 className="unit-header">Water</h5>
-                            <h5 className="unit-body">{waterRemaining} remaining</h5>
-                            <ProgressBar className="unit-bar" variant="info" now={waterBarProgress} />
-                        </Card.Body>
-                    </Card>
-                </div>
-                
-                <div className="nutrition-tracker-forms-container">
-                    <Card className="nutrition-tracker-form"> 
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="formFoodItem" className="d-flex align-items-center">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Enter food item"
-                                    value={inputFoodItem}
-                                    onChange={(e) => setInputFoodItem(e.target.value)}
-                                    className="me-2"
-                                />
-                                <Button className="search-button" variant="secondary" onClick={handleSearch} type="button">
-                                    Search
-                                </Button>
-                            </Form.Group>
-                            {searchResults.length > 0 && <FoodSearchResults results={searchResults} onSave={handleSaveFood} onUpdate={updateFoodEntry} />}
-                        </Form>
-                    </Card>
+                        <Card 
+                            className="panel-unit"
+                            style={{ 
+                                backgroundImage: `url(${panel})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'transparent',
+                                border: 'none',
+                            }}>
+                            <Card.Body>
+                                <h5 className="unit-header">Water</h5>
+                                <h5 className="unit-body">{waterRemaining} remaining</h5>
+                                <ProgressBar className="unit-bar" variant="info" now={waterBarProgress} />
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    
+                    <div className="nutrition-tracker-forms-container">
+                        <Card className="nutrition-tracker-form"> 
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group controlId="formFoodItem" className="d-flex align-items-center">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter food item"
+                                        value={inputFoodItem}
+                                        onChange={(e) => setInputFoodItem(e.target.value)}
+                                        className="me-2"
+                                    />
+                                    <Button className="search-button" variant="secondary" onClick={handleSearch} type="button">
+                                        Search
+                                    </Button>
+                                </Form.Group>
+                                {searchResults.length > 0 && <FoodSearchResults results={searchResults} onSave={handleSaveFood} onUpdate={updateFoodEntry} />}
+                            </Form>
+                        </Card>
 
-                    {/* Container with submitted foods */}
-                    <Card className="nutrition-tracker-results-container">
-                        {submittedFoods.map((food, index) => {
-                            const servingSize = food.servingSize || 1;
-                            return (
-                                <Accordion key={index} className="nutrition-tracker-results-content">
-                                    <Accordion.Item eventKey="0">
-                                        <Accordion.Header className="nutrition-tracker-results-header">
-                                            <b className="food-title">{food.description} - </b>
-                                            <b>Serving Size: {servingSize}</b>
-                                            <FontAwesomeIcon icon={faX} className="delete-button" onClick={() => handleDelete(index)} />
-                                        </Accordion.Header>
-                                        <Accordion.Body className="nutrition-tracker-results-body">
-                                            <p>Calories: {((typeof food.calories === 'number' ? food.calories : parseFloat(food.calories as string) || 0) * servingSize).toFixed(2)}</p>
-                                            <p>Protein: {((food.protein || 0) * servingSize).toFixed(2)}g</p>
-                                            <p>Carbs: {((food.carbs || 0) * servingSize).toFixed(2)}g</p>
-                                            <p>Fat: {((food.fat || 0) * servingSize).toFixed(2)}g</p>
-                                            <p>Fiber: {((food.fiber || 0) * servingSize).toFixed(2)}g</p>
-                                            <p>Total Sugars: {((food.totalSugars || 0) * servingSize).toFixed(2)}g</p>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                            );
-                        })}
-                    </Card>
-                </div>
+                        {/* Container with submitted foods */}
+                        <Card className="nutrition-tracker-results-container">
+                            {submittedFoods.map((food, index) => {
+                                const servingSize = food.servingSize || 1;
+                                return (
+                                    <Accordion key={index} className="nutrition-tracker-results-content">
+                                        <Accordion.Item eventKey="0">
+                                            <Accordion.Header className="nutrition-tracker-results-header">
+                                                <b className="food-title">
+                                                    {food.description.length > 20 
+                                                        ? food.description.substring(0, 20) + '...' 
+                                                        : food.description} -
+                                                </b>
+                                                <b className="food-title">Serving Size: {servingSize}</b>
+                                                <FontAwesomeIcon icon={faX} className="delete-button" onClick={() => handleDelete(index)} />
+                                            </Accordion.Header>
+                                            <Accordion.Body className="nutrition-tracker-results-body">
+                                                <p>Calories: {((typeof food.calories === 'number' ? food.calories : parseFloat(food.calories as string) || 0) * servingSize).toFixed(2)}</p>
+                                                <p>Protein: {((food.protein || 0) * servingSize).toFixed(2)}g</p>
+                                                <p>Carbs: {((food.carbs || 0) * servingSize).toFixed(2)}g</p>
+                                                <p>Fat: {((food.fat || 0) * servingSize).toFixed(2)}g</p>
+                                                <p>Fiber: {((food.fiber || 0) * servingSize).toFixed(2)}g</p>
+                                                <p>Total Sugars: {((food.totalSugars || 0) * servingSize).toFixed(2)}g</p>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
+                                );
+                            })}
+                        </Card>
+                    </div>
 
-                {/* Button to go back to town */}
-                <Button 
-                    variant="outline-secondary"
-                    className="home-button"
-                    onClick={() => navigate('/town')}
-                >
-                    Back to Town
-                </Button>
-            </Container>
+                    {/* Button to go back to town */}
+                    <Button 
+                        variant="outline-secondary"
+                        className="home-button"
+                        onClick={() => navigate('/town')}
+                    >
+                        Back to Town
+                    </Button>
+                </Container>
+            </div>
         </Parallax>
     );
 }

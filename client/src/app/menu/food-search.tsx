@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Card } from 'react-bootstrap';
 
 interface FoodSearchResultsProps {
@@ -108,7 +110,11 @@ const FoodSearchResults: React.FC<FoodSearchResultsProps> = ({ results, onSave, 
                     <Card className="food-detail-card" style={{ overflowY: 'auto' }}>
                         <Card.Body>
                             <div className="card-header-container">
-                                <Card.Title>{selectedFood.description} Details</Card.Title>
+                                <Card.Title>
+                                    {selectedFood.description.length > 20 
+                                        ? selectedFood.description.substring(0, 20) + '...' 
+                                        : selectedFood.description}
+                                </Card.Title>
                                 {isEditing ? (
                                     <Card.Text className="serving-size-text">
                                         Serving Size: <input 
@@ -146,7 +152,7 @@ const FoodSearchResults: React.FC<FoodSearchResultsProps> = ({ results, onSave, 
                                             Total Sugars: <input className="edit-input" type="text" value={editedValues.totalSugars || ''} onChange={(e) => handleInputChange('totalSugars', e.target.value)} />g
                                         </Card.Text>
                                     </div>
-                                    <button onClick={handleSaveClick} className="edit-button">Save</button>
+                                    <button onClick={handleSaveClick} className="edit-button"><FontAwesomeIcon icon={faCheck} className="edit-icon"/></button>
                                 </>
 
                             ) : (
@@ -159,7 +165,7 @@ const FoodSearchResults: React.FC<FoodSearchResultsProps> = ({ results, onSave, 
                                         <Card.Text>Fiber: {selectedFood.fiber !== undefined ? selectedFood.fiber : 'N/A'}g</Card.Text>
                                         <Card.Text>Total Sugars: {selectedFood.totalSugars !== undefined ? selectedFood.totalSugars : 'N/A'}g</Card.Text>
                                     </div>
-                                    <button className="edit-button" onClick={handleEditClick}>Edit</button>
+                                    <button className="edit-button" onClick={handleEditClick}><FontAwesomeIcon icon={faPenToSquare} className="edit-icon"/></button>
                                 </>
 
                             )}
