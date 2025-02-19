@@ -44,7 +44,7 @@ interface LevelUpState {
 
 // Default values for `PlayerData`
 const initialPlayerData: PlayerData = {
-  username: 'Unknown',
+  username: localStorage.getItem('username') || 'Unknown',
   level: {
     user: 1,
     strength: 1,

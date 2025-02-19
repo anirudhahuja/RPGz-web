@@ -139,13 +139,15 @@ export function Nutrition() {
     // Fetch player data and food data on component mount
     useEffect(() => {
         const fetchPlayerData = async () => {
-            if (inputFoodItem) {
-                await fetchFoodData(inputFoodItem);
+            const username = localStorage.getItem('username');
+            if (!username) {
+                navigate('/');
+                return;
             }
+
             try {
-                const response = await axios.get(`${API_BASE_URL}/api/user-info?name=John Doe`);
+                const response = await axios.get(`${API_BASE_URL}/api/user-info?username=${username}`);
                 const data = response.data;
-    
                 const parsedData = {
                     ...data,
                     level: typeof data.level === 'string' ? JSON.parse(data.level) : data.level,
@@ -156,13 +158,12 @@ export function Nutrition() {
                 dispatch(setPlayerData(parsedData));
             } catch (error) {
                 console.error('Error fetching player data:', error);
+                navigate('/');
             }
         };
 
-        if (!playerData || playerData.username === 'Unknown') {
-            fetchPlayerData();
-        }
-    }, [dispatch, playerData, inputFoodItem]);
+        fetchPlayerData();
+    }, [dispatch, navigate]);
 
     // Handle saving a selected food item
     const handleSaveFood = (food: {
@@ -175,7 +176,6 @@ export function Nutrition() {
         totalSugars?: number;
         servingSize?: number;
     }) => {
-        console.log('Food selected for submission:', food);
         setSelectedFoodDetails(food);
     };
 
@@ -192,18 +192,12 @@ export function Nutrition() {
         const servingSize = food.servingSize || 1;
         const multiplier = servingSize > 0 ? servingSize : 1;
 
-        console.log('Food:', food);
-        console.log('Serving Size:', servingSize);
-        console.log('Multiplier:', multiplier);
-
         setConsumedNutrients(prev => {
             const calories = typeof food.calories === 'number' ? food.calories : parseFloat(food.calories as string) || 0;
             const protein = food.protein || 0;
             const carbs = food.carbs || 0;
             const fat = food.fat || 0;
             const fiber = food.fiber || 0;
-
-            console.log('Before Update - Calories:', prev.calories, 'Protein:', prev.protein, 'Carbs:', prev.carbs, 'Fat:', prev.fat, 'Fiber:', prev.fiber);
 
             const newNutrients = {
                 calories: prev.calories + calories * multiplier,
@@ -213,8 +207,6 @@ export function Nutrition() {
                 fiber: prev.fiber + fiber * multiplier,
                 water: prev.water, // Update if water is tracked
             };
-
-            console.log('After Update - Calories:', newNutrients.calories, 'Protein:', newNutrients.protein, 'Carbs:', newNutrients.carbs, 'Fat:', newNutrients.fat, 'Fiber:', newNutrients.fiber);
 
             return newNutrients;
         });
@@ -291,7 +283,7 @@ export function Nutrition() {
             carbs: prev.carbs - (submittedFoods[index].carbs || 0) + (updatedFood.carbs || 0),
             fat: prev.fat - (submittedFoods[index].fat || 0) + (updatedFood.fat || 0),
             fiber: prev.fiber - (submittedFoods[index].fiber || 0) + (updatedFood.fiber || 0),
-            water: prev.water, // Update if water is tracked
+            water: prev.water,
         }));
     };
 
@@ -461,32 +453,36 @@ export function Nutrition() {
 
                         {/* Container with submitted foods */}
                         <Card className="nutrition-tracker-results-container">
-                            {submittedFoods.map((food, index) => {
-                                const servingSize = food.servingSize || 1;
-                                return (
-                                    <Accordion key={index} className="nutrition-tracker-results-content">
-                                        <Accordion.Item eventKey="0">
-                                            <Accordion.Header className="nutrition-tracker-results-header">
-                                                <b className="food-title">
-                                                    {food.description.length > 20 
-                                                        ? food.description.substring(0, 20) + '...' 
-                                                        : food.description} -
-                                                </b>
-                                                <b className="food-title">Serving Size: {servingSize}</b>
-                                                <FontAwesomeIcon icon={faX} className="delete-button" onClick={() => handleDelete(index)} />
-                                            </Accordion.Header>
-                                            <Accordion.Body className="nutrition-tracker-results-body">
-                                                <p>Calories: {((typeof food.calories === 'number' ? food.calories : parseFloat(food.calories as string) || 0) * servingSize).toFixed(2)}</p>
-                                                <p>Protein: {((food.protein || 0) * servingSize).toFixed(2)}g</p>
-                                                <p>Carbs: {((food.carbs || 0) * servingSize).toFixed(2)}g</p>
-                                                <p>Fat: {((food.fat || 0) * servingSize).toFixed(2)}g</p>
-                                                <p>Fiber: {((food.fiber || 0) * servingSize).toFixed(2)}g</p>
-                                                <p>Total Sugars: {((food.totalSugars || 0) * servingSize).toFixed(2)}g</p>
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-                                    </Accordion>
-                                );
-                            })}
+                            <div className="nutrition-results-wrapper">
+                                {submittedFoods.map((food, index) => {
+                                    const servingSize = food.servingSize || 1;
+                                    return (
+                                        <div key={index} className="nutrition-tracker-results-content">
+                                            <Accordion>
+                                                <Accordion.Item eventKey={index.toString()}>
+                                                    <Accordion.Header className="nutrition-tracker-results-header">
+                                                        <b className="food-title">
+                                                            {food.description.length > 10 
+                                                                ? food.description.substring(0, 10) + '...' 
+                                                                : food.description} -
+                                                        </b>
+                                                        <b className="food-title">Serving Size: {servingSize}</b>
+                                                        <FontAwesomeIcon icon={faX} className="delete-button" onClick={() => handleDelete(index)} />
+                                                    </Accordion.Header>
+                                                    <Accordion.Body className="nutrition-tracker-results-body">
+                                                        <p>Calories: {((typeof food.calories === 'number' ? food.calories : parseFloat(food.calories as string) || 0) * servingSize).toFixed(2)}</p>
+                                                        <p>Protein: {((food.protein || 0) * servingSize).toFixed(2)}g</p>
+                                                        <p>Carbs: {((food.carbs || 0) * servingSize).toFixed(2)}g</p>
+                                                        <p>Fat: {((food.fat || 0) * servingSize).toFixed(2)}g</p>
+                                                        <p>Fiber: {((food.fiber || 0) * servingSize).toFixed(2)}g</p>
+                                                        <p>Total Sugars: {((food.totalSugars || 0) * servingSize).toFixed(2)}g</p>
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </Accordion>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </Card>
                     </div>
 
