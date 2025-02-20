@@ -13,7 +13,7 @@ import {
 } from './workerService';
 const WORKER_URL = 'https://fitness-rpg-service.ani-ahuja219.workers.dev';
 
-const host = process.env.HOST ?? 'localhost';
+const host = '0.0.0.0';
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();

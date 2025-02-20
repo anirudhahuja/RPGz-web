@@ -40,3 +40,8 @@ Thumbs.db
 
 .nx/cache
 .nx/workspace-data
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
