@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import bcrypt from 'bcrypt';
@@ -11,7 +11,7 @@ import {
     UserData,
     acceptQuest
 } from './workerService';
-import { Request, Response } from 'express';
+
 const WORKER_URL = 'https://fitness-rpg-service.ani-ahuja219.workers.dev';
 
 const host = '0.0.0.0';
@@ -36,7 +36,7 @@ app.get('/api/users', async (req: Request, res: Response) => {
 });
 
 // Route to register a new user
-app.post('/api/register', async (req, res) => {
+app.post('/api/register', async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -107,7 +107,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 // Route to handle login
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -147,7 +147,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // Route to fetch specific user info by name
-app.get('/api/user-info', async (req, res) => {
+app.get('/api/user-info', async (req: Request, res: Response) => {
     const username = req.query.username as string;
 
     if (!username) {
@@ -168,7 +168,7 @@ app.get('/api/user-info', async (req, res) => {
 });
 
 // Route to fetch all quests from the Worker
-app.get('/api/quests', async (req, res) => {
+app.get('/api/quests', async (req: Request, res: Response) => {
     try {
         const username = req.query.username as string;
         // Pass username to get completion status
@@ -193,7 +193,7 @@ app.get('/api/quests', async (req, res) => {
 });
 
 // Route to accept a quest
-app.post('/api/accept-quest', async (req, res) => {
+app.post('/api/accept-quest', async (req: Request, res: Response) => {
     const { username, questId } = req.body;
     
     if (!username || !questId) {
@@ -213,7 +213,7 @@ app.post('/api/accept-quest', async (req, res) => {
 });
 
 // Route to submit a quest
-app.post('/api/submit-quest', async (req, res) => {
+app.post('/api/submit-quest', async (req: Request, res: Response) => {
     const { questId, username } = req.body;
 
     if (!questId || !username) {
@@ -303,7 +303,7 @@ app.post('/api/submit-quest', async (req, res) => {
 });
 
 // Add a route to get accepted quests
-app.get('/api/accepted-quests', async (req, res) => {
+app.get('/api/accepted-quests', async (req: Request, res: Response) => {
     const username = req.query.username as string;
     
     if (!username) {
