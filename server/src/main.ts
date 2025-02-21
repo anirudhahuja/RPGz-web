@@ -11,6 +11,7 @@ import {
     UserData,
     acceptQuest
 } from './workerService';
+import { Request, Response } from 'express';
 const WORKER_URL = 'https://fitness-rpg-service.ani-ahuja219.workers.dev';
 
 const host = '0.0.0.0';
@@ -24,7 +25,7 @@ app.use(express.json());
 type StatType = 'user' | 'strength' | 'agility' | 'intelligence' | 'wisdom' | 'endurance';
 
 // Route to fetch all users from the Worker
-app.get('/api/users', async (req, res) => {
+app.get('/api/users', async (req: Request, res: Response) => {
     try {
         const users = await fetchUsers();
         res.json(users);
