@@ -14,7 +14,7 @@ import {
 const WORKER_URL = 'https://fitness-rpg-service.ani-ahuja219.workers.dev';
 
 const host = '0.0.0.0';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
@@ -326,6 +326,6 @@ function isValidStat(stat: string): stat is StatType {
     return ['user', 'strength', 'agility', 'intelligence', 'wisdom', 'endurance'].includes(stat);
 }
 
-app.listen(port, host, () => {
-	console.log(`[ ready ] http://${host}:${port}`);
+app.listen(port, () => {
+	console.log(`Server is running on port ${port}`);
 });
