@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/main.js",
-    "build": "tsc"
+    "start": "npx nx run-many --target=serve --projects=client,server",
+    "build": "npx nx run-many --target=build --projects=client,server"
   },
   "private": true,
   "devDependencies": {
