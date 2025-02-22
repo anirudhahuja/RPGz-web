@@ -141,14 +141,20 @@ export function Town({ setIsLoggedIn }: TownProps) {
         localStorage.removeItem('username');
     };
 
+    const bgStyle = {
+        top: window.innerWidth <= 768 ? '-20%' : '0',  // More ground on mobile
+        height: window.innerWidth <= 768 ? '120%' : '100%'
+    };
+
     return (
-        <Parallax bgImage={backgroundImage} strength={0}>
+        <Parallax 
+            bgImage={backgroundImage} 
+            strength={0}
+            bgImageStyle={bgStyle}
+        >
             <Container id="town">
                 <img src={logo} alt="Logo" className="logo" />
-                <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                    <img src={playerGif} alt="Character Idle Animation" className="player" />
-                </Button>
-
+                
                 {/* Button to open login form - only show if not logged in */}
                 {!currentUsername && (
                     <Button 
@@ -159,33 +165,22 @@ export function Town({ setIsLoggedIn }: TownProps) {
                     </Button>
                 )}
 
-                {/* Display level-up messages */}
-                {levelUpMessages.map((message, index) => (
-                    <div key={index} className="level-up-message">
-                        {message}
-                    </div>
-                ))}
+                {/* Player container with menu icons and exp bar */}
+                <div className="player-container">
+                    {/* Experience bar if player data is available */}
+                    {playerData && <ExperienceBar playerData={playerData} />}
+                    
+                    <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                        <img src={playerGif} alt="Character Idle Animation" className="player" />
+                    </Button>
 
-                {/* Display experience bar if player data is available */}
-                {playerData && <ExperienceBar playerData={playerData} />}
-
-                {/* Only show menu icons if user is logged in */}
-                {currentUsername && (
-                    <>
+                    {/* Only show menu icons if user is logged in */}
+                    {currentUsername && (
                         <div className="menu-icons">
-                            {/* Player Info Menu Button */}
-                            <Button
-                                onClick={() => {
-                                    setPlayerInfoOpen(!playerInfoOpen);
-                                    setQuestLogOpen(false);
-                                }}
-                                style={{
-                                    background: "none",
-                                    border: "none",
-                                    padding: 0,
-                                    cursor: "pointer"
-                                }}
-                            >
+                            <Button onClick={() => {
+                                setPlayerInfoOpen(!playerInfoOpen);
+                                setQuestLogOpen(false);
+                            }} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                                 <img src={player_menu_icon} alt="Player Menu Icon" className="menu-icon mi1" />
                             </Button>
                             {/* Quest Log Menu Button */}
@@ -209,7 +204,10 @@ export function Town({ setIsLoggedIn }: TownProps) {
                             </Button>
                             {/* Nutrition Menu Button */}
                             <Button 
-                                onClick={() => navigate('/nutrition')}
+                                onClick={() => {
+                                    console.log('Nutrition button clicked');
+                                    navigate('/nutrition');
+                                }}
                                 style={{ 
                                     background: "none", 
                                     border: "none",
@@ -219,48 +217,50 @@ export function Town({ setIsLoggedIn }: TownProps) {
                             >
                                 <img src={nutrition_menu_icon} alt="Nutrition Menu Icon" className="menu-icon mi4" />
                             </Button>
-                            
                         </div>
-                        <Button 
-                            onClick={handleLogout}
-                            style={{ 
-                                background: "none", 
-                                border: "none",
-                                padding: 0,
-                                cursor: "pointer" 
-                            }}
-                        >
-                            <img src={logout_menu_icon} alt="Logout Menu Icon" className="logout-icon" />
-                        </Button> 
-                    </>
+                    )}
+                </div>
+
+                {/* Display level-up messages */}
+                {levelUpMessages.map((message, index) => (
+                    <div key={index} className="level-up-message">
+                        {message}
+                    </div>
+                ))}
+
+                {/* Logout button */}
+                {currentUsername && (
+                    <Button 
+                        onClick={handleLogout}
+                        style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                    >
+                        <img src={logout_menu_icon} alt="Logout Menu Icon" className="logout-icon" />
+                    </Button>
                 )}
 
-                {/* Render Player Info Menu only if logged in */}
-                {currentUsername && playerData ? (
+                {/* Menus */}
+                {currentUsername && playerData && (
                     <PlayerInfoMenu 
                         isOpen={playerInfoOpen} 
                         onClose={() => setPlayerInfoOpen(false)} 
                         playerData={playerData}
                     />
-                ) : null}
-
-                {/* Render Quest Log Menu only if logged in */}
-                {currentUsername && (
-                    <QuestLogMenu 
-                        isOpen={questLogOpen} 
-                        onClose={() => setQuestLogOpen(false)} 
-                        maxQuests={5} 
-                    />
                 )}
 
-                {/* Render Accepted Quest Panel only if logged in */}
                 {currentUsername && (
-                    <AcceptedQuestPanel 
-                        onSubmit={submitQuest} 
-                    />
+                    <>
+                        <QuestLogMenu 
+                            isOpen={questLogOpen} 
+                            onClose={() => setQuestLogOpen(false)} 
+                            maxQuests={5} 
+                        />
+                        <AcceptedQuestPanel 
+                            onSubmit={submitQuest} 
+                        />
+                    </>
                 )}
 
-                {/* LoginForm component - only show if not logged in and showLoginForm is true */}
+                {/* LoginForm component */}
                 {!currentUsername && showLoginForm && (
                     <LoginForm
                         onClose={() => setShowLoginForm(false)}

@@ -104,7 +104,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLogin }) => {
     };
 
     return (
-        <div className="login-register-form">
+        <div className="login-register-container">
             <Tabs defaultActiveKey="login" className="login-register-tabs">
                 <Tab eventKey="login" title="LOG IN">
                     <div className="login-form">
@@ -125,7 +125,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLogin }) => {
                         />
                         <p className="login-form-subtext login-form-forgot-password"> Forgot Password? </p>
                         <button className="login-form-button" onClick={handleLogin}>Log In</button>
-                        {/* <button className="login-form-button" onClick={onClose}>Cancel</button> */}
                     </div>
                 </Tab>
                 <Tab eventKey="register" title="REGISTER">
@@ -153,7 +152,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onLogin }) => {
                             className="register-form-input"
                         />
                         <button className="register-form-button" onClick={handleRegister}>Register</button>
-                        {/* <button className="register-form-button" onClick={onClose}>Cancel</button> */}
                     </div>
                 </Tab>
             </Tabs>

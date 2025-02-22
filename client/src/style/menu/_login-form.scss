@@ -1,18 +1,20 @@
-.login-register-form {
+@use '../variables/breakpoints' as bp;
+
+.login-register-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    width: 20%;
-    height: 50%;
+    width: 40%;
+    height: 95%;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .login-register-tabs {
     position: relative;
-    top: 5%;
+    top: 1%;
     display: flex;
     justify-content: center;
     font-size: 1rem;
@@ -25,7 +27,7 @@
         box-shadow: inset 0 -0.3px 0 0 black;
         outline: none;
         padding-bottom: 10px;
-        width: 150px;
+        width: 100px;
     }
 
     .nav-link:focus {
@@ -51,14 +53,15 @@
 }
 
 .login-form-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    transform: translateY(-10px);
 }
 
 .login-form-subtext {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 5px;
 
@@ -72,20 +75,19 @@
 
 .login-form-input {
     width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 3px;
+    margin-bottom: 5px;
 }
 
 .login-form-button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 5px;
     background-color: #294289;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .register-form {
@@ -98,37 +100,97 @@
 }
 
 .register-form-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    transform: translateY(-10px);
 }
 
 .register-form-subtext {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 5px;
 }
 
 .register-form-input {
     width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 3px;
+    margin-bottom: 5px;
 }
 
 .register-form-button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    padding: 5px;
     background-color: #294289;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
+@include bp.respond('breakpoint-lg') {
+    
+    .login-register-container {
+        top: 50%;
+        left: 50%;
+        width: 20%;
+        height: 50%;
+    }
 
+    .login-register-tabs {
+        top: 5%;
+
+        .nav-link {
+            width: 150px;
+        }
+    }
+
+    .login-form-title {
+        font-size: 1.5rem;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        transform: translateY(0);
+    }
+
+    .login-form-subtext {
+        font-size: 1rem;
+    }
+
+    .login-form-input {
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .login-form-button {
+        padding: 10px;
+        margin-top: 30px;
+
+    }
+
+    .register-form-title {
+        font-size: 1.5rem;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        transform: translateY(0);
+    }
+
+    .register-form-subtext {
+        font-size: 1rem;
+    }
+
+    .register-form-input {
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    .register-form-button {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+}
 
 
 

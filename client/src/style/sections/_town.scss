@@ -18,7 +18,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-color: black;
     cursor: pointer;
     background: #fff;
@@ -30,7 +30,7 @@
     font-weight: 700;
     letter-spacing: -.01em;
     line-height: 1.3;
-    padding: .875rem 1.125rem;
+    padding: 0.5rem 0.8rem;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
     will-change: transform;
     backface-visibility: hidden;
@@ -43,22 +43,40 @@
   background-color: #fff;
 }
 
-.player {
+.player-container {
     position: absolute;
-    top: 60%;
-    left: 40%;
-    scale: 1;
-    transform: scaleX(-1);
-}
-
-.menu-icons {
-    position: absolute;
-    top: 55%;
-    left: 44%;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    
+    .exp-bar-container {
+        position: relative;
+        top: -10px;
+        left: 15px;
+        margin-bottom: 10px;
+        order: 1;
+    }
+
+    .player {
+        transform: scaleX(-1);
+        scale: 1;
+        order: 0;
+    }
+
+    .menu-icons {
+        position: relative;
+        top: 15px;
+        left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        order: -1;
+    }
 }
 
 .menu-icon {
@@ -142,10 +160,24 @@
         width: 10%;
     }
 
-    .player {
-        top: 80%;
+    .player-container {
+        top: 65%;
         left: 50%;
-        scale: 1.6;
+        
+        .exp-bar-container {
+            top: 40px;
+            left: 30px;
+        }
+
+        .player {
+            scale: 1.6;
+        }
+
+        .menu-icons {
+            flex-direction: column;
+            top: 50px;
+            left: 40%;
+        }
     }
 
     .level-up-message {
@@ -154,15 +186,9 @@
         font-size: 1.5rem;
     }
 
-    .menu-icons {
-        top: 60%;
-        left: 60%;
-        flex-direction: column;
-    }
-
     .menu-icon {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         margin: 10px;
         transition: transform 0.3s ease-in-out;
     }   
@@ -179,9 +205,16 @@
         transform: translate(0, 0);
     }
 
+    .login-button {
+        top: 20px;
+        right: 20px;
+        font-size: 1.2rem;
+        padding: .875rem 1.125rem;
+    }
+
     .logout-icon {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         margin: 10px;
         transition: transform 0.3s ease-in-out;
     }
@@ -189,5 +222,4 @@
     .logout-icon:hover {
         transform: translateY(-5px);
     }
-
 }

@@ -1,12 +1,8 @@
 @use '../variables/breakpoints' as bp;
 
 .exp-bar-container {
-    position: relative;
-    width: 25%;
-    height: 4%;
-    top: 88%;
-    left: 46%;
-    // transform: translate(-50%, -50%);
+    width: 200px;  // Base width for mobile
+    height: 20px;  // Fixed height instead of percentage
 }
 
 .exp-bar {
@@ -30,13 +26,11 @@
 
 @include bp.respond('breakpoint-lg') {
     .exp-bar-container {
-        width: 20%;
-        height: 2.5%;
-        top: 94%;
-        left: 49%;
+        width: 300px;  // Larger width for desktop
+        height: 25px;  // Slightly taller for desktop
     }
 
     .progress-label {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
