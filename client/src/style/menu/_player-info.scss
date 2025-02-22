@@ -27,7 +27,8 @@
     top: 0%;
     left: 0%;
     width: 40%;
-    min-height: 100%;
+    min-height: 100vh; /* Fallback */
+    min-height: calc(var(--vh) * 100);
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }

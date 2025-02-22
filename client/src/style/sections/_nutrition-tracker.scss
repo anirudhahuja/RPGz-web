@@ -2,7 +2,8 @@
 
 // Container and Layout
 #nutrition-tracker {
-    height: 100vh;
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh) * 100);
     width: 100%;
     box-sizing: border-box;
     margin: 0;
@@ -269,7 +270,8 @@
 
 // Parallax Container
 .react-parallax {
-    height: 100vh;
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh) * 100);
     overflow-y: auto;
 }
 

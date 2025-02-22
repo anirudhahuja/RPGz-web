@@ -1,8 +1,9 @@
 @use '../variables/breakpoints' as bp;
 
 #town {
-    // Make Container cover the entire screen
-    height: 100vh;
+    // Update height to use custom vh
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh) * 100);
     width: 100vw;
 }
 
