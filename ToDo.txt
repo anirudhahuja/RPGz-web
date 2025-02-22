@@ -69,3 +69,6 @@ Random Ideas:
     - When going to the nutrition menu and back, the menu is not showing up.
     - When refreshed, the user is logged out.
     - Quest submit does not work right now. 
+
+2/21 
+    - Make more responsive across different PC screen sizes: quest log, login etc. 
