@@ -103,6 +103,13 @@ h5 {
   height: 150px;
 }
 
+.rotate-device-logo {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 1%;
+}
+
 @keyframes rotate {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(-90deg); }
