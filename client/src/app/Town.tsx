@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Parallax } from 'react-parallax';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Image } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,7 @@ import { API_BASE_URL } from '../config';
 import { triggerLevelUp, setPlayerData, PlayerData } from './redux/levelUpSlice';
 import LoginForm from './components/login-form'; // Import the LoginForm component
 import { parseUserData } from '../../../shared/utils';
+import OrientationMessage from './components/orientation';
 
 interface TownProps {
   setIsLoggedIn: (isLoggedIn: boolean) => void;
@@ -147,128 +148,131 @@ export function Town({ setIsLoggedIn }: TownProps) {
     };
 
     return (
-        <Parallax 
-            bgImage={backgroundImage} 
-            strength={0}
-            bgImageStyle={bgStyle}
-        >
-            <Container id="town">
-                <img src={logo} alt="Logo" className="logo" />
-                
-                {/* Button to open login form - only show if not logged in */}
-                {!currentUsername && (
-                    <Button 
-                        className="login-button" 
-                        onClick={() => setShowLoginForm(prev => !prev)}
-                    >
-                        Log In / Register
-                    </Button>
-                )}
-
-                {/* Player container with menu icons and exp bar */}
-                <div className="player-container">
-                    {/* Experience bar if player data is available */}
-                    {playerData && <ExperienceBar playerData={playerData} />}
+        <>
+            <OrientationMessage />
+            <Parallax 
+                bgImage={backgroundImage} 
+                strength={0}
+                bgImageStyle={bgStyle}
+            >
+                <Container id="town">
+                    <Image src={logo} alt="Logo" className="logo" />
                     
-                    <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                        <img src={playerGif} alt="Character Idle Animation" className="player" />
-                    </Button>
-
-                    {/* Only show menu icons if user is logged in */}
-                    {currentUsername && (
-                        <div className="menu-icons">
-                            <Button onClick={() => {
-                                setPlayerInfoOpen(!playerInfoOpen);
-                                setQuestLogOpen(false);
-                            }} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                                <img src={player_menu_icon} alt="Player Menu Icon" className="menu-icon mi1" />
-                            </Button>
-                            {/* Quest Log Menu Button */}
-                            <Button
-                                onClick={() => {
-                                    setQuestLogOpen(!questLogOpen);
-                                    setPlayerInfoOpen(false);
-                                }}
-                                style={{
-                                    background: "none",
-                                    border: "none",
-                                    padding: 0,
-                                    cursor: "pointer"
-                                }}
-                            >
-                                <img src={quests_menu_icon} alt="Quest Log Menu Icon" className="menu-icon mi2" />
-                            </Button>
-                            {/* Skills Menu Button */}
-                            <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                                <img src={skills_menu_icon} alt="Skills Menu Icon" className="menu-icon mi3" />
-                            </Button>
-                            {/* Nutrition Menu Button */}
-                            <Button 
-                                onClick={() => {
-                                    console.log('Nutrition button clicked');
-                                    navigate('/nutrition');
-                                }}
-                                style={{ 
-                                    background: "none", 
-                                    border: "none",
-                                    padding: 0,
-                                    cursor: "pointer" 
-                                }}
-                            >
-                                <img src={nutrition_menu_icon} alt="Nutrition Menu Icon" className="menu-icon mi4" />
-                            </Button>
-                        </div>
+                    {/* Button to open login form - only show if not logged in */}
+                    {!currentUsername && (
+                        <Button 
+                            className="login-button" 
+                            onClick={() => setShowLoginForm(prev => !prev)}
+                        >
+                            Log In / Register
+                        </Button>
                     )}
-                </div>
 
-                {/* Display level-up messages */}
-                {levelUpMessages.map((message, index) => (
-                    <div key={index} className="level-up-message">
-                        {message}
+                    {/* Player container with menu icons and exp bar */}
+                    <div className={`player-container ${!currentUsername ? 'logged-out' : ''}`}>
+                        {/* Experience bar if player data is available */}
+                        {playerData && <ExperienceBar playerData={playerData} />}
+                        
+                        <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                            <img src={playerGif} alt="Character Idle Animation" className="player" />
+                        </Button>
+
+                        {/* Only show menu icons if user is logged in */}
+                        {currentUsername && (
+                            <div className="menu-icons">
+                                <Button onClick={() => {
+                                    setPlayerInfoOpen(!playerInfoOpen);
+                                    setQuestLogOpen(false);
+                                }} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                                    <Image src={player_menu_icon} alt="Player Menu Icon" className="menu-icon mi1" />
+                                </Button>
+                                {/* Quest Log Menu Button */}
+                                <Button
+                                    onClick={() => {
+                                        setQuestLogOpen(!questLogOpen);
+                                        setPlayerInfoOpen(false);
+                                    }}
+                                    style={{
+                                        background: "none",
+                                        border: "none",
+                                        padding: 0,
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    <Image src={quests_menu_icon} alt="Quest Log Menu Icon" className="menu-icon mi2" />
+                                </Button>
+                                {/* Skills Menu Button */}
+                                <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                                    <Image src={skills_menu_icon} alt="Skills Menu Icon" className="menu-icon mi3" />
+                                </Button>
+                                {/* Nutrition Menu Button */}
+                                <Button 
+                                    onClick={() => {
+                                        console.log('Nutrition button clicked');
+                                        navigate('/nutrition');
+                                    }}
+                                    style={{ 
+                                        background: "none", 
+                                        border: "none",
+                                        padding: 0,
+                                        cursor: "pointer" 
+                                    }}
+                                >
+                                    <Image src={nutrition_menu_icon} alt="Nutrition Menu Icon" className="menu-icon mi4" />
+                                </Button>
+                            </div>
+                        )}
                     </div>
-                ))}
 
-                {/* Logout button */}
-                {currentUsername && (
-                    <Button 
-                        onClick={handleLogout}
-                        style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
-                    >
-                        <img src={logout_menu_icon} alt="Logout Menu Icon" className="logout-icon" />
-                    </Button>
-                )}
+                    {/* Display level-up messages */}
+                    {levelUpMessages.map((message, index) => (
+                        <div key={index} className="level-up-message">
+                            {message}
+                        </div>
+                    ))}
 
-                {/* Menus */}
-                {currentUsername && playerData && (
-                    <PlayerInfoMenu 
-                        isOpen={playerInfoOpen} 
-                        onClose={() => setPlayerInfoOpen(false)} 
-                        playerData={playerData}
-                    />
-                )}
+                    {/* Logout button */}
+                    {currentUsername && (
+                        <Button 
+                            onClick={handleLogout}
+                            style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                        >
+                            <Image src={logout_menu_icon} alt="Logout Menu Icon" className="logout-icon" />
+                        </Button>
+                    )}
 
-                {currentUsername && (
-                    <>
-                        <QuestLogMenu 
-                            isOpen={questLogOpen} 
-                            onClose={() => setQuestLogOpen(false)} 
-                            maxQuests={5} 
+                    {/* Menus */}
+                    {currentUsername && playerData && (
+                        <PlayerInfoMenu 
+                            isOpen={playerInfoOpen} 
+                            onClose={() => setPlayerInfoOpen(false)} 
+                            playerData={playerData}
                         />
-                        <AcceptedQuestPanel 
-                            onSubmit={submitQuest} 
-                        />
-                    </>
-                )}
+                    )}
 
-                {/* LoginForm component */}
-                {!currentUsername && showLoginForm && (
-                    <LoginForm
-                        onClose={() => setShowLoginForm(false)}
-                        onLogin={handleLogin}
-                    />
-                )}
-            </Container>
-        </Parallax>
+                    {currentUsername && (
+                        <>
+                            <QuestLogMenu 
+                                isOpen={questLogOpen} 
+                                onClose={() => setQuestLogOpen(false)} 
+                                maxQuests={5} 
+                            />
+                            <AcceptedQuestPanel 
+                                onSubmit={submitQuest} 
+                            />
+                        </>
+                    )}
+
+                    {/* LoginForm component */}
+                    {!currentUsername && showLoginForm && (
+                        <LoginForm
+                            onClose={() => setShowLoginForm(false)}
+                            onLogin={handleLogin}
+                        />
+                    )}
+                </Container>
+            </Parallax>
+        </>
     );
 }
 
