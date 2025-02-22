@@ -54,21 +54,24 @@ Nutrition Tracker:
     
 Add Tooltips to the Icons/Stats menus
 
-2/3: Nutrition Tracker:
-    - Update the information at the top of the Nutrition Tracker page
-    - Expandable information for the submitted foods 
-    - Serving Size selection (default 1, allow user to increase)
-    - Make it look good 
-
 Random Ideas:
     - Gear Customization
     - Time scenary changes
     - Character Customization !!! IMPORTANT
+
+2/3: Nutrition Tracker:
+    - Update the information at the top of the Nutrition Tracker page - done
+    - Expandable information for the submitted foods - done
+    - Serving Size selection (default 1, allow user to increase) - done
+    - Make it look good on all screen sizes - done (kinda)
+
     
 2/14 Bugs with Registration:
-    - When going to the nutrition menu and back, the menu is not showing up.
-    - When refreshed, the user is logged out.
-    - Quest submit does not work right now. 
+    - When going to the nutrition menu and back, the menu is not showing up. - done
+    - When refreshed, the user is logged out. - done
+    - Quest submit does not work right now. - done
 
 2/21 
-    - Make more responsive across different PC screen sizes: quest log, login etc. 
+    - Make more responsive across different PC screen sizes: quest log, login etc. - done
+    - On the nutrition tracker, somethings that are NA will brick the bars. - done
+

@@ -110,12 +110,12 @@ export function Nutrition() {
 
                 return {
                     description: food.description,
-                    calories: calories ? calories.value : 'N/A',
-                    protein: protein ? protein.value : 'N/A',
-                    carbs: carbs ? carbs.value : 'N/A',
-                    fat: fat ? fat.value : 'N/A',
-                    fiber: fiber ? fiber.value : 'N/A',
-                    totalSugars: totalSugars ? totalSugars.value : 'N/A',
+                    calories: calories ? calories.value : '0',
+                    protein: protein ? protein.value : '0',
+                    carbs: carbs ? carbs.value : '0',
+                    fat: fat ? fat.value : '0',
+                    fiber: fiber ? fiber.value : '0',
+                    totalSugars: totalSugars ? totalSugars.value : '0',
                     servingSize: 1 // Default serving size to 1
                 };
 
@@ -327,7 +327,7 @@ export function Nutrition() {
                         Date: {new Date().toLocaleDateString()} (Today)
                     </h5>
 
-                    {/* Nutrition Tracker Units */}
+                    {/* Daily Nutrition Display */}
                     <div className="unit-grid">
                         <Card 
                             className="panel-unit"
@@ -490,7 +490,7 @@ export function Nutrition() {
                     <Button 
                         variant="outline-secondary"
                         className="home-button"
-                        onClick={() => navigate('/town')}
+                        onClick={() => navigate('/')}
                     >
                         Back to Town
                     </Button>

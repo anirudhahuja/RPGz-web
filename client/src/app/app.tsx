@@ -7,48 +7,47 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 function AppContent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return !!localStorage.getItem('username');
-  });
-  const location = useLocation();
-  const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        return !!localStorage.getItem('username');
+    });
+    const location = useLocation();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    setIsLoggedIn(!!username);
-    
-    if (!username && location.pathname === '/nutrition') {
-      console.log('Redirecting to home - not logged in');
-      navigate('/');
-    }
-  }, [location.pathname, navigate]);
+    useEffect(() => {
+        const username = localStorage.getItem('username');
+        setIsLoggedIn(!!username);
+        
+        if (!username && location.pathname === '/nutrition') {
+            console.log('Redirecting to home - not logged in');
+            navigate('/');
+        }
+    }, [location.pathname, navigate]);
 
-  console.log('Current path:', location.pathname);
-  console.log('Is logged in:', isLoggedIn);
+    console.log('Current path:', location.pathname);
+    console.log('Is logged in:', isLoggedIn);
 
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Town setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/town" element={<Town setIsLoggedIn={setIsLoggedIn} />} />
-        <Route 
-          path="/nutrition" 
-          element={
-            isLoggedIn ? <NutritionTracker /> : null
-          } 
-        />
-      </Routes>
-      {isLoggedIn && <Profile />}
-    </div>
-  );
+    return (
+        <div>
+            <Routes>
+                <Route path="/" element={<Town setIsLoggedIn={setIsLoggedIn} />} />
+                <Route 
+                    path="/nutrition" 
+                    element={
+                        isLoggedIn ? <NutritionTracker /> : null
+                    } 
+                />
+            </Routes>
+            {isLoggedIn && <Profile />}
+        </div>
+    );
 }
 
 export function App() {
-  return (
-    <Provider store={store}>
-      <AppContent />
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <AppContent />
+        </Provider>
+    );
 }
 
 export default App;

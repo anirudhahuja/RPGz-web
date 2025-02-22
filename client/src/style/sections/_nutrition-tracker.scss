@@ -72,7 +72,7 @@
 .unit-header {
     text-align: center;
     color: #000000;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.5vw + 0.6rem, 1.1rem);
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -81,7 +81,7 @@
 .unit-body {
     text-align: left;
     color: #000000;
-    font-size: 0.7rem;
+    font-size: clamp(0.7rem, 0.5vw + 0.5rem, 1rem);
     margin: 2px 0;
     padding: 0;
     line-height: 1;
@@ -325,14 +325,12 @@
     .unit-header {
         text-align: center;
         color: #000000;
-        font-size: 1.2rem;
         margin-bottom: 5px;
     }
     
     .unit-body {
         text-align: left;
         color: #000000;
-        font-size: 1rem;
         margin-bottom: 5px;
     }
 
@@ -346,11 +344,11 @@
 
     .nutrition-tracker-form {
         position: relative;
-        left: 15%;
+        left: 5%;
         padding: 20px;
-        width: 80%;
+        width: 50%;
         max-width: 600px;
-        height: 600px;
+        height: 500px;
         margin-top: 20px;
     }
 
@@ -390,9 +388,11 @@
     .nutrition-tracker-results-container {
         position: relative;
         top: 5%;
-        left: 20%;
-        height: 600px;
+        left: 10%;
+        height: 500px;
         margin-top: 20px;
+        width: 50%;
+        max-width: 600px;
     }
 
     .nutrition-tracker-results-body {
@@ -422,5 +422,19 @@
             top: 1px;
             left: 88%;
         }
+    }
+}
+
+@include bp.respond('breakpoint-xl') {
+    .nutrition-tracker-form {
+        left: 15%;
+        height: 600px;
+        width: 80%;
+    }
+    
+    .nutrition-tracker-results-container {
+        left: 20%;
+        height: 600px;
+        width: 80%;
     }
 }

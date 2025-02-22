@@ -45,13 +45,16 @@
         height: 85%;
     }
 
+    .accepted-quests-header {
+        margin-bottom: -10px;
+    }
+
     .accepted-quests-divider {
         margin-top: 10px;
     }
 
     .accepted-quests-body {
         transform: translateY(-2%);
-        overflow-y: hidden;
     }
 
     .accepted-quests-submit-button {

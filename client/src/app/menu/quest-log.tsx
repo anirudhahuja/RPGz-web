@@ -39,11 +39,6 @@ const QuestLogMenu = ({ isOpen, onClose, maxQuests }: QuestProps) => {
     // Add this state to track accepted quests locally
     const [acceptedQuestIds, setAcceptedQuestIds] = useState<Set<number>>(new Set());
 
-    // Add a helper function to validate category
-    const isValidCategory = (category: string): category is QuestCategoryType => {
-        return ['strength', 'agility', 'intelligence', 'wisdom', 'endurance'].includes(category);
-    };
-
     const fetchQuests = async () => {
         const username = localStorage.getItem('username');
         if (!username) {

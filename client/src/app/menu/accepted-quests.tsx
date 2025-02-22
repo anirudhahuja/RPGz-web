@@ -58,6 +58,7 @@ const AcceptedQuestPanel = ({ onSubmit }: AcceptedQuestPanelProps) => {
             <Card.Header className="accepted-quests-header">
                 <h2>Accepted Quests ({acceptedQuests.length}/{maxQuests}) <hr className="accepted-quests-divider" /> </h2>
             </Card.Header>
+            <br/>
             <Card.Body className="accepted-quests-body">
                 {acceptedQuests.map((quest, index) => (
                     <h5 key={index}>
