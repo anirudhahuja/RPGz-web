@@ -16,3 +16,16 @@ root.render(
     </BrowserRouter>
   </StrictMode>
 );
+
+// Add this function to handle viewport height
+const setVH = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
+// Set initial viewport height
+setVH();
+
+// Update viewport height on resize and orientation change
+window.addEventListener('resize', setVH);
+window.addEventListener('orientationchange', setVH);

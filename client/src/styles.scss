@@ -32,9 +32,16 @@
     font-style: normal; 
 }
 
-// Turn off scrollbar in whole app
+// Add this custom property to handle dynamic viewport height
+:root {
+  --vh: 1vh;
+}
+
+// Update any 100vh references to use the custom property
 html, body {
-    overflow: hidden;
+  height: 100vh; /* Fallback */
+  height: calc(var(--vh) * 100);
+  overflow: hidden;
 }
 
 h1 {
