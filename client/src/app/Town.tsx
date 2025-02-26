@@ -16,6 +16,7 @@ import nutrition_menu_icon from '../assets/icons/nutrition_menu_icon.svg';
 import logout_menu_icon from '../assets/icons/logout_menu_icon.svg';
 
 // Importing components and utilities
+import CharacterCreation from './components/character-creation';
 import PlayerInfoMenu from './menu/player-info';
 import QuestLogMenu from './menu/quest-log';
 import AcceptedQuestPanel from './menu/accepted-quests';
@@ -35,11 +36,12 @@ export function Town({ setIsLoggedIn }: TownProps) {
     const navigate = useNavigate(); // Hook for navigation
     const [playerInfoOpen, setPlayerInfoOpen] = useState(false); // State for Player Info Menu visibility
     const [questLogOpen, setQuestLogOpen] = useState(false); // State for Quest Log Menu visibility
+    const [showCharacterCreation, setShowCharacterCreation] = useState(false); // State for Character Creation visibility
     const [playerData, setPlayerDataLocal] = useState<PlayerData | null>(null); // State for local player data
     const [levelUpMessages, setLevelUpMessages] = useState<string[]>([]); // State for level-up messages
     const dispatch = useDispatch(); // Hook for dispatching Redux actions
     const [showLoginForm, setShowLoginForm] = useState(false); // State to control form visibility
-    const [currentUsername, setCurrentUsername] = useState<string | null>(null);
+    const [currentUsername, setCurrentUsername] = useState<string | null>(null); // State for current username
 
     // Fetch player data on component mount
     useEffect(() => {
@@ -173,17 +175,26 @@ export function Town({ setIsLoggedIn }: TownProps) {
                         {/* Experience bar if player data is available */}
                         {playerData && <ExperienceBar playerData={playerData} />}
                         
-                        <Button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
-                            <img src={playerGif} alt="Character Idle Animation" className="player" />
+                        <Button 
+                            onClick={() => {
+                                setShowCharacterCreation(!showCharacterCreation);
+                                setPlayerInfoOpen(false);
+                                setQuestLogOpen(false);
+                            }}
+                            style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                        >
+                            <img src={playerGif} alt="Player" className="player" />
                         </Button>
 
                         {/* Only show menu icons if user is logged in */}
                         {currentUsername && (
                             <div className="menu-icons">
+                                {/* Player Menu Button */}
                                 <Button onClick={() => {
                                     setPlayerInfoOpen(!playerInfoOpen);
                                     setQuestLogOpen(false);
-                                }} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                                }} 
+                                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                                     <Image src={player_menu_icon} alt="Player Menu Icon" className="menu-icon mi1" />
                                 </Button>
                                 {/* Quest Log Menu Button */}
@@ -192,13 +203,7 @@ export function Town({ setIsLoggedIn }: TownProps) {
                                         setQuestLogOpen(!questLogOpen);
                                         setPlayerInfoOpen(false);
                                     }}
-                                    style={{
-                                        background: "none",
-                                        border: "none",
-                                        padding: 0,
-                                        cursor: "pointer"
-                                    }}
-                                >
+                                    style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                                     <Image src={quests_menu_icon} alt="Quest Log Menu Icon" className="menu-icon mi2" />
                                 </Button>
                                 {/* Skills Menu Button */}
@@ -241,7 +246,15 @@ export function Town({ setIsLoggedIn }: TownProps) {
                         </Button>
                     )}
 
-                    {/* Menus */}
+                    {/* Character Creation Menu */}
+                    {showCharacterCreation && (
+                        <CharacterCreation 
+                            isOpen={showCharacterCreation}
+                            onClose={() => setShowCharacterCreation(false)}
+                        />
+                    )}
+
+                    {/* Player Info Menu */}
                     {currentUsername && playerData && (
                         <PlayerInfoMenu 
                             isOpen={playerInfoOpen} 
@@ -250,6 +263,7 @@ export function Town({ setIsLoggedIn }: TownProps) {
                         />
                     )}
 
+                    {/* Quest Log Menu */}
                     {currentUsername && (
                         <>
                             <QuestLogMenu 

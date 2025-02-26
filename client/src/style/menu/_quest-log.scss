@@ -117,8 +117,9 @@
     font-size: 0.7rem;
 }
 
-
+// Desktop styles
 @include bp.respond('breakpoint-lg') {
+    
     .quest-info {
         top: 20%;
         left: 5%;

@@ -75,3 +75,5 @@ Random Ideas:
     - Make more responsive across different PC screen sizes: quest log, login etc. - done
     - On the nutrition tracker, somethings that are NA will brick the bars. - done
 
+2/22
+    - Character Creation

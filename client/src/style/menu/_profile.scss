@@ -54,7 +54,9 @@
   color: gold;
 }
 
+// Desktop styles
 @include bp.respond('breakpoint-lg') {
+    
     .profile-container {
         padding: 10px 15px;
         position: absolute;

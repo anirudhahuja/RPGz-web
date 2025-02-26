@@ -131,6 +131,7 @@
     margin-top: 20px;
 }
 
+// Desktop styles
 @include bp.respond('breakpoint-lg') {
     
     .login-register-container {

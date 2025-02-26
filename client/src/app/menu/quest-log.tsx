@@ -21,9 +21,6 @@ export interface Quest {
     accepted: number | boolean;
 }
 
-// Add a type for valid categories
-type QuestCategoryType = 'strength' | 'agility' | 'intelligence' | 'wisdom' | 'endurance';
-
 interface QuestCategory {
     strength: Quest[];
     agility: Quest[];
@@ -107,11 +104,6 @@ const QuestLogMenu = ({ isOpen, onClose, maxQuests }: QuestProps) => {
 
     // Return null if the menu is not visible or quests are not loaded
     if (!menuVisible || !quests) return null;
-
-    // Add a helper function to check if a quest is accepted
-    const isQuestAccepted = (quest: Quest): boolean => {
-        return Boolean(quest.accepted);
-    };
 
     // Add a helper function to check if a quest is completed
     const isQuestCompleted = (quest: Quest): boolean => {

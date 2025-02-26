@@ -10,13 +10,14 @@
 @use './style/menu/profile.scss';
 @use './style/menu/accepted-quests.scss';
 @use './style/menu/food-search.scss';
-@use './style/menu/login-form.scss';
 
 // Variables
 @use './style/variables/breakpoints' as bp;
 
 // Components
 @use './style/components/exp-bar.scss';
+@use './style/components/login-form.scss';
+@use './style/components/character-creation.scss';
 
 @font-face {
     font-family: 'Yngreena';
