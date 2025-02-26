@@ -10,6 +10,10 @@
     overflow-y: auto;
     position: relative;
     
+    @include bp.respond('breakpoint-lg') {
+        overflow-y: hidden;
+    }
+
     &.container {
         max-width: 100%;
         padding: 0;
@@ -23,6 +27,12 @@
     color: white;
     margin: 10px 20px 0 20px;
     display: inline-block;
+
+    @include bp.respond('breakpoint-lg') {
+        display: block;
+        text-align: center;
+        margin: 10px auto 0;
+    }
 }
 
 .nutrition-tracker-date {
@@ -30,6 +40,12 @@
     color: white;
     margin: 10px 0 0 10px;
     display: inline-block;
+
+    @include bp.respond('breakpoint-lg') {
+        display: block;
+        text-align: center;
+        margin: 10px auto 0;
+    }
 }
 
 .calendar-icon {
@@ -47,6 +63,14 @@
     gap: 10px;
     width: 20%;
     padding: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+        width: 100%;
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
 .panel-unit {
@@ -55,6 +79,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include bp.respond('breakpoint-lg') {
+        height: 100px;
+    }
 
     .card-body {
         display: flex;
@@ -76,6 +104,10 @@
     margin: 0;
     padding: 0;
     line-height: 1;
+
+    @include bp.respond('breakpoint-lg') {
+        margin-bottom: 5px;
+    }
 }
 
 .unit-body {
@@ -86,6 +118,10 @@
     padding: 0;
     line-height: 1;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        margin-bottom: 5px;
+    }
 }
 
 .unit-bar {
@@ -95,6 +131,13 @@
     margin: 0;
     padding: 0;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        min-height: 10px;
+        height: 10px;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 // Forms Section
@@ -120,6 +163,22 @@
     color: #fff;
     overflow-y: hidden;
 
+    @include bp.respond('breakpoint-lg') {
+        position: relative;
+        left: 5%;
+        padding: 20px;
+        width: 50%;
+        max-width: 600px;
+        height: 500px;
+        margin-top: 20px;
+    }
+
+    @include bp.respond('breakpoint-xl') {
+        left: 15%;
+        height: 600px;
+        width: 80%;
+    }
+
     .form-label {
         color: #fff; 
         font-weight: bold;
@@ -134,6 +193,12 @@
         margin-bottom: 10px;
         font-size: 0.7rem;
         padding: 5px 10px;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 1rem;
+            height: 38px;
+            padding: 6px 12px;
+        }
     }
 }
 
@@ -147,6 +212,12 @@
     cursor: pointer;
     font-size: 0.7rem;
     height: 30px;
+
+    @include bp.respond('breakpoint-lg') {
+        padding: 5px 20px;
+        font-size: 1rem;
+        height: 38px;
+    }
 
     &:hover {
         background-color: #A0522D;
@@ -166,6 +237,16 @@
     transform: translateY(300px);
     padding: 5px 10px;
     cursor: pointer;
+
+    @include bp.respond('breakpoint-lg') {
+        bottom: 50px;
+        left: auto;
+        right: 50px;
+        width: auto;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        transform: translateY(0px);
+    }
 }
 
 // Results Section
@@ -183,6 +264,22 @@
     height: 320px;
     color: #fff;
     overflow-y: auto;
+
+    @include bp.respond('breakpoint-lg') {
+        position: relative;
+        top: 5%;
+        left: 10%;
+        height: 500px;
+        margin-top: 20px;
+        width: 50%;
+        max-width: 600px;
+    }
+
+    @include bp.respond('breakpoint-xl') {
+        left: 20%;
+        height: 600px;
+        width: 80%;
+    }
 }
 
 .nutrition-results-wrapper {
@@ -222,6 +319,10 @@
     overflow: hidden;
 
     .accordion-button {
+        padding-left: 40px;
+        height: 50px;
+        white-space: nowrap;
+
         &::after {
             position: absolute;
             left: 10px;
@@ -229,10 +330,6 @@
             width: 20px;
             height: 20px;
         }
-
-        padding-left: 40px;
-        height: 50px;
-        white-space: nowrap;
     }
 
     .food-title {
@@ -242,6 +339,10 @@
         overflow: hidden;
         white-space: nowrap;
         max-width: 150px;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 1rem;
+        }
     }
     
     .delete-button {
@@ -254,6 +355,10 @@
         cursor: pointer;
         font-size: 0.8rem;
         color: red;
+
+        @include bp.respond('breakpoint-lg') {
+            left: 88%;
+        }
     }
 }
 
@@ -262,6 +367,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     font-size: 0.6rem;
+
+    @include bp.respond('breakpoint-lg') {
+        font-size: 0.8rem;
+    }
 
     p {
         margin: 0;
@@ -273,168 +382,8 @@
     height: 100vh; /* Fallback */
     height: calc(var(--vh) * 100);
     overflow-y: auto;
-}
 
-// Desktop Styles
-@include bp.respond('breakpoint-lg') {
-    #nutrition-tracker {
+    @include bp.respond('breakpoint-lg') {
         overflow-y: hidden;
-    }
-
-    .react-parallax {
-        overflow-y: hidden;
-    }
-
-    .nutrition-tracker-header {
-        display: block;
-        text-align: center;
-        margin: 10px auto 0;
-    }
-
-    .nutrition-tracker-date {
-        display: block;
-        text-align: center;
-        margin: 10px auto 0;
-    }
-
-    .unit-grid {
-        gap: 20px;
-        padding: 20px;
-        margin: 0 auto;
-        width: 100%;
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .panel-unit {
-        height: 100px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-            height: 80%;
-        }
-    }
-
-    .unit-header {
-        text-align: center;
-        color: #000000;
-        margin-bottom: 5px;
-    }
-    
-    .unit-body {
-        text-align: left;
-        color: #000000;
-        margin-bottom: 5px;
-    }
-
-    .unit-bar {
-        width: 60%;
-        min-height: 10px;
-        height: 10px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .nutrition-tracker-form {
-        position: relative;
-        left: 5%;
-        padding: 20px;
-        width: 50%;
-        max-width: 600px;
-        height: 500px;
-        margin-top: 20px;
-    }
-
-    .nutrition-tracker-form .form-label {
-        color: #fff; 
-        font-weight: bold;
-        font-family: 'Yngreena-Bold';
-        font-size: 1.2rem;
-    }
-    
-    .nutrition-tracker-form .form-control {
-        background-color: rgba(255, 255, 255, 0.8); 
-        border: none;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        font-size: 1rem;
-        height: 38px;
-        padding: 6px 12px;
-    }
-
-    .search-button {
-        padding: 5px 20px;
-        font-size: 1rem;
-        height: 38px;
-    }
-
-    .home-button {
-        bottom: 50px;
-        left: auto;
-        right: 50px;
-        width: auto;
-        padding: 10px 20px;
-        font-size: 1.2rem;
-        transform: translateY(0px);
-    }
-    
-    .nutrition-tracker-results-container {
-        position: relative;
-        top: 5%;
-        left: 10%;
-        height: 500px;
-        margin-top: 20px;
-        width: 50%;
-        max-width: 600px;
-    }
-
-    .nutrition-tracker-results-body {
-        font-size: 0.8rem;
-    }
-
-    .nutrition-tracker-results-header {
-        .accordion-button {
-            &::after {
-                position: absolute;
-                left: 10px;
-                margin-left: 0;
-                width: 20px;
-                height: 20px;
-            }
-
-            padding-left: 40px;
-        }
-
-        .food-title {
-            font-size: 1rem;
-        }
-
-        .delete-button {
-            padding: 5px 20px;
-            position: absolute;
-            top: 1px;
-            left: 88%;
-        }
-    }
-}
-
-@include bp.respond('breakpoint-xl') {
-    .nutrition-tracker-form {
-        left: 15%;
-        height: 600px;
-        width: 80%;
-    }
-    
-    .nutrition-tracker-results-container {
-        left: 20%;
-        height: 600px;
-        width: 80%;
     }
 }

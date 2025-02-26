@@ -3,6 +3,10 @@
 .food-container {
     display: flex;
     flex-direction: column;
+
+    @include bp.respond('breakpoint-lg') {
+        flex-direction: row;
+    }
 }
 
 .food-results-container {
@@ -19,6 +23,21 @@
     white-space: nowrap;
     display: flex;
     gap: 10px;
+
+    @include bp.respond('breakpoint-lg') {
+        margin-top: 10px;
+        position: relative;
+        top: 50%;
+        padding: 20px;
+        max-width: 200px;
+        overflow-y: auto;
+        max-height: 400px;
+        height: auto;
+        overflow-x: visible;
+        white-space: normal;
+        display: block;
+        gap: 0;
+    }
 }
 
 .food-result-card {
@@ -31,26 +50,48 @@
     flex: 0 0 auto;
     width: 180px;
 
+    @include bp.respond('breakpoint-lg') {
+        padding: 10px;
+        flex: none;
+        width: auto;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
     .card-body {
         padding: 8px;
         border: 1px solid #000;
         background: rgba(216, 231, 236, 0.5);
         border-radius: 10px;
         white-space: normal;
+
+        @include bp.respond('breakpoint-lg') {
+            padding: 10px;
+            box-sizing: border-box;
+        }
     }
 
     .card-title {
         font-size: 0.8rem;
         color: #333;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 1rem;
+        }
     }
 
     .card-text {
         font-size: 0.7rem;
         color: #333;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 0.8rem;
+        }
     }
 }
 
-// Mobile food detail styles
 .food-detail-container {
     margin-top: 10px;
     border-radius: 15px;
@@ -59,6 +100,15 @@
     background: transparent;
     width: 100%;
     max-height: 120px;
+
+    @include bp.respond('breakpoint-lg') {
+        padding: 20px;
+        max-width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin-left: 20px;
+        max-height: 400px;
+    }
 }
 
 .food-detail-card {
@@ -69,6 +119,17 @@
     max-height: 100px;
     width: 80%;
 
+    @include bp.respond('breakpoint-lg') {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 5px;
+        max-height: 350px;
+        width: 100%;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
     .nutrition-info-grid {
         margin-top: 15px;
         display: grid;
@@ -78,6 +139,14 @@
         margin-left: 10px;
         width: 90%;
         line-height: 1;
+
+        @include bp.respond('breakpoint-lg') {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 10px 20px;
+            width: 80%;
+            margin: 0 auto;
+        }
     }
 
     .card-header-container {
@@ -85,11 +154,25 @@
         align-items: center;
         margin-bottom: 5px;
 
+        @include bp.respond('breakpoint-lg') {
+            display: block;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
         .card-title {
             padding: 0;
             display: inline;
             font-size: 0.8rem;
             margin: 0 0 0 10px;
+
+            @include bp.respond('breakpoint-lg') {
+                font-size: 1.2rem;
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 10px 0 10px 0;
+            }
         }
 
         .serving-size-text {
@@ -100,10 +183,23 @@
             display: inline;
             margin-left: 15px !important;
 
+            @include bp.respond('breakpoint-lg') {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 0 !important;
+                transform: none;
+                font-size: 1rem;
+            }
+
             .edit-input {
                 width: 30px;
                 margin: 0 5px 0 5px;
                 font-size: 0.7rem;
+
+                @include bp.respond('breakpoint-lg') {
+                    font-size: 1rem;
+                }
             }
         }
     }
@@ -114,6 +210,10 @@
         background: rgba(216, 231, 236, 0.5);
         min-height: 100px;
         border-radius: 10px;
+
+        @include bp.respond('breakpoint-lg') {
+            min-height: 350px;
+        }
     }
 
     .card-text {
@@ -123,12 +223,22 @@
         color: #333;
         line-height: 1;
         white-space: nowrap;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 1rem;
+            line-height: normal;
+            margin-bottom: 5px;
+        }
     }
 
     .edit-input {
         width: 30px;
         margin: 0 5px 0 5px;
         font-size: 0.7rem;
+
+        @include bp.respond('breakpoint-lg') {
+            font-size: 1rem;
+        }
     }
 }
 
@@ -143,6 +253,15 @@
     padding: 6px 15px;
     font-size: 0.8rem;
     cursor: pointer;
+
+    @include bp.respond('breakpoint-lg') {
+        top: 80%;
+        padding: 5px 20px;
+        font-size: 1rem;
+        left: 50%;
+        width: 60px;
+        border: 1px solid black;
+    }
 
     .edit-icon {
         width: 20px;
@@ -164,166 +283,17 @@
     font-size: 0.8rem;
     cursor: pointer;
     color: #fff;
-    width: 80px;
 
-    &:hover {
-        background-color: #004534;
-    }
-}
-
-// Desktop styles
-@include bp.respond('breakpoint-lg') {
-    .food-container {
-        flex-direction: row;
-    }
-
-    .food-results-container {
-        margin-top: 10px;
-        position: relative;
-        top: 50%;
-        border-radius: 15px;
-        padding: 20px;
-        border: 1px solid #000;
-        background: transparent;
-        max-width: 200px;
-        overflow-y: auto;
-        max-height: 400px;
-        height: auto;
-        overflow-x: visible;
-        white-space: normal;
-        display: block;
-        gap: 0;
-    }
-
-    .food-result-card {
-        border: none;
-        border-radius: 10px;
-        background: transparent;
-        overflow: hidden;
-        transition: transform 0.2s, box-shadow 0.2s;
-        padding: 10px;
-        flex: none;
-        width: auto;
-
-        &:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-body {
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #000;
-            background: rgba(216, 231, 236, 0.5);
-            border-radius: 10px;
-            white-space: normal;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            color: #333;
-        }
-
-        .card-text {
-            font-size: 0.8rem;
-            color: #333;
-        }
-    }
-
-    .food-detail-container {
-        margin-top: 10px;
-        border-radius: 15px;
-        padding: 20px;
-        border: 1px solid #000;
-        background: transparent;
-        max-width: 400px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        flex: 1;
-        margin-left: 20px;
-        max-height: 400px;
-    }
-
-    .food-detail-card {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        margin-bottom: 5px;
-        max-height: 350px;
-        width: 100%;
-        transition: transform 0.2s, box-shadow 0.2s;
-
-        .nutrition-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto;
-            gap: 10px 20px;
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        .card-header-container {
-            display: block;
-            text-align: center;
-            margin-bottom: 15px;
-
-            .card-title {
-                font-size: 1.2rem;
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin: 10px 0 10px 0;
-            }
-
-            .serving-size-text {
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin: 0 !important;
-                transform: none;
-                font-size: 1rem;
-
-                .edit-input {
-                    width: 30px;
-                    margin: 0 5px 0 5px;
-                    font-size: 1rem;
-                }
-            }
-        }
-
-        .card-text {
-            font-size: 1rem;
-            line-height: normal;
-            margin-bottom: 5px;
-        }
-
-        .card-body {
-            padding: 5px;
-            min-height: 350px;
-        }
-
-        .edit-input {
-            width: 30px;
-            // margin: 0 5px 0 5px;
-            font-size: 1rem;
-        }
-    }
-
-    .edit-button {
-        top: 80%;
+    @include bp.respond('breakpoint-lg') {
         padding: 5px 20px;
         font-size: 1rem;
-        left: 50%;
-        width: 60px;
-        border: 1px solid black;
-    }
-
-    .submit-button {
-        padding: 5px 20px;
-        font-size: 1rem;
-        position: absolute;
         top: 90%;
         left: 50%;
         width: 100px;
         height: 40px;
+    }
+
+    &:hover {
+        background-color: #004534;
     }
 }

@@ -9,11 +9,20 @@
     transform: translateY(-50%);
     background-color: rgba(8, 4, 4, 0.3);
     border-color: #d3b578;
+
+    @include bp.respond('breakpoint-lg') {
+        width: 20%;
+        height: 85%;
+    }
 }
 
 .accepted-quests-header {
     margin: 0;
     text-align: center;
+
+    @include bp.respond('breakpoint-lg') {
+        margin-bottom: -10px;
+    }
 }
 
 .accepted-quests-divider {
@@ -21,6 +30,10 @@
     border-width: 1px;
     opacity: 1;
     margin-top: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        margin-top: 10px;
+    }
 }
 
 .accepted-quests-body {
@@ -29,6 +42,9 @@
     transform: translateY(-10%);
     overflow-y: auto;
 
+    @include bp.respond('breakpoint-lg') {
+        transform: translateY(-2%);
+    }
 }
 
 .accepted-quests-submit-button {
@@ -37,28 +53,8 @@
     font-size: clamp(0.6rem, 0.7vw + 0.3rem, 1.1rem);
     width: 100%;
     padding: 0.2rem 0.5rem;
-}
 
-// Desktop styles
-@include bp.respond('breakpoint-lg') {
-    .accepted-quests-panel {
-        width: 20%;
-        height: 85%;
-    }
-
-    .accepted-quests-header {
-        margin-bottom: -10px;
-    }
-
-    .accepted-quests-divider {
-        margin-top: 10px;
-    }
-
-    .accepted-quests-body {
-        transform: translateY(-2%);
-    }
-
-    .accepted-quests-submit-button {
+    @include bp.respond('breakpoint-lg') {
         width: 50%;
         float: right;
     }

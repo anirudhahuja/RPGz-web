@@ -12,6 +12,15 @@
     max-width: 1000px;
     border-radius: 10px;
     margin: 0 auto;
+
+    @include bp.respond('breakpoint-lg') {
+        left: 50%;
+        top: 80%;
+        transform: translate(-50%, -80%);
+        height: 75%;
+        width: 75%;
+        max-width: 1000px;
+    }
 }
 
 // .character-creation-body {
@@ -92,18 +101,5 @@
         text-align: center;
         font-weight: bold;
         color: #333;
-    }
-}
-
-// Desktop styles
-@include bp.respond('breakpoint-lg') {
-
-    .character-creation-card {
-        left: 50%;
-        top: 80%;
-        transform: translate(-50%, -80%);
-        height: 75%;
-        width: 75%;
-        max-width: 1000px;
     }
 }

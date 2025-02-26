@@ -1,7 +1,6 @@
 @use '../variables/breakpoints' as bp;
 
 #town {
-    // Update height to use custom vh
     height: 100vh; /* Fallback */
     height: calc(var(--vh) * 100);
     width: 100vw;
@@ -13,6 +12,10 @@
     transform: translateX(-50%);
     width: 15%;
     height: auto;
+
+    @include bp.respond('breakpoint-lg') {
+        width: 10%;
+    }
 }
 
 .login-button {
@@ -35,13 +38,18 @@
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
     will-change: transform;
     backface-visibility: hidden;
-}
 
-.login-button:hover {
-  transform: scale(1.05);
-  color: #212121;
-  border-color: black;
-  background-color: #fff;
+    @include bp.respond('breakpoint-lg') {
+        font-size: 1.2rem;
+        padding: .875rem 1.125rem;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        color: #212121;
+        border-color: black;
+        background-color: #fff;
+    }
 }
 
 .player-container {
@@ -52,6 +60,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include bp.respond('breakpoint-lg') {
+        top: 65%;
+        left: 50%;
+
+        &.logged-out {
+            position: absolute;
+            top: 80%;
+        }
+    }
     
     .exp-bar-container {
         position: relative;
@@ -59,12 +77,21 @@
         left: 15px;
         margin-bottom: 10px;
         order: 1;
+
+        @include bp.respond('breakpoint-lg') {
+            top: 40px;
+            left: 30px;
+        }
     }
 
     .player {
         transform: scaleX(-1);
         scale: 1;
         order: 0;
+
+        @include bp.respond('breakpoint-lg') {
+            scale: 1.6;
+        }
     }
 
     .menu-icons {
@@ -78,6 +105,12 @@
         gap: 5px;
         order: -1;
         z-index: 20;
+
+        @include bp.respond('breakpoint-lg') {
+            flex-direction: column;
+            top: 50px;
+            left: 40%;
+        }
     }
 }
 
@@ -88,18 +121,37 @@
     padding: 5px;
     background-color: white;
     border-radius: 50%;
-}
 
-.menu-icon:hover {
-    background-color: gold;
+    @include bp.respond('breakpoint-lg') {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    &:hover {
+        background-color: gold;
+    }
 }
 
 .mi1 {
     transform: translate(10px, 30px);
+
+    @include bp.respond('breakpoint-lg') {
+        transform: translate(0, 0);
+    }
 }
 
 .mi4 {
     transform: translate(-10px, 30px);
+
+    @include bp.respond('breakpoint-lg') {
+        transform: translate(0, 0);
+    }
 }
 
 .logout-icon {
@@ -112,10 +164,21 @@
     padding: 5px;
     background-color: white;
     border-radius: 50%;
-}
 
-.logout-icon:hover {
-    background-color: gold;
+    @include bp.respond('breakpoint-lg') {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    &:hover {
+        background-color: gold;
+    }
 }
 
 .level-up-message {
@@ -134,6 +197,12 @@
         -1px  1px 0 #000,
          1px  1px 0 #000;
     animation: floatUp 5s ease-out forwards, rainbowText 5s linear infinite;
+
+    @include bp.respond('breakpoint-lg') {
+        left: 50%;
+        top: 70%;
+        font-size: 1.5rem;
+    }
 }
 
 @keyframes floatUp {
@@ -155,78 +224,4 @@
     66% { color: blue; }
     83% { color: indigo; }
     100% { color: violet; }
-}
-
-@include bp.respond('breakpoint-lg') {
-    .logo {
-        width: 10%;
-    }
-
-    .player-container {
-        top: 65%;
-        left: 50%;
-        
-        .exp-bar-container {
-            top: 40px;
-            left: 30px;
-        }
-
-        .player {
-            scale: 1.6;
-        }
-
-        .menu-icons {
-            flex-direction: column;
-            top: 50px;
-            left: 40%;
-        }
-
-        &.logged-out {
-            position: absolute;
-            top: 80%;
-        }
-    }
-
-    .level-up-message {
-        left: 50%;
-        top: 70%;
-        font-size: 1.5rem;
-    }
-
-    .menu-icon {
-        width: 40px;
-        height: 40px;
-        margin: 10px;
-        transition: transform 0.3s ease-in-out;
-    }   
-
-    .menu-icon:hover {
-        transform: translateY(-5px);
-    }
-
-    .mi1 {
-        transform: translate(0, 0);
-    }
-    
-    .mi4 {
-        transform: translate(0, 0);
-    }
-
-    .login-button {
-        top: 20px;
-        right: 20px;
-        font-size: 1.2rem;
-        padding: .875rem 1.125rem;
-    }
-
-    .logout-icon {
-        width: 50px;
-        height: 50px;
-        margin: 10px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .logout-icon:hover {
-        transform: translateY(-5px);
-    }
 }

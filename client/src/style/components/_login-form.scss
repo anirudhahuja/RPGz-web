@@ -11,6 +11,13 @@
     height: calc(var(--vh) * 95);
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+    @include bp.respond('breakpoint-lg') {
+        top: 50%;
+        left: 50%;
+        width: 20%;
+        height: 50%;
+    }
 }
 
 .login-register-tabs {
@@ -22,6 +29,10 @@
     font-weight: 500;
     border: none;
 
+    @include bp.respond('breakpoint-lg') {
+        top: 5%;
+    }
+
     .nav-link {
         color: black;
         border: none;
@@ -29,6 +40,10 @@
         outline: none;
         padding-bottom: 10px;
         width: 100px;
+
+        @include bp.respond('breakpoint-lg') {
+            width: 150px;
+        }
     }
 
     .nav-link:focus {
@@ -59,12 +74,23 @@
     text-align: center;
     margin-bottom: 20px;
     transform: translateY(-10px);
+
+    @include bp.respond('breakpoint-lg') {
+        font-size: 1.5rem;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        transform: translateY(0);
+    }
 }
 
 .login-form-subtext {
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        font-size: 1rem;
+    }
 
     &.login-form-forgot-password {
         text-align: right;
@@ -78,6 +104,11 @@
     width: 100%;
     padding: 3px;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        padding: 5px;
+        margin-bottom: 10px;
+    }
 }
 
 .login-form-button {
@@ -89,6 +120,11 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 15px;
+
+    @include bp.respond('breakpoint-lg') {
+        padding: 10px;
+        margin-top: 30px;
+    }
 }
 
 .register-form {
@@ -106,18 +142,34 @@
     text-align: center;
     margin-bottom: 0px;
     transform: translateY(-10px);
+
+    @include bp.respond('breakpoint-lg') {
+        font-size: 1.5rem;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        transform: translateY(0);
+    }
 }
 
 .register-form-subtext {
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        font-size: 1rem;
+    }
 }
 
 .register-form-input {
     width: 100%;
     padding: 3px;
     margin-bottom: 5px;
+
+    @include bp.respond('breakpoint-lg') {
+        padding: 5px;
+        margin-bottom: 10px;
+    }
 }
 
 .register-form-button {
@@ -129,69 +181,11 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-}
 
-// Desktop styles
-@include bp.respond('breakpoint-lg') {
-    
-    .login-register-container {
-        top: 50%;
-        left: 50%;
-        width: 20%;
-        height: 50%;
-    }
-
-    .login-register-tabs {
-        top: 5%;
-
-        .nav-link {
-            width: 150px;
-        }
-    }
-
-    .login-form-title {
-        font-size: 1.5rem;
-        margin-top: 0px;
-        margin-bottom: 40px;
-        transform: translateY(0);
-    }
-
-    .login-form-subtext {
-        font-size: 1rem;
-    }
-
-    .login-form-input {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-
-    .login-form-button {
-        padding: 10px;
-        margin-top: 30px;
-
-    }
-
-    .register-form-title {
-        font-size: 1.5rem;
-        margin-top: 0px;
-        margin-bottom: 40px;
-        transform: translateY(0);
-    }
-
-    .register-form-subtext {
-        font-size: 1rem;
-    }
-
-    .register-form-input {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-
-    .register-form-button {
+    @include bp.respond('breakpoint-lg') {
         padding: 10px;
         margin-top: 10px;
     }
-
 }
 
 

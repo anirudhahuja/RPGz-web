@@ -1,8 +1,13 @@
 @use '../variables/breakpoints' as bp;
 
 .exp-bar-container {
-    width: 200px;  // Base width for mobile
-    height: 20px;  // Fixed height instead of percentage
+    width: 200px;
+    height: 20px;
+
+    @include bp.respond('breakpoint-lg') {
+        width: 300px;
+        height: 25px;
+    }
 }
 
 .exp-bar {
@@ -22,17 +27,8 @@
     font-family: 'Yngreena';
     width: 100%;
     text-align: center;
-}
 
-// Desktop styles
-@include bp.respond('breakpoint-lg') {
-    
-    .exp-bar-container {
-        width: 300px;  // Larger width for desktop
-        height: 25px;  // Slightly taller for desktop
-    }
-
-    .progress-label {
+    @include bp.respond('breakpoint-lg') {
         font-size: 1.2rem;
     }
 }
