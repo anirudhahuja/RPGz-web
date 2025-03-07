@@ -65,7 +65,6 @@ Random Ideas:
     - Serving Size selection (default 1, allow user to increase) - done
     - Make it look good on all screen sizes - done (kinda)
 
-    
 2/14 Bugs with Registration:
     - When going to the nutrition menu and back, the menu is not showing up. - done
     - When refreshed, the user is logged out. - done

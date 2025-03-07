@@ -21,15 +21,15 @@ import PlayerInfoMenu from './menu/player-info';
 import QuestLogMenu from './menu/quest-log';
 import AcceptedQuestPanel from './menu/accepted-quests';
 import ExperienceBar from './components/exp-bar';
-import { Quest } from './menu/quest-log';
+import type { Quest } from '@fitness-rpg/shared-types';
 import { API_BASE_URL } from '../config';
 import { triggerLevelUp, setPlayerData, PlayerData } from './redux/levelUpSlice';
 import LoginForm from './components/login-form'; // Import the LoginForm component
-import { parseUserData } from '../../../shared/utils';
+import { parseUserData } from '@fitness-rpg/shared-api';
 import OrientationMessage from './components/orientation';
 
 interface TownProps {
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
+    setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
 
 export function Town({ setIsLoggedIn }: TownProps) {

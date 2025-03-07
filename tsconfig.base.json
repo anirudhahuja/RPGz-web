@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fitness-rpg/utils": ["utils/src/index.ts"]
+      "@fitness-rpg/shared-api": ["libs/shared-api/src/index.ts"],
+      "@fitness-rpg/shared-state": ["libs/shared-state/src/index.ts"],
+      "@fitness-rpg/shared-types": ["libs/shared-types/src/index.ts"],
+      "@fitness-rpg/shared-ui": ["libs/shared-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

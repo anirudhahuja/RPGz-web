@@ -1,0 +1,20 @@
+{
+    "name": "shared-api",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/shared-api/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/esbuild:esbuild",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/shared-api",
+                "main": "libs/shared-api/src/index.ts",
+                "tsConfig": "libs/shared-api/tsconfig.json",
+                "assets": ["libs/shared-api/*.md"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["shared-types"]
+} 

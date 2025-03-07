@@ -32,9 +32,7 @@ function AppContent() {
                 <Route path="/" element={<Town setIsLoggedIn={setIsLoggedIn} />} />
                 <Route 
                     path="/nutrition" 
-                    element={
-                        isLoggedIn ? <NutritionTracker /> : null
-                    } 
+                    element={ isLoggedIn ? <NutritionTracker /> : null } 
                 />
             </Routes>
             {isLoggedIn && <Profile />}

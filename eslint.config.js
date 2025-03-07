@@ -21,9 +21,21 @@ module.exports = [
               onlyDependOnLibsWithTags: ['*'],
             },
           ],
+          allowCircularSelfDependency: true
         },
       ],
     },
+  },
+  {
+    files: ['libs/shared-*/src/**/*.ts'],
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          allow: ['@fitness-rpg/shared-*']
+        }
+      ]
+    }
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],

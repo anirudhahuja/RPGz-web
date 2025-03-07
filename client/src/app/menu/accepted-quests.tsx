@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { Quest } from './quest-log';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
+import type { Quest } from '@fitness-rpg/shared-types';
 
 interface AcceptedQuestPanelProps {
     onSubmit: (quest: Quest) => void;
 }
 
-const AcceptedQuestPanel = ({ onSubmit }: AcceptedQuestPanelProps) => {
+const AcceptedQuestPanel: React.FC<AcceptedQuestPanelProps> = ({ onSubmit }) => {
     const [acceptedQuests, setAcceptedQuests] = useState<Quest[]>([]);
     const [error, setError] = useState<string | null>(null);
 
@@ -20,7 +20,7 @@ const AcceptedQuestPanel = ({ onSubmit }: AcceptedQuestPanelProps) => {
         }
 
         try {
-            const response = await axios.get(`${API_BASE_URL}/api/accepted-quests?username=${username}`);
+            const response = await axios.get<Quest[]>(`${API_BASE_URL}/api/accepted-quests?username=${username}`);
             setAcceptedQuests(response.data);
             setError(null);
         } catch (error: any) {
@@ -60,8 +60,8 @@ const AcceptedQuestPanel = ({ onSubmit }: AcceptedQuestPanelProps) => {
             </Card.Header>
             <br/>
             <Card.Body className="accepted-quests-body">
-                {acceptedQuests.map((quest, index) => (
-                    <h5 key={index}>
+                {acceptedQuests.map((quest) => (
+                    <h5 key={quest.id}>
                         <b>{quest.name}</b> - {quest.description} <br />
                         <b>Reward:</b> {quest.xp} {quest.primaryStatGain} experience <br />
                         <Button

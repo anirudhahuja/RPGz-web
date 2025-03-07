@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Container, Card, Button, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -43,9 +43,9 @@ interface SkinTone {
     name: string;
 }
 
-const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
+const CharacterCreation = React.memo(({ isOpen, onClose }: CharacterCreationProps) => {
     // Define hair colors with their filter values
-    const hairColors: HairColor[] = [
+    const hairColors = useMemo<HairColor[]>(() => [
         { filter: 'none', name: 'Natural Brown' },
         { filter: 'brightness(40%) saturate(50%)', name: 'Deep Black' },
         { filter: 'hue-rotate(-30deg) brightness(150%)', name: 'Golden Blonde' },
@@ -58,10 +58,10 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
         { filter: 'hue-rotate(45deg) saturate(120%)', name: 'Copper Red' },
         { filter: 'brightness(85%) saturate(110%)', name: 'Ash Brown' },
         { filter: 'hue-rotate(90deg) saturate(150%)', name: 'Rich Red' }
-    ];
+    ], []);
 
     // Define skin tones with their filter values
-    const skinTones: SkinTone[] = [
+    const skinTones = useMemo<SkinTone[]>(() => [
         { filter: 'brightness(95%) sepia(10%) saturate(90%)', name: 'Porcelain' },
         { filter: 'brightness(90%) sepia(20%) saturate(95%)', name: 'Ivory' },
         { filter: 'brightness(85%) sepia(30%) saturate(90%)', name: 'Warm Beige' },
@@ -72,10 +72,10 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
         { filter: 'brightness(45%) sepia(80%) saturate(100%)', name: 'Umber' },
         { filter: 'brightness(35%) sepia(90%) saturate(110%)', name: 'Mahogany' },
         { filter: 'brightness(25%) sepia(100%) saturate(120%)', name: 'Ebony' },
-    ];
+    ], []);
 
     // Define coordinates and variations for each hairstyle
-    const hairStyles: HairStyle[] = [
+    const hairStyles = useMemo<HairStyle[]>(() => [
         { x: 0, y: 0, offsetX: -10, name: "Long Straight" }, // 1
         { x: 3, y: 0, offsetX: -15, offsetY: -10, name: "Full Volume" }, // 2
         { x: 1, y: 0, offsetX: -12, clipPath: 'inset(0 0 40% 0)', name: "Tousled Bob" }, // 3
@@ -91,17 +91,19 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
         { x: 0, y: 1, offsetX: -15, clipPath: 'inset(0 0 45% 20%)', name: "Short Dense" }, // 13
         { x: 3, y: 1, offsetX: -17, name: "Dark Waves" }, // 14
         { x: 1, y: 1, offsetX: -20, clipPath: 'inset(5% 0 40% 0)', name: "Short Wavy" }, // 15
-    ];
+    ], []);
 
-    const [customization, setCustomization] = useState<CustomizationOption[]>([
+    const initialCustomization = useMemo(() => [
         { label: "Hair Style", options: hairStyles.map(h => h.name || ''), currentIndex: 0 },
         { label: "Hair Color", options: hairColors.map(c => c.name), currentIndex: 0 },
         { label: "Facial Hair", options: ["None", "Beard", "Mustache", "Goatee"], currentIndex: 0 },
         { label: "Skin Tone", options: skinTones.map(s => s.name), currentIndex: 0 },
         { label: "Outfit", options: ["Casual", "Formal", "Adventure", "Royal"], currentIndex: 0 },
-    ]);
+    ], [hairStyles, hairColors, skinTones]);
 
-    const handlePrevious = (index: number) => {
+    const [customization, setCustomization] = useState<CustomizationOption[]>(initialCustomization);
+
+    const handlePrevious = useCallback((index: number) => {
         setCustomization(prev => prev.map((item, i) => {
             if (i === index) {
                 return {
@@ -113,9 +115,9 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
             }
             return item;
         }));
-    };
+    }, []);
 
-    const handleNext = (index: number) => {
+    const handleNext = useCallback((index: number) => {
         setCustomization(prev => prev.map((item, i) => {
             if (i === index) {
                 return {
@@ -127,9 +129,9 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
             }
             return item;
         }));
-    };
+    }, []);
     
-    const getHairStyle = (index: number) => {
+    const getHairStyle = useCallback((index: number) => {
         const style = hairStyles[index];
         const currentColor = hairColors[customization[1].currentIndex];
         
@@ -145,15 +147,41 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
             filter: currentColor.filter,
             clipPath: style.clipPath,
         } as React.CSSProperties;
-    };
+    }, [hairStyles, hairColors, customization]);
     
-    const getCharacterStyle = () => {
+    const getCharacterStyle = useCallback(() => {
         const currentSkinTone = skinTones[customization[3].currentIndex];
         
         return {
             filter: currentSkinTone.filter,
         } as React.CSSProperties;
-    };
+    }, [skinTones, customization]);
+
+    // Memoize the customization options to prevent unnecessary re-renders
+    const customizationOptions = useMemo(() => {
+        return customization.map((option, index) => (
+            <div key={option.label} className="customization-row">
+                <Button 
+                    variant="primary" 
+                    onClick={() => handlePrevious(index)}
+                >
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </Button>
+                <span className="option-label">
+                    {option.label === "Hair Style" 
+                        ? `${option.label} ${option.currentIndex + 1}` 
+                        : option.label
+                    }
+                </span>
+                <Button 
+                    variant="primary" 
+                    onClick={() => handleNext(index)}
+                >
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </Button>
+            </div>
+        ));
+    }, [customization, handlePrevious, handleNext]);
 
     return (
         <Container className="character-creation-container">
@@ -174,33 +202,12 @@ const CharacterCreation = ({ isOpen, onClose }: CharacterCreationProps) => {
                         </div>
                     </div>
                     <div className="customization-options">
-                        {customization.map((option, index) => (
-                            <div key={option.label} className="customization-row">
-                                <Button 
-                                    variant="primary" 
-                                    onClick={() => handlePrevious(index)}
-                                >
-                                    <FontAwesomeIcon icon={faArrowLeft} />
-                                </Button>
-                                <span className="option-label">
-                                    {option.label === "Hair Style" 
-                                        ? `${option.label} ${option.currentIndex + 1}` 
-                                        : option.label
-                                    }
-                                </span>
-                                <Button 
-                                    variant="primary" 
-                                    onClick={() => handleNext(index)}
-                                >
-                                    <FontAwesomeIcon icon={faArrowRight} />
-                                </Button>
-                            </div>
-                        ))}
+                        {customizationOptions}
                     </div>
                 </Card.Body>
             </Card>
         </Container>
     );
-};
+});
 
 export default CharacterCreation;

@@ -6,6 +6,12 @@ module.exports = {
   output: {
     path: join(__dirname, '../dist/client'),
   },
+  resolve: {
+    alias: {
+      '@fitness-rpg/shared-api': join(__dirname, '../dist/libs/shared-api'),
+      '@fitness-rpg/shared-types': join(__dirname, '../dist/libs/shared-types')
+    }
+  },
   devServer: {
     port: 4200,
     historyApiFallback: {

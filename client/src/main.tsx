@@ -7,14 +7,14 @@ import './styles.scss';
 import App from './app/app';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+    <StrictMode>
+        <BrowserRouter>
+        <App />
+        </BrowserRouter>
+    </StrictMode>
 );
 
 // Add this function to handle viewport height
