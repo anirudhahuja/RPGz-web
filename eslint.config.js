@@ -27,17 +27,6 @@ module.exports = [
     },
   },
   {
-    files: ['libs/shared-*/src/**/*.ts'],
-    rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          allow: ['@fitness-rpg/shared-*']
-        }
-      ]
-    }
-  },
-  {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
     rules: {},

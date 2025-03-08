@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
-import { UserCredentials, LoginResponse, UserData, PlayerData } from '@fitness-rpg/shared-types';
+import { UserCredentials, LoginResponse, UserData, PlayerData } from '../../shared/types';
 
 interface LoginFormProps {
     onClose: () => void;

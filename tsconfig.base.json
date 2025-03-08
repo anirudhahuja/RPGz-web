@@ -13,13 +13,7 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@fitness-rpg/shared-api": ["libs/shared-api/src/index.ts"],
-      "@fitness-rpg/shared-state": ["libs/shared-state/src/index.ts"],
-      "@fitness-rpg/shared-types": ["libs/shared-types/src/index.ts"],
-      "@fitness-rpg/shared-ui": ["libs/shared-ui/src/index.ts"]
-    }
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }

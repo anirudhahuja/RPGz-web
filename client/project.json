@@ -4,7 +4,7 @@
   "sourceRoot": "client/src",
   "projectType": "application",
   "tags": [],
-  "implicitDependencies": ["shared-api", "shared-types"],
+  "implicitDependencies": [],
   "// targets": "to see all targets run: nx show project client --web",
   "targets": {
     "build": {

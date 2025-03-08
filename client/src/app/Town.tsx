@@ -21,11 +21,11 @@ import PlayerInfoMenu from './menu/player-info';
 import QuestLogMenu from './menu/quest-log';
 import AcceptedQuestPanel from './menu/accepted-quests';
 import ExperienceBar from './components/exp-bar';
-import type { Quest } from '@fitness-rpg/shared-types';
+import type { Quest } from '../shared/types';
 import { API_BASE_URL } from '../config';
 import { triggerLevelUp, setPlayerData, PlayerData } from './redux/levelUpSlice';
 import LoginForm from './components/login-form'; // Import the LoginForm component
-import { parseUserData } from '@fitness-rpg/shared-api';
+import { parseUserData } from '../shared/utils';
 import OrientationMessage from './components/orientation';
 
 interface TownProps {

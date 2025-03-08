@@ -3,7 +3,7 @@ import { Container, Card, CloseButton, Tabs, Tab, Button } from 'react-bootstrap
 import questlogBackground from '../../assets/quest_log_background.png';
 import { API_BASE_URL } from '../../config';
 import axios from 'axios';
-import type { Quest, QuestCategory, QuestLogProps } from '@fitness-rpg/shared-types';
+import type { Quest, QuestCategory, QuestLogProps } from '../../shared/types';
 
 // Main component for displaying the quest log menu
 const QuestLogMenu: React.FC<QuestLogProps> = ({ isOpen, onClose, maxQuests }) => {

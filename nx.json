@@ -3,12 +3,7 @@
   "defaultBase": "master",
   "projects": {
     "client": "client",
-    "server": "server",
-    "mobile": "mobile",
-    "shared-types": "libs/shared-types",
-    "shared-state": "libs/shared-state",
-    "shared-api": "libs/shared-api",
-    "shared-ui": "libs/shared-ui"
+    "server": "server"
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],

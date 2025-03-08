@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
-import type { Quest } from '@fitness-rpg/shared-types';
+import type { Quest } from '../../shared/types';
 
 interface AcceptedQuestPanelProps {
     onSubmit: (quest: Quest) => void;

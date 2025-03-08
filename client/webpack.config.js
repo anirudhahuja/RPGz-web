@@ -8,8 +8,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@fitness-rpg/shared-api': join(__dirname, '../dist/libs/shared-api'),
-      '@fitness-rpg/shared-types': join(__dirname, '../dist/libs/shared-types')
     }
   },
   devServer: {
