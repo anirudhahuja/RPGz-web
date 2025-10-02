@@ -1,0 +1,477 @@
+// Landing Page Styles - FitnessRPG Pixel Art Theme
+.landing-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #87CEEB; // Sky blue background
+}
+
+// Hero Section - Town Scene
+.hero-section {
+    background: none; // Remove gradient, use the village.gif background
+    color: white;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+// Logo Section
+.logo-section {
+    margin-bottom: 2rem;
+    
+    @media (max-width: 768px) {
+        margin-bottom: 1rem;
+    }
+}
+
+.hero-logo {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+    
+    @media (min-width: 992px) {
+        width: 150px;
+    }
+    
+    @media (max-width: 768px) {
+        width: 150px;
+    }
+}
+
+// Carousel Section - Now its own row
+.carousel-section {
+    margin-bottom: 2rem;
+}
+
+.carousel-container {
+    padding: 1rem;
+}
+
+// Player Section - Now its own row below carousel
+.player-section {
+    margin-bottom: 2rem;
+}
+
+.hero-carousel {
+    width: 100%;
+    
+    .carousel-inner {
+        min-height: 350px;
+        
+        @media (min-width: 992px) {
+            min-height: 320px;
+        }
+    }
+    
+    .carousel-item {
+        padding: 1.5rem 1rem;
+        min-height: 350px;
+        
+        @media (min-width: 992px) {
+            min-height: 320px;
+            padding: 1rem;
+        }
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;
+        opacity: 0.7;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    
+    .carousel-indicators {
+        button {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            
+            &.active {
+                background-color: #FFD700;
+                border-color: #FFD700;
+            }
+        }
+    }
+}
+
+.carousel-slide {
+    text-align: center;
+    padding: 1rem;
+    min-height: 300px;
+    
+    @media (min-width: 992px) {
+        min-height: 280px;
+        padding: 0.5rem;
+    }
+}
+
+// Hero Slide
+.hero-slide {
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        text-shadow: 
+            -2px -2px 0 #000,  
+             2px -2px 0 #000,
+            -2px  2px 0 #000,
+             2px  2px 0 #000;
+        
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        text-shadow: 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Features Slide
+.features-slide {
+    .section-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 
+            -2px -2px 0 #000,  
+             2px -2px 0 #000,
+            -2px  2px 0 #000,
+             2px  2px 0 #000;
+        
+        @media (max-width: 768px) {
+            font-size: 1.4rem;
+        }
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+        color: #FFD700; // Gold color
+        margin-bottom: 1rem;
+        text-shadow: 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000;
+    }
+    
+    .features-row {
+        margin-top: 1rem;
+    }
+}
+
+// Stats Slide
+.stats-slide {
+    .section-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: white;
+        text-shadow: 
+            -2px -2px 0 #000,  
+             2px -2px 0 #000,
+            -2px  2px 0 #000,
+             2px  2px 0 #000;
+        
+        @media (max-width: 768px) {
+            font-size: 1.4rem;
+        }
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+        color: #FFD700; // Gold color
+        margin-bottom: 1rem;
+        text-shadow: 
+            -1px -1px 0 #000,  
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000;
+    }
+    
+    .stats-row {
+        margin-top: 1rem;
+    }
+}
+
+// Player and Download Section
+.player-download-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.player-and-buttons {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+.player-character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-gif {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    transform: scaleX(-1); // Flip character like in original
+    
+    @media (min-width: 992px) {
+        width: 300px;
+    }
+}
+
+.download-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 280px;
+}
+
+.download-btn {
+    padding: 12px 24px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #212121;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    width: 100%;
+    
+    &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        color: #212121;
+        border-color: #000;
+        background-color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        background: #f0f0f0;
+        color: #666;
+        border-color: #ccc;
+    }
+}
+
+.feature-card {
+    border: 2px solid #8B4513;
+    border-radius: 0; // Pixel art style
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    margin-bottom: 1rem;
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        border-color: #FFD700;
+    }
+}
+
+.feature-icon {
+    margin-bottom: 0.5rem;
+    
+    svg {
+        font-size: 1.5rem !important;
+    }
+}
+
+.feature-card .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #8B4513;
+    text-shadow: 
+        -1px -1px 0 #FFD700,  
+         1px -1px 0 #FFD700,
+        -1px  1px 0 #FFD700,
+         1px  1px 0 #FFD700;
+}
+
+.feature-card .card-text {
+    color: #333;
+    line-height: 1.4;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.stat-item {
+    padding: 1rem 0.5rem;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000;
+    
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+}
+
+// CTA Section
+.cta-section {
+    background: linear-gradient(135deg, #FF4500 0%, #FF6347 100%); // Orange gradient
+    color: white;
+    padding: 4rem 0;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000;
+    
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+.cta-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+}
+
+// Footer
+.footer {
+    background-color: #2F4F4F; // Dark slate gray
+    color: white;
+    padding: 2rem 0;
+    
+    a {
+        text-decoration: none;
+        color: #FFD700;
+        
+        &:hover {
+            text-decoration: underline;
+            color: #FFF;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .hero-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .carousel-section {
+        margin-bottom: 1rem;
+    }
+    
+    .player-section {
+        margin-bottom: 1rem;
+    }
+    
+    .player-gif {
+        width: 100px;
+    }
+    
+    .download-buttons {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .stat-item {
+        margin-bottom: 1rem;
+    }
+}
+
+// Custom Bootstrap Overrides
+.btn-primary {
+    background: #fff;
+    border: 2px solid #000;
+    color: #212121;
+    
+    &:hover {
+        background: #fff;
+        border-color: #000;
+        color: #212121;
+        transform: scale(1.05);
+    }
+}
+
+.text-primary {
+    color: #FFD700 !important; // Gold color
+}
+
+.bg-primary {
+    background-color: #8B4513 !important; // Brown color
+} 

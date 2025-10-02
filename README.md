@@ -1,77 +1,106 @@
-# FitnessRpg
+# FitnessRPG Landing Page
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A modern, responsive landing page for the FitnessRPG mobile application. This website directs users to download the FitnessRPG app from the Google Play Store.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## About FitnessRPG
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+FitnessRPG is a gamified fitness and nutrition tracking mobile application that transforms your workout journey into an epic RPG adventure. Complete quests, level up your character, and track your nutrition - all while building real-world strength and endurance.
 
-## Finish your remote caching setup
+### Key Features
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/vnn06ApjqZ)
+- **RPG Quest System**: Complete fitness quests to gain experience points and level up your character's stats
+- **Nutrition Tracking**: Comprehensive food database integration for tracking daily nutrition
+- **Character Progression**: Watch your character grow stronger as you achieve fitness milestones
+- **Gamified Experience**: Make fitness fun with RPG elements and achievements
 
+## Getting Started
 
-## Run tasks
+### Prerequisites
 
-To run tasks with Nx use:
+- Node.js (v16 or higher)
+- npm or yarn
 
-```sh
-npx nx <target> <project-name>
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd rpgz-web
 ```
 
-For example:
-
-```sh
-npx nx build myproject
+2. Install dependencies:
+```bash
+npm install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+3. Start the development server:
+```bash
+npm start
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+4. Open your browser and navigate to `http://localhost:4200`
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+### Building for Production
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
+```bash
+npm run build
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+The built files will be in the `dist/client` directory.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Technology Stack
 
+- **React 18** - Frontend framework
+- **TypeScript** - Type safety
+- **Bootstrap 5** - UI components and responsive design
+- **SCSS** - Advanced styling
+- **FontAwesome** - Icons
+- **Nx** - Build system and monorepo management
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Project Structure
 
-## Install Nx Console
+```
+client/
+├── src/
+│   ├── app/
+│   │   ├── app.tsx          # Main landing page component
+│   │   └── landing.scss     # Landing page styles
+│   ├── assets/              # Images and static assets
+│   ├── main.tsx             # Application entry point
+│   └── styles.scss          # Global styles
+├── project.json             # Nx project configuration
+└── webpack.config.js        # Webpack configuration
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Deployment
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This landing page can be deployed to any static hosting service such as:
 
-## Useful links
+- Netlify
+- Vercel
+- GitHub Pages
+- AWS S3 + CloudFront
+- Firebase Hosting
 
-Learn more:
+## Mobile App
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+The FitnessRPG mobile app is available on:
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **Google Play Store**: [Download FitnessRPG](https://play.google.com/store/apps/details?id=com.fitnessrpg.app)
+- **iOS App Store**: Coming Soon
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+For questions or support, please contact us at support@fitnessrpg.com

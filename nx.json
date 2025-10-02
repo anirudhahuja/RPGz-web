@@ -2,8 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
   "projects": {
-    "client": "client",
-    "server": "server"
+    "client": "client"
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
@@ -39,21 +38,6 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      },
-      "exclude": ["server-e2e/**/*"]
-    },
-    {
-      "plugin": "@nx/react-native/plugin",
-      "options": {
-        "startTargetName": "start",
-        "upgradeTargetName": "update",
-        "bundleTargetName": "bundle",
-        "podInstallTargetName": "pod-install",
-        "runIosTargetName": "run-ios",
-        "runAndroidTargetName": "run-android",
-        "buildIosTargetName": "build-ios",
-        "buildAndroidTargetName": "build-android",
-        "syncDepsTargetName": "sync-deps"
       }
     },
     {
